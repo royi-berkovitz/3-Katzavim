@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<header style="position:fixed;top:0;left:{{ fxL }};right:{{ fxL }};z-index:200;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:{{ pad }};background:#f6f6f6;box-shadow:{{ shadow }};color:#3c2313;transition:padding .35s, box-shadow .35s" dir="rtl">
+  <a href="Home.dc.html" style="display:flex;align-items:center;flex:none">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/logo.png" alt="שלושה קצבים — לעמוד הבית" style="height:{{ logoH }};width:auto;display:block;transition:height .3s">
+  </a>
+  <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+    <nav aria-label="ניווט ראשי" style="display:flex;align-items:center;gap:{{ navGap }};flex:1;justify-content:center">
+      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="6">
+        <div onMouseEnter="{{ it.enter }}" onMouseLeave="{{ closeDd }}" style="position:relative;padding:10px 0">
+          <a href="{{ it.href }}" aria-current="{{ it.cur }}" style="display:flex;align-items:center;gap:4px;font-size:{{ navFont }};font-weight:{{ it.fw }};padding:6px 10px;border-radius:999px;white-space:nowrap;color:{{ it.color }}" style-hover="color:#EE3A30">
+            {{ it.label }}
+            <sc-if value="{{ it.hasKids }}" hint-placeholder-val="{{ false }}"><i class="ti ti-chevron-down" style="font-size:14px;opacity:.7"></i></sc-if>
+          </a>
+          <sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:100%;right:0;min-width:190px;padding:10px 0;background:#3c2313;color:#f5f5f5;border-radius:4px;box-shadow:0 18px 40px rgba(20,10,5,.25);display:flex;flex-direction:column">
+              <sc-for list="{{ it.kids }}" as="k" hint-placeholder-count="3">
+                <a href="{{ k.href }}" style="padding:10px 22px;font-size:.92rem;font-weight:400;color:#f5f5f5" style-hover="color:#EE3A30;background:rgba(245,245,245,.05)">{{ k.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </nav>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:12px;flex:none">
+    <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+      <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="להזמנה בקליק — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:600;font-size:.92rem;white-space:nowrap;transition:transform .3s, background .3s, color .3s, border-color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff;transform:translateY(-2px)">להזמנה בקליק</a>
+    </sc-if>
+    <sc-if value="{{ tabCta }}" hint-placeholder-val="{{ false }}">
+      <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" aria-label="להזמנה בקליק — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:600;font-size:.92rem;white-space:nowrap">להזמנה בקליק</a>
+    </sc-if>
+    <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="תפריט" aria-expanded="{{ menuOpen }}" style="width:44px;height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;display:flex;align-items:center;justify-content:center;font-size:22px;padding:0"><i class="ti ti-menu-2"></i></button>
+    </sc-if>
+  </div>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-label="תפריט" dir="rtl" style="position:fixed;top:0;bottom:0;left:{{ fxL }};right:{{ fxL }};z-index:300;background:#0f0a07;color:#f5f5f5;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-90px;bottom:-90px;width:300px;height:auto;opacity:.06;pointer-events:none;animation:spin 60s linear infinite">
+    <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:{{ pad }}">
+      <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:{{ logoH }};width:auto;display:block">
+      <button onClick="{{ toggleMenu }}" aria-label="סגירה" style="width:44px;height:44px;border-radius:999px;border:1px solid rgba(245,245,245,.25);background:transparent;color:#f5f5f5;font-size:20px;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-x"></i></button>
+    </div>
+    <nav style="position:relative;flex:1;padding:18px 26px 10px;display:flex;flex-direction:column">
+      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="6">
+        <div style="border-bottom:1px solid rgba(245,245,245,.09)">
+          <div style="display:flex;align-items:center;gap:14px;padding:13px 0">
+            <span style="flex:none;width:22px;font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#EE3A30;font-variant-numeric:tabular-nums">{{ it.num }}</span>
+            <a href="{{ it.href }}" style="flex:1;font-size:1.55rem;font-weight:300;letter-spacing:-.6px;line-height:1.1;color:{{ it.mColor }}">{{ it.label }}</a>
+            <sc-if value="{{ it.hasKids }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ it.mToggle }}" aria-label="תת תפריט" style="flex:none;width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,245,245,.2);background:transparent;color:#f5f5f5;display:flex;align-items:center;justify-content:center;padding:0;transform:rotate({{ it.mRot }});transition:transform .3s ease"><i class="ti ti-plus" style="font-size:15px;line-height:1;display:block"></i></button>
+            </sc-if>
+          </div>
+          <sc-if value="{{ it.mOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;padding:0 36px 16px 0">
+              <sc-for list="{{ it.kids }}" as="k" hint-placeholder-count="3">
+                <a href="{{ k.href }}" style="padding:7px 14px;border-radius:999px;background:rgba(245,245,245,.07);font-size:.9rem;color:#f5f5f5">{{ k.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </nav>
+    <div style="position:relative;padding:22px 26px calc(110px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <a href="tel:038002626" style="display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:10px;border:1px solid rgba(245,245,245,.12);color:#f5f5f5"><span style="font-size:.72rem;opacity:.6">סניף חולון</span><strong style="font-size:1rem;font-weight:600;direction:ltr;text-align:right">03-800-2626</strong></a>
+      <a href="tel:036324634" style="display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:10px;border:1px solid rgba(245,245,245,.12);color:#f5f5f5"><span style="font-size:.72rem;opacity:.6">סניף גבעת שמואל</span><strong style="font-size:1rem;font-weight:600;direction:ltr;text-align:right">03-632-4634</strong></a>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ phone }}" hint-placeholder-val="{{ false }}">
+  <div dir="rtl" style="position:fixed;z-index:180;left:{{ fxBar }};right:{{ fxBar }};bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;transform:translateY({{ barY }});transition:transform .45s cubic-bezier(.2,.7,.2,1)">
+    <a href="https://api.whatsapp.com/send?phone=972515254100" target="_blank" rel="noopener" aria-label="וואטסאפ" style="flex:none;width:56px;height:56px;border-radius:50%;background:#3c2313;color:#f5f5f5;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(20,10,5,.28)"><i class="ti ti-brand-whatsapp" style="font-size:26px"></i></a>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" aria-label="להזמנה בקליק — מעבר לאתר ההזמנות" style="flex:1;height:56px;border-radius:999px;background:#EE3A30;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 18px;font-size:1.08rem;font-weight:700;letter-spacing:-.2px;box-shadow:0 10px 26px rgba(238,58,48,.35)"><span>להזמנה בקליק</span><i class="ti ti-chevron-left" style="font-size:22px"></i></a>
+  </div>
+</sc-if>
+<sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+  <div dir="ltr" style="position:fixed;z-index:180;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+    <sc-for list="{{ qa }}" as="q" hint-placeholder-count="2">
+      <a href="{{ q.href }}" target="_blank" rel="noopener" onMouseEnter="{{ q.enter }}" onMouseLeave="{{ q.leave }}" aria-label="{{ q.label }}" data-cur="white" style="direction:rtl;flex:none;display:flex;align-items:center;gap:12px;height:56px;width:{{ q.w }};padding:0 18px 0 0;overflow:hidden;white-space:nowrap;border-radius:0 999px 999px 0;background:{{ q.bg }};color:#f5f5f5;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:width .4s cubic-bezier(.2,.7,.2,1), background .3s">
+        <i class="ti {{ q.icon }}" style="flex:none;width:24px;font-size:24px;text-align:center"></i>
+        <span style="font-size:1.05rem;font-weight:700;opacity:{{ q.op }};transition:opacity .25s ease {{ q.delay }}">{{ q.label }}</span>
+      </a>
+    </sc-for>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;recipes&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;cuts&quot;,&quot;recipes&quot;,&quot;story&quot;,&quot;branches&quot;,&quot;more&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, y: window.scrollY, dd: -1, mDd: -1, menu: false, hQa: -1, nearEnd: false };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    this.onS = () => { const y = window.scrollY, end = y + window.innerHeight > document.documentElement.scrollHeight - 260; if ((y > 10) !== (this.state.y > 10) || end !== this.state.nearEnd) this.setState({ y, nearEnd: end }); };
+    this.onK = (e) => { if (e.key === 'Escape' && this.state.menu) this.toggle(); };
+    window.addEventListener('resize', this.onR); window.addEventListener('scroll', this.onS, { passive: true }); window.addEventListener('keydown', this.onK);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('scroll', this.onS); window.removeEventListener('keydown', this.onK); document.documentElement.style.overflow = ''; }
+  toggle() { const m = !this.state.menu; document.documentElement.style.overflow = m ? 'hidden' : ''; this.setState({ menu: m }); }
+  renderVals() {
+    const st = this.state, fw = this.props.forceW || 0, W = fw || st.w, mob = W <= 1000, active = this.props.active || '';
+    const defs = [
+      { id: 'home', label: 'הבית', href: 'Home.dc.html' },
+      { id: 'cuts', label: 'הנתחים שלנו', href: 'Cuts.dc.html' },
+      { id: 'recipes', label: 'מה על האש?', href: 'Recipes.dc.html' },
+      { id: 'story', label: 'הסיפור שלנו', href: 'Story.dc.html' },
+      { id: 'branches', label: 'הסניפים', href: 'Branch.dc.html?b=holon', kids: [['חולון', 'Branch.dc.html?b=holon'], ['גבעת שמואל', 'Branch.dc.html?b=givat']] },
+      { id: 'more', label: 'עוד', href: '#', kids: [['כשרות', 'Kosher.dc.html'], ['טיפים מהקצבים', 'Tips.dc.html'], ['מועדון הלקוחות', 'Club.dc.html'], ['גלריה', 'Gallery.dc.html'], ['צור קשר', 'Contact.dc.html']] }
+    ];
+    const nav = defs.map((n, i) => { const on = n.id === active;
+      return { label: n.label, href: n.href, hasKids: !!n.kids, open: st.dd === i && !!n.kids, cur: on ? 'page' : 'false',
+        color: on ? '#EE3A30' : '#3c2313', mColor: on ? '#EE3A30' : '#f5f5f5', fw: on ? 700 : 500,
+        num: String(i + 1).padStart(2, '0'), mOpen: st.mDd === i && !!n.kids, mRot: st.mDd === i ? '45deg' : '0deg',
+        kids: (n.kids || []).map(([label, href]) => ({ label, href })),
+        enter: () => this.setState({ dd: i }), mToggle: () => this.setState(s => ({ mDd: s.mDd === i ? -1 : i })) }; });
+    const qa = [
+      { label: 'הזמינו עכשיו', icon: 'ti-truck-delivery', href: 'https://orders.3katzavim.co.il/' },
+      { label: 'דברו איתנו', icon: 'ti-brand-whatsapp', href: 'https://api.whatsapp.com/send?phone=972515254100' }
+    ].map((q, i) => { const on = st.hQa === i; return { ...q, w: on ? '210px' : '60px', bg: on ? '#d6302a' : '#EE3A30', op: on ? 1 : 0, delay: on ? '.15s' : '0s',
+      enter: () => this.setState({ hQa: i }), leave: () => this.setState({ hQa: -1 }) }; });
+    const scrolled = st.y > 10;
+    const phone = W < 768;
+    return { mob, desk: !mob, phone, tabCta: mob && !phone, nav, qa, closeDd: () => this.setState({ dd: -1 }),
+      pad: phone ? '12px 18px' : (scrolled ? (W <= 1300 ? '10px 28px' : '10px 44px') : (W <= 1300 ? '12px 28px' : '16px 44px')),
+      logoH: phone ? '34px' : (scrolled ? '38px' : '46px'), shadow: '0 2px 24px rgba(60,35,19,.07)',
+      navGap: W <= 1150 ? '0px' : '4px', navFont: W <= 1150 ? '.8rem' : '.95rem',
+      fxL: fw ? 'calc(50% - ' + fw / 2 + 'px)' : '0px', fxBar: fw ? 'calc(50% - ' + (fw / 2 - 12) + 'px)' : '12px',
+      menuOpen: st.menu, toggleMenu: () => this.toggle(), barY: st.nearEnd ? '120px' : '0px' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>גלריה | שלושה קצבים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main style="padding-top:{{ hdrH }}">
+<section data-screen-label="01 Hero" style="padding:{{ heroPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#EE3A30"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>גלריה</div>
+      <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.95">מה קורה <strong style="font-weight:900">אצלנו</strong></h1>
+      <p style="margin:0;max-width:520px;font-size:{{ leadFs }};font-weight:300;line-height:1.5">מהדלפק, מהמטבח ומהסניפים – ישר מהאינסטגרם שלנו.</p>
+    </div>
+    <a href="{{ igUrl }}" target="_blank" rel="noopener" data-cur="white" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;width:{{ fullW }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30"><i class="ti ti-brand-instagram" style="font-size:20px"></i>עקבו אחרינו באינסטגרם</a>
+  </div>
+</section>
+
+<section data-screen-label="02 Feed" style="padding:{{ feedPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <sc-if value="{{ demo }}" hint-placeholder-val="{{ true }}">
+      <p style="margin:0 0 16px;display:flex;align-items:center;gap:8px;padding:12px 16px;border:1px dashed rgba(60,35,19,.35);border-radius:10px;background:#faf7f4;font-size:.9rem;line-height:1.5"><strong style="font-family:ui-monospace,Menlo,monospace;font-size:.72rem;letter-spacing:.06em;color:#EE3A30;direction:ltr">CONTENT_REQUIRED</strong>תצוגה זמנית מתמונות האתר. הפיד יתחבר לאינסטגרם בעת ההטמעה.</p>
+    </sc-if>
+    <div style="display:grid;grid-template-columns:{{ cols }};gap:{{ gap }}">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="12">
+        <button onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" aria-label="{{ p.alt }}" style="position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border:0;padding:0;border-radius:{{ rad }};background:#e7e1db">
+          <img src="{{ p.src }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ p.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
+          <span style="position:absolute;inset:0;background:rgba(36,20,10,.45);opacity:{{ p.ov }};transition:opacity .35s;display:flex;align-items:center;justify-content:center"><i class="ti ti-brand-instagram" style="font-size:34px;color:#fff"></i></span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ lbOn }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-label="תמונה מהגלריה" onClick="{{ close }}" style="position:fixed;top:0;bottom:0;left:{{ fxL }};right:{{ fxL }};z-index:400;background:rgba(15,10,7,.92);display:flex;align-items:center;justify-content:center;padding:{{ lbPad }}">
+    <div onClick="{{ stop }}" style="position:relative;display:flex;flex-direction:column;gap:14px;width:{{ lbW }}">
+      <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:14px;background:#24140a"><img src="{{ cur.src }}" alt="{{ cur.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;color:#f5f5f5">
+        <button onClick="{{ prev }}" aria-label="הקודם" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,245,245,.3);background:transparent;color:#f5f5f5;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-chevron-right" style="font-size:20px"></i></button>
+        <a href="{{ igUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#f5f5f5;font-weight:600" style-hover="color:#EE3A30"><i class="ti ti-brand-instagram" style="font-size:18px"></i>לצפייה באינסטגרם</a>
+        <button onClick="{{ next }}" aria-label="הבא" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,245,245,.3);background:transparent;color:#f5f5f5;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-chevron-left" style="font-size:20px"></i></button>
+      </div>
+      <button onClick="{{ close }}" aria-label="סגירה" style="position:absolute;top:-56px;left:0;width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,245,245,.3);background:transparent;color:#f5f5f5;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-x" style="font-size:20px"></i></button>
+    </div>
+  </div>
+</sc-if>
+</main>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;igUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/3katzavim/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;אינסטגרם&quot;},&quot;feedUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;אינסטגרם&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, h: -1, lb: -1, feed: null };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR);
+    this.onK = (e) => { if (this.state.lb < 0) return; if (e.key === 'Escape') this.setState({ lb: -1 }); if (e.key === 'ArrowLeft') this.step(1); if (e.key === 'ArrowRight') this.step(-1); };
+    window.addEventListener('keydown', this.onK);
+    // Live feed: set props.feedUrl to a JSON endpoint (e.g. Behold.so / Instagram Basic Display proxy) returning [{mediaUrl|media_url, permalink, caption}]
+    const url = this.props.feedUrl;
+    if (url) fetch(url).then(r => r.json()).then(j => { const arr = (Array.isArray(j) ? j : (j.posts || j.data || [])).map(p => ({ src: p.sizes ? (p.sizes.large || p.sizes.medium).mediaUrl : (p.mediaUrl || p.media_url || p.thumbnail_url), link: p.permalink, alt: (p.caption || p.prunedCaption || 'פוסט מהאינסטגרם').slice(0, 90) })).filter(p => p.src); if (arr.length) this.setState({ feed: arr }); }).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('keydown', this.onK); }
+  list() {
+    if (this.state.feed) return this.state.feed;
+    const U = 'https://3katzavim.web3d-studio.co.il/wp-content/uploads/';
+    return ['2025/12/2d833f3b-2225-4594-b9ff-03d91b36c428.jpg', '2025/11/IMG_7918-2.jpg', '2025/12/5a4ef969-50ee-47f0-8597-11411b5e7b0a.jpg', '2025/11/IMG_7806-2.jpg', '2025/12/9e902ae5-61c1-4c7a-b5d8-1ae0f11c8672.jpg', '2025/11/IMG_7983-2.jpg',
+      '2025/12/a118b479-23af-4e59-b065-4baf61f3a8b8.jpg', '2025/11/deaf02f4-9117-4d89-80f4-d8a3281756b4.jpg', '2025/12/PHOTO-2025-12-29-14-56-37-3.jpg', '2025/11/554f6381-ec26-4095-a137-fa0c98749f05.jpg', '2025/12/PHOTO-2025-12-29-14-56-35.jpg', '2025/11/61ccafa8-cbac-4f4e-b50a-71a45c4ab670.jpg']
+      .map((p, i) => ({ src: U + p, alt: 'תמונה מהסניפים ' + (i + 1), link: '' }));
+  }
+  step(dir) { const n = this.list().length; this.setState(s => ({ lb: ((s.lb + dir) % n + n) % n })); }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
+    const items = this.list(), ig = this.props.igUrl || 'https://www.instagram.com/3katzavim/';
+    const posts = items.map((p, i) => { const h = st.h === i && !mob; return { ...p, scale: h ? 1.06 : 1, ov: h ? 1 : 0,
+      open: () => this.setState({ lb: i }), enter: () => this.setState({ h: i }), leave: () => this.setState({ h: -1 }) }; });
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    const cur = items[Math.max(st.lb, 0)] || {};
+    return {
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      fxL: pv ? 'calc(50% - 196.5px)' : '0px', posts, demo: !st.feed, igUrl: ig, lbOn: st.lb >= 0, cur,
+      close: () => this.setState({ lb: -1 }), stop: (e) => e.stopPropagation(), prev: () => this.step(-1), next: () => this.step(1),
+      hdrH: mob ? '66px' : '100px', heroPad: mob ? '40px 20px 26px' : 'clamp(60px,8vh,100px) ' + side + ' 44px', h1Fs: mob ? '3rem' : 'clamp(3.8rem,6vw,6.4rem)', leadFs: mob ? '1.05rem' : '1.2rem', fullW: mob ? '100%' : 'auto',
+      feedPad: mob ? '0 20px 64px' : '0 ' + side + ' 110px', cols: mob ? 'repeat(2,minmax(0,1fr))' : (tab ? 'repeat(3,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))'), gap: mob ? '6px' : '14px', rad: mob ? '8px' : '12px',
+      lbPad: mob ? '70px 16px 30px' : '80px 30px', lbW: mob ? '100%' : 'min(520px, calc((100vh - 220px) * .8))'
+    };
+  }
+}
+</script>
+</body>
+</html>

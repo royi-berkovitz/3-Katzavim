@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<footer dir="rtl" style="position:relative;overflow:hidden;background:#24140a;color:#f5f5f5;padding:{{ pad }}">
+  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:{{ stampL }};bottom:{{ stampL }};width:{{ stampW }};height:auto;opacity:.05;pointer-events:none;animation:spin 80s linear infinite">
+  <div style="position:relative;max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;padding-bottom:clamp(36px,5vw,56px);margin-bottom:clamp(36px,5vw,56px);border-bottom:1px solid rgba(245,245,245,.1)">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:{{ logoH }};width:auto;display:block;align-self:flex-start;object-fit:contain">
+        <p style="margin:0;font-size:{{ tagFs }};font-weight:300;letter-spacing:-.5px;line-height:1.1">בשר פרימיום כשר, <strong style="font-weight:900">מאז 1959</strong></p>
+      </div>
+      <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+        <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" style="display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.02rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">להזמנה בקליק<i class="ti ti-chevron-left"></i></a>
+      </sc-if>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ cols }};gap:{{ gap }}">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;font-weight:600;color:#EE3A30;margin-bottom:18px"><span style="width:18px;height:1.5px;background:#EE3A30;display:block"></span>תפריט</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px 20px">
+          <sc-for list="{{ menu }}" as="m" hint-placeholder-count="10">
+            <a href="{{ m.href }}" style="font-size:1rem;font-weight:300;color:#f5f5f5;transition:color .25s" style-hover="color:#EE3A30">{{ m.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <sc-for list="{{ branches }}" as="b" hint-placeholder-count="2">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;font-weight:600;color:#EE3A30;margin-bottom:18px"><span style="width:18px;height:1.5px;background:#EE3A30;display:block"></span>{{ b.title }}</div>
+          <div style="font-size:1.15rem;font-weight:500;letter-spacing:-.3px;margin-bottom:14px">{{ b.addr }}</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="{{ b.tel }}" style="display:flex;align-items:center;gap:10px;color:#f5f5f5;font-weight:300"><span style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,245,245,.18);display:flex;align-items:center;justify-content:center;flex:none"><i class="ti ti-phone" style="font-size:15px"></i></span><span style="direction:ltr">{{ b.phone }}</span></a>
+            <a href="{{ b.waze }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;color:#f5f5f5;font-weight:600"><span style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,245,245,.18);display:flex;align-items:center;justify-content:center;flex:none"><i class="ti ti-map-pin" style="font-size:15px"></i></span>נווט לסניף</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,60px);padding-top:22px;border-top:1px solid rgba(245,245,245,.1);display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between;font-size:.8rem;font-weight:300">
+      <span style="opacity:.6">2026 © כל הזכויות שמורות</span>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;opacity:.6">
+        <a href="https://3katzavim.co.il/מדיניות-הפרטיות/" target="_blank" rel="noopener">מדיניות פרטיות</a>
+        <a href="https://3katzavim.co.il/הצהרת-נגישות/" target="_blank" rel="noopener">הצהרת נגישות</a>
+        <a href="https://he.click-eat.co.il" target="_blank" rel="noopener">מערכות משלוחים מתקדמות · click eat</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}"><div style="height:84px;background:#24140a"></div></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: window.innerWidth };
+  componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const w = this.props.forceW || this.state.w, mob = w < 768;
+    return { mob, desk: !mob,
+      pad: mob ? '60px 22px 40px' : '90px max(30px,calc((100% - 1440px) / 2)) 40px',
+      gap: mob ? '40px' : '50px', logoH: mob ? '48px' : '64px', tagFs: mob ? '1.4rem' : 'clamp(1.6rem,2.2vw,2.2rem)',
+      stampW: mob ? '320px' : '520px', stampL: mob ? '-120px' : '-180px',
+      cols: mob ? '1fr' : (w <= 1000 ? '1fr 1fr' : '1.4fr 1fr 1fr'),
+      menu: [['הבית', 'Home.dc.html'], ['הנתחים שלנו', 'Cuts.dc.html'], ['מה על האש?', 'Recipes.dc.html'], ['טיפים מהקצבים', 'Tips.dc.html'], ['הסיפור שלנו', 'Story.dc.html'], ['כשרות', 'Kosher.dc.html'], ['הסניפים', 'Branch.dc.html?b=holon'], ['מועדון הלקוחות', 'Club.dc.html'], ['צור קשר', 'Contact.dc.html'], ['להזמנה אונליין', 'https://orders.3katzavim.co.il/']].map(([label, href]) => ({ label, href })),
+      branches: [
+        { title: 'סניף חולון', addr: 'פנחס אילון 13, חולון', phone: '03-800-2626', tel: 'tel:03-800-2626', waze: 'https://waze.com/ul/hsv8wp7hcj' },
+        { title: 'סניף גבעת שמואל', addr: 'מתחם הולמס פלייס, גבעת שמואל', phone: '03-632-4634', tel: 'tel:03-632-4634', waze: 'https://waze.com/ul/hsv8y90kx4' }
+      ] };
+  }
+}
+</script>
+</body>
+</html>

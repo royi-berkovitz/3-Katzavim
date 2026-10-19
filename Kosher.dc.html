@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כשרות | שלושה קצבים</title>
+<meta name="description" content="פירוט הכשרויות בשלושה קצבים לפי מחלקות – עוף והודו, בקר וטלה, דגים.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main style="padding-top:{{ hdrH }}">
+<section data-screen-label="01 Hero" style="position:relative;overflow:hidden;background:radial-gradient(120% 120% at 15% 30%, #4a2c18 0%, #2b180c 55%, #1a0f08 100%);color:#f5f5f5;padding:{{ heroPad }}">
+  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:{{ bullPos }};bottom:{{ bullPos }};width:{{ bullW }};height:auto;opacity:.06;pointer-events:none;animation:spin 90s linear infinite">
+  <div style="position:relative;max-width:1440px;margin:0 auto;display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#fff"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>כשרות</div>
+    <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.95">כשרות, <strong style="font-weight:900">בלי אותיות קטנות</strong></h1>
+    <p style="margin:0;max-width:620px;font-size:{{ leadFs }};font-weight:300;line-height:1.5;text-wrap:pretty">לכל מחלקה יש השגחה משלה. כאן מפורט בדיוק מה הכשרות בכל אחת מהן, ואילו כשרויות נוספות אפשר להזמין מראש.</p>
+  </div>
+</section>
+
+<section data-screen-label="02 Departments" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:{{ depCols }};gap:{{ depGap }}">
+      <sc-for list="{{ deps }}" as="d" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;background:#fff;border-radius:14px;overflow:hidden">
+          <button onClick="{{ d.tog }}" aria-expanded="{{ d.exp }}" style="display:flex;align-items:center;gap:16px;width:100%;padding:{{ depHeadPad }};border:0;background:transparent;color:#3c2313;font:inherit;text-align:right">
+            <span style="flex:none;width:{{ icW }};height:{{ icW }};border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center"><i class="ti {{ d.icon }}" style="font-size:{{ icFs }};color:#EE3A30"></i></span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font-size:.78rem;letter-spacing:.12em;font-weight:600;color:#EE3A30">{{ d.num }}</span>
+              <strong style="font-size:{{ depTFs }};font-weight:900;letter-spacing:-.6px;line-height:1.05">{{ d.t }}</strong>
+            </span>
+            <sc-if value="{{ accMode }}" hint-placeholder-val="{{ false }}">
+              <span aria-hidden="true" style="flex:none;width:32px;height:32px;border-radius:50%;background:{{ d.pBg }};display:flex;align-items:center;justify-content:center;transform:rotate({{ d.rot }});transition:transform .35s, background .35s"><i class="ti ti-plus" style="font-size:15px;color:{{ d.pInk }}"></i></span>
+            </sc-if>
+          </button>
+          <div style="display:grid;grid-template-rows:{{ d.rows }};transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)">
+            <div style="overflow:hidden;min-height:0">
+              <div style="padding:{{ depBodyPad }};display:flex;flex-direction:column;gap:18px">
+                <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid rgba(60,35,19,.12)">
+                  <span style="font-size:.82rem;font-weight:500">הכשרות במחלקה</span>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px">
+                    <sc-for list="{{ d.main }}" as="m" hint-placeholder-count="2">
+                      <span style="padding:8px 14px;border-radius:999px;background:#3c2313;color:#f5f5f5;font-size:.95rem;font-weight:600">{{ m }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+                <sc-if value="{{ d.hasExtra }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <span style="font-size:.82rem;font-weight:500">בהזמנה מראש</span>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px">
+                      <sc-for list="{{ d.extra }}" as="x" hint-placeholder-count="2">
+                        <span style="padding:7px 13px;border-radius:999px;border:1px solid rgba(60,35,19,.25);font-size:.92rem;font-weight:500">{{ x }}</span>
+                      </sc-for>
+                    </div>
+                    <p style="margin:4px 0 0;display:flex;gap:8px;font-size:.92rem;font-weight:400;line-height:1.5"><i class="ti ti-info-circle" style="font-size:17px;color:#EE3A30;flex:none;margin-top:2px"></i>{{ d.note }}</p>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:{{ discMt }} auto 0;max-width:760px;text-align:center;font-size:.95rem;font-weight:400;line-height:1.6">הכשרות מתייחסת למחלקות הבשר הטרי בסניפים. למוצרים ארוזים ומוצרי מזווה יש כשרות של היצרן, המופיעה על כל אריזה.</p>
+  </div>
+</section>
+
+<section data-screen-label="03 Pre-order" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ preCols }};gap:{{ preGap }};align-items:center">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">צריכים כשרות <strong style="font-weight:900">אחרת?</strong></h2>
+      <p style="margin:0;max-width:520px;font-size:{{ pFs }};font-weight:300;line-height:1.55;text-wrap:pretty">אפשר להזמין כשרויות נוספות יומיים מראש, ישירות מול הסניף. המחירים בהזמנה כזו שונים מהמחירים באתר.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ brCols }};gap:12px">
+      <sc-for list="{{ branches }}" as="b" hint-placeholder-count="2">
+        <a href="{{ b.tel }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:{{ brPad }};background:#fff;border-radius:14px;color:#3c2313;transition:background .3s, color .3s" style-hover="background:#3c2313;color:#f5f5f5">
+          <span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:.85rem;font-weight:500">סניף {{ b.name }}</span><strong style="font-size:1.35rem;font-weight:900;letter-spacing:-.3px;direction:ltr;text-align:right">{{ b.phone }}</strong></span>
+          <span style="flex:none;width:44px;height:44px;border-radius:50%;background:#EE3A30;color:#fff;display:flex;align-items:center;justify-content:center"><i class="ti ti-phone" style="font-size:20px"></i></span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 CTA" style="padding:{{ finOuter }}">
+  <div style="position:relative;max-width:1440px;margin:0 auto;background:#3c2313;color:#f5f5f5;border-radius:14px;display:flex;flex-direction:{{ midDir }};align-items:{{ midAlign }};justify-content:space-between;gap:22px;padding:{{ midPad }};overflow:hidden">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-60px;top:50%;width:260px;height:auto;margin-top:-130px;opacity:.07;pointer-events:none;animation:spin 70s linear infinite">
+    <p style="position:relative;margin:0;font-size:{{ midFs }};font-weight:300;letter-spacing:-.8px;line-height:1.1">בוחרים בהקפדה, <strong style="font-weight:900">מזמינים בראש שקט</strong></p>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="לבחירת בשר באתר ההזמנות — מעבר לאתר ההזמנות" style="position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 30px;width:{{ fullW }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לבחירת בשר באתר ההזמנות<i class="ti ti-chevron-left"></i></a>
+  </div>
+</section>
+</main>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, open: 0 };
+  componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100, acc = mob;
+    const defs = [
+      { icon: 'ti-feather', t: 'עוף והודו טרי', main: ['רבנות חלק'], extra: ['הרב מחפוד', 'קהילות'], note: 'בהזמנה יומיים מראש. המחירים שונים מהמחירים באתר.' },
+      { icon: 'ti-meat', t: 'בקר וטלה טרי', main: ['חלק גלאט מחפוד', 'עטרה בית יוסף'], extra: ['קהילות', 'לנדא'], note: 'בהזמנה יומיים מראש.' },
+      { icon: 'ti-fish', t: 'דגים', main: ['הרב רווח', 'בד״ץ עדה חרדית'], extra: [], note: '' }
+    ];
+    const deps = defs.map((d, i) => { const on = !acc || st.open === i;
+      return { ...d, num: String(i + 1).padStart(2, '0'), hasExtra: d.extra.length > 0, exp: on ? 'true' : 'false', rows: on ? '1fr' : '0fr', rot: on ? '45deg' : '0deg',
+        pBg: on ? '#3c2313' : '#f5f5f5', pInk: on ? '#f5f5f5' : '#3c2313', tog: () => { if (acc) this.setState(s => ({ open: s.open === i ? -1 : i })); } }; });
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    return {
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      deps, accMode: acc,
+      branches: [{ name: 'חולון', phone: '03-800-2626', tel: 'tel:038002626' }, { name: 'גבעת שמואל', phone: '03-632-4634', tel: 'tel:036324634' }],
+      hdrH: mob ? '66px' : '100px', heroPad: mob ? '48px 20px 52px' : 'clamp(70px,9vh,110px) ' + side + ' clamp(80px,10vh,120px)', bullW: mob ? '260px' : '460px', bullPos: mob ? '-100px' : '-150px',
+      h1Fs: mob ? '2.8rem' : 'clamp(3.6rem,5.6vw,6rem)', leadFs: mob ? '1.05rem' : '1.25rem',
+      secPad: mob ? '44px 20px 0' : '90px ' + side + ' 0', depCols: mob ? '1fr' : 'repeat(3,minmax(0,1fr))', depGap: mob ? '10px' : '24px',
+      depHeadPad: mob ? '18px 18px' : '30px 30px 0', depBodyPad: mob ? '0 18px 22px' : '0 30px 32px', icW: mob ? '52px' : '64px', icFs: mob ? '26px' : '32px', depTFs: mob ? '1.45rem' : '1.9rem',
+      discMt: mob ? '24px' : '36px', h2Fs: mob ? '2.1rem' : 'clamp(2.2rem,3vw,2.9rem)', pFs: mob ? '1rem' : '1.1rem',
+      preCols: mob ? '1fr' : '1fr 1.1fr', preGap: mob ? '22px' : '60px', brCols: tab ? '1fr' : '1fr 1fr', brPad: mob ? '18px 20px' : '24px 26px',
+      finOuter: mob ? '52px 20px 64px' : '100px ' + side + ' 110px', midDir: mob ? 'column' : 'row', midAlign: mob ? 'stretch' : 'center', midPad: mob ? '32px 22px' : '50px 60px',
+      midFs: mob ? '1.8rem' : 'clamp(1.8rem,2.6vw,2.6rem)', fullW: mob ? '100%' : 'auto'
+    };
+  }
+}
+</script>
+</body>
+</html>

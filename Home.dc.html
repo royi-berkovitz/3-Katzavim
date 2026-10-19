@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#3c2313"></rect><text x="50" y="62" text-anchor="middle" font-family="Arial" font-weight="900" font-size="30" fill="#EE3A30">3K</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+[data-cur="white"],[data-cur="white"] *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+@keyframes swipeHand{0%{transform:translateY(32px) rotate(-32deg);opacity:0}18%{opacity:1}70%{transform:translateY(4px) rotate(-32deg);opacity:1}100%{transform:translateY(0) rotate(-32deg);opacity:0}}
+@keyframes swipeLine{0%{height:4px;opacity:0}18%{opacity:.5}70%{height:32px;opacity:.5}100%{height:36px;opacity:0}}
+@keyframes ringPulse{0%{opacity:0;transform:translate(-50%,-50%) scale(.9)}10%{opacity:1;transform:translate(-50%,-50%) scale(1)}45%{opacity:.9}60%{opacity:0;transform:translate(-50%,-50%) scale(1.03)}100%{opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-9deg)}50%{transform:translateY(-22px) rotate(-9deg)}}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{transform:translateY(0);opacity:0}}
+@keyframes nudge{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(8px);opacity:1}}
+</style>
+</helmet>
+<div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip">
+
+<header style="zoom:{{ dz }};position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:{{ hdr.pad }};background:{{ hdr.bg }};backdrop-filter:{{ hdr.blur }};-webkit-backdrop-filter:{{ hdr.blur }};box-shadow:{{ hdr.shadow }};color:{{ hdr.color }};transition:padding .35s, background .35s, box-shadow .35s, color .35s">
+  <a href="#" onClick="{{ goTop }}" style="display:flex;align-items:center;flex:none;opacity:{{ hdrLogoOp }};pointer-events:{{ hdrLogoPe }};transition:opacity .5s ease">
+    <sc-if value="{{ hdr.dark }}" hint-placeholder-val="{{ true }}">
+      <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:{{ hdr.logoH }};width:auto;display:block;transition:height .3s">
+    </sc-if>
+    <sc-if value="{{ hdr.light }}" hint-placeholder-val="{{ false }}">
+      <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/logo.png" alt="שלושה קצבים" style="height:{{ hdr.logoH }};width:auto;display:block;transition:height .3s">
+    </sc-if>
+  </a>
+  <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+    <nav style="display:flex;align-items:center;gap:{{ navGap }};flex:1;justify-content:center">
+      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="6">
+        <div onMouseEnter="{{ it.enter }}" onMouseLeave="{{ closeDd }}" style="position:relative;padding:10px 0">
+          <a href="{{ it.href }}" aria-current="{{ it.cur }}" style="display:flex;align-items:center;gap:4px;font-size:{{ navFont }};font-weight:{{ it.fw }};color:{{ it.color }};padding:6px 10px;border-radius:999px;white-space:nowrap" style-hover="color:#EE3A30">
+            {{ it.label }}
+            <sc-if value="{{ it.hasKids }}" hint-placeholder-val="{{ false }}"><i class="ti ti-chevron-down" style="font-size:14px;opacity:.7"></i></sc-if>
+          </a>
+          <sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:100%;right:0;min-width:190px;padding:10px 0;background:#3c2313;color:#f5f5f5;border-radius:4px;box-shadow:0 18px 40px rgba(20,10,5,.25);display:flex;flex-direction:column">
+              <sc-for list="{{ it.kids }}" as="k" hint-placeholder-count="3">
+                <a href="{{ k.href }}" style="padding:10px 22px;font-size:.92rem;font-weight:400;color:#f5f5f5" style-hover="color:#EE3A30;background:rgba(245,245,245,.05)">{{ k.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </nav>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:12px;flex:none">
+    <a href="https://orders.3katzavim.co.il/" target="_blank" data-cur="{{ hdr.cur }}" style="display:{{ hdrCtaDisp }};align-items:center;gap:8px;padding:10px 22px;border-radius:999px;background:{{ hdr.ctaBg }};border:1.5px solid {{ hdr.ctaBorder }};color:{{ hdr.ctaColor }};font-weight:600;font-size:.92rem;white-space:nowrap;transition:transform .3s, background .3s, color .3s, border-color .3s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">להזמנה בקליק</a>
+    <sc-if value="{{ showBurger }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="תפריט" style="width:44px;height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px"><i class="ti ti-menu-2"></i></button>
+    </sc-if>
+  </div>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:300;background:#0f0a07;color:#f5f5f5;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-90px;bottom:-90px;width:300px;height:auto;opacity:.06;pointer-events:none;animation:spin 60s linear infinite">
+    <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:{{ hdr.pad }}">
+      <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:{{ hdr.logoH }};width:auto;display:block">
+      <button onClick="{{ toggleMenu }}" aria-label="סגירה" style="width:44px;height:44px;border-radius:999px;border:1px solid rgba(245,245,245,.25);background:transparent;color:#f5f5f5;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer"><i class="ti ti-x"></i></button>
+    </div>
+    <nav style="position:relative;flex:1;padding:18px 26px 10px;display:flex;flex-direction:column">
+      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="8">
+        <div style="border-bottom:1px solid rgba(245,245,245,.09)">
+          <div style="display:flex;align-items:center;gap:14px;padding:13px 0">
+            <span style="flex:none;width:22px;font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#EE3A30;font-variant-numeric:tabular-nums">{{ it.num }}</span>
+            <a href="{{ it.href }}" onClick="{{ toggleMenu }}" style="flex:1;font-size:1.55rem;font-weight:300;letter-spacing:-.6px;line-height:1.1;color:#f5f5f5">{{ it.label }}</a>
+            <sc-if value="{{ it.hasKids }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ it.mToggle }}" aria-label="תת תפריט" style="flex:none;width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,245,245,.2);background:transparent;color:#f5f5f5;display:flex;align-items:center;justify-content:center;padding:0;transform:rotate({{ it.mRot }});transition:transform .3s ease"><i class="ti ti-plus" style="font-size:15px;line-height:1;display:block"></i></button>
+            </sc-if>
+          </div>
+          <sc-if value="{{ it.mOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;padding:0 36px 16px 0">
+              <sc-for list="{{ it.kids }}" as="k" hint-placeholder-count="3">
+                <a href="{{ k.href }}" onClick="{{ toggleMenu }}" style="padding:7px 14px;border-radius:999px;background:rgba(245,245,245,.07);font-size:.9rem;color:#f5f5f5">{{ k.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </nav>
+    <div style="position:relative;padding:22px 26px calc(110px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <a href="tel:038002626" style="display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:10px;border:1px solid rgba(245,245,245,.12);color:#f5f5f5"><span style="font-size:.72rem;opacity:.6">סניף חולון</span><strong style="font-size:1rem;font-weight:600;direction:ltr;text-align:right">03-800-2626</strong></a>
+      <a href="tel:036324634" style="display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:10px;border:1px solid rgba(245,245,245,.12);color:#f5f5f5"><span style="font-size:.72rem;opacity:.6">סניף גבעת שמואל</span><strong style="font-size:1rem;font-weight:600;direction:ltr;text-align:right">03-632-4634</strong></a>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showDots }}" hint-placeholder-val="{{ true }}">
+  <div style="zoom:{{ dz }};position:fixed;right:{{ dotRight }};top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+    <sc-for list="{{ dots }}" as="d" hint-placeholder-count="8">
+      <button onClick="{{ d.go }}" onMouseEnter="{{ d.enter }}" onMouseLeave="{{ d.leave }}" aria-label="{{ d.label }}" style="position:relative;display:flex;align-items:center;background:none;border:0;padding:4px 0;cursor:pointer">
+        <span style="width:7px;height:{{ d.w }};border-radius:3.5px;background:{{ d.bg }};transition:height .35s cubic-bezier(.76,0,.24,1), background .3s;display:block"></span>
+        <span style="position:absolute;right:calc(100% + 10px);top:50%;margin-top:-.5em;line-height:1;pointer-events:none;font-size:14px;font-weight:700;letter-spacing:-.2px;color:{{ d.labelColor }};opacity:{{ d.labelOp }};transform:translateX({{ d.labelX }});transition:opacity .25s, transform .25s;white-space:nowrap;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif">{{ d.label }}</span>
+      </button>
+    </sc-for>
+  </div>
+</sc-if>
+
+<section ref="{{ cinemaRef }}" id="cinema" data-screen-label="01 Cinema" style="position:relative;height:100vh;height:100svh;overflow:hidden;background:{{ cinemaBg }};transition:background-color {{ cinemaBgDur }} ease;color:#f5f5f5">
+  <div style="position:absolute;top:0;bottom:{{ vidBoxB }};left:0;width:{{ vidBoxW }};z-index:0;isolation:isolate;pointer-events:none;transform:{{ vidTf }};transform-origin:0% 100%;transition:transform {{ vidDur }} cubic-bezier(.45,.05,.25,1) {{ vidDelay }}">
+  <sc-for list="{{ clips }}" as="c" hint-placeholder-count="7">
+    <video ref="{{ c.ref }}" data-src="{{ c.src }}" muted="" preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ clipPos }};transition:object-position {{ clipPosDur }} cubic-bezier(.45,.05,.25,1);opacity:{{ c.op }};z-index:{{ c.z }};pointer-events:none"></video>
+  </sc-for>
+  </div>
+  <div ref="{{ greyRef }}" style="position:absolute;inset:0;z-index:1;background:#f6f6f6;opacity:0;pointer-events:none"></div>
+  <div style="position:absolute;inset:0;background:{{ shade }};opacity:{{ shadeOp }};transition:opacity {{ shadeDur }} ease;pointer-events:none"></div>
+
+  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:{{ stamp.left }};bottom:{{ stamp.bottom }};width:{{ stamp.w }};height:auto;filter:invert(1);animation:spin 60s linear infinite;animation-play-state:{{ sx.hero.run }};pointer-events:none;z-index:1;opacity:{{ sx.hero.stampOp }};transition:opacity .6s ease">
+  <div style="zoom:{{ dz }};position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:{{ heroJustify }};text-align:center;padding:{{ heroPad }};opacity:{{ sx.hero.op }};pointer-events:{{ sx.hero.pe }};transition:opacity .6s ease">
+    <sc-if value="{{ heroLogo }}" hint-placeholder-val="{{ false }}">
+      <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="position:relative;height:70px;width:auto;margin-top:-20px;margin-bottom:38px">
+    </sc-if>
+    <h1 style="position:relative;margin:0;font-size:{{ heroH1 }};line-height:.9;letter-spacing:-2px;font-weight:400;color:#fff;transform:translateY({{ sx.hero.y }});transition:transform 1s cubic-bezier(.2,.7,.2,1) .05s">מעל 60 <strong style="font-weight:900">שנה</strong></h1>
+    <h2 style="position:relative;margin:clamp(10px,2vh,18px) 0 0;font-size:{{ heroSub }};letter-spacing:-.5px;font-weight:400;color:#fff;transform:translateY({{ sx.hero.y }});transition:transform 1s cubic-bezier(.2,.7,.2,1) .1s">בשר פרימיום כשר <strong style="font-weight:900">הישר לצלחת</strong></h2>
+    <div style="position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(20px,4vh,38px);transform:translateY({{ sx.hero.y }});transition:transform 1s cubic-bezier(.2,.7,.2,1) .15s">
+      <a href="https://orders.3katzavim.co.il/" target="_blank" style="display:inline-flex;align-items:center;padding:14px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:600;font-size:1rem;transition:all .35s" style-hover="background:#f5f5f5;border-color:#f5f5f5;color:#EE3A30;transform:translateY(-2px)">לחנות אונליין</a>
+      <a href="#" onClick="{{ step }}" style="display:inline-flex;align-items:center;padding:14px 30px;border-radius:999px;border:1.5px solid rgba(245,245,245,.5);color:#f5f5f5;font-weight:600;font-size:1rem;transition:all .35s" style-hover="background:#f5f5f5;color:#3c2313;transform:translateY(-2px)">הסיפור שלנו</a>
+    </div>
+  </div>
+
+  <div style="zoom:{{ dz }};position:absolute;inset:0;z-index:2;color:{{ storyInk }};display:flex;align-items:{{ storyAlign }};padding:{{ storyPad }};opacity:{{ sx.story.op }};pointer-events:{{ sx.story.pe }};transition:opacity .6s ease">
+    <div style="max-width:690px;width:100%;margin-top:{{ storyLift }}">
+      <h2 style="margin:0;font-size:{{ storyH }};letter-spacing:-1.5px;font-weight:500;line-height:1;transform:translateY({{ sx.story.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1)">הסיפור שלנו</h2>
+      <p style="margin:clamp(12px,2.4vh,22px) 0 0;font-size:{{ bodyCopy }};font-weight:400;line-height:1.4;text-wrap:pretty;transform:translateY({{ sx.story.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1) .08s">כבר יותר מ-60 שנה <strong style="font-weight:700">שאנחנו חיים ונושמים בשר</strong> עם חומרי גלם כשרים, איכותיים וטריים שמגיעים מדי יום לסניפים שלנו בגבעת שמואל ובחולון.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:{{ brGridW }};margin-top:{{ brGridMt }};transform:translateY({{ sx.story.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1) .16s">
+        <sc-for list="{{ branches }}" as="b" hint-placeholder-count="2">
+          <a href="{{ b.href }}" onMouseEnter="{{ b.enter }}" onMouseLeave="{{ b.leave }}" style="position:relative;display:block;aspect-ratio:{{ brAspect }};height:{{ brHgt }};color:#fff;overflow:hidden;isolation:isolate">
+            <img src="{{ b.img }}" alt="{{ b.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3">
+            <span style="position:absolute;inset:0;z-index:-2;background:{{ brShade }};display:block"></span>
+            <span style="position:absolute;inset:0;z-index:-1;background:rgba(40,22,12,.62);opacity:{{ b.ov }};transition:opacity .4s ease;display:block"></span>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:{{ b.brJust }};padding-bottom:{{ b.padB }};gap:4px;text-align:center;transition:padding .45s cubic-bezier(.2,.7,.2,1)">
+              <i class="ti ti-map-pin" style="font-size:26px;font-weight:300"></i>
+              <strong style="font-size:{{ brNameFs }};font-weight:700;letter-spacing:-.3px">סניף {{ b.name }}</strong>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:14px;max-height:{{ b.extraH }};opacity:{{ b.ov }};overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1), opacity .35s ease">
+                <span style="font-size:1rem;font-weight:400;margin-top:6px">{{ b.addr }}</span>
+                <span style="width:40px;height:40px;border-radius:50%;background:#EE3A30;display:flex;align-items:center;justify-content:center"><i class="ti ti-arrow-left" style="font-size:20px"></i></span>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="zoom:{{ dz }};position:absolute;inset:0;z-index:2;color:#3c2313;display:flex;align-items:{{ kosherAlign }};justify-content:center;padding:{{ kosherPad }};opacity:{{ sx.kosher.op }};pointer-events:{{ sx.kosher.pe }};transition:opacity .6s ease">
+    <div style="width:100%;max-width:1440px;display:flex;justify-content:center;padding-inline:clamp(24px,5vw,80px)">
+      <div style="display:grid;grid-template-columns:{{ kosherCols }};width:min(100%,820px);margin-left:{{ kosherShift }}">
+        <sc-for list="{{ kosher }}" as="k" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:{{ kDir }};align-items:flex-start;gap:{{ kGap }};padding:{{ k.pad }};border-left:{{ k.border }};transform:translateY({{ sx.kosher.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1) {{ k.delay }}">
+            <i class="ti {{ k.icon }}" style="font-size:30px;line-height:1;font-weight:300;flex:none"></i>
+            <div style="display:flex;flex-direction:column;gap:clamp(10px,1.6vh,16px);min-width:0">
+              <h3 style="margin:0;font-size:clamp(1.3rem,1.4vw,1.6rem);font-weight:700;letter-spacing:-.3px;line-height:30px">{{ k.t }}</h3>
+              <p style="margin:0;font-size:clamp(1rem,1vw,1.15rem);font-weight:400;line-height:1.5;text-wrap:pretty">{{ k.d }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="zoom:{{ dz }};position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 24px 120px;opacity:{{ sx.deliver.op }};pointer-events:{{ sx.deliver.pe }};transition:opacity .6s ease">
+    <h2 style="margin:0;font-size:{{ deliverH }};letter-spacing:-2px;line-height:.95;font-weight:300;max-width:14ch;transform:translateY({{ sx.deliver.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1)">להזמנת משלוח טרי <strong style="font-weight:900">עד פתח הבית</strong></h2>
+    <p style="margin:clamp(14px,2.6vh,24px) 0 0;font-size:{{ bodyCopy }};font-weight:300;line-height:1.4;transform:translateY({{ sx.deliver.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1) .08s">הנתחים הכי מובחרים כבר מחכים לצאת אליכם.<br>הזמינו באתר והמשלוח בדרך!</p>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" style="margin-top:clamp(20px,3.6vh,34px);display:inline-flex;align-items:center;padding:14px 34px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:600;font-size:1rem;transform:translateY({{ sx.deliver.y }});transition:transform .9s cubic-bezier(.2,.7,.2,1) .16s, background .35s, color .35s" style-hover="background:#f5f5f5;border-color:#f5f5f5;color:#EE3A30">לחנות אונליין</a>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:{{ hintBottom }};display:flex;justify-content:center;pointer-events:none">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;opacity:{{ hintOp }};transform:translateY({{ hintY }});transition:{{ hintTr }}">
+      <sc-if value="{{ hintMouse }}" hint-placeholder-val="{{ true }}">
+        <span style="position:relative;display:block;width:26px;height:40px;border:2px solid {{ hintInk }};border-radius:14px;transition:border-color .4s"><span style="position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:{{ hintInk }};display:block;animation:wheel 1.6s ease-in-out infinite;animation-play-state:{{ hintRun }}"></span></span>
+      </sc-if>
+      <sc-if value="{{ hintSwipe }}" hint-placeholder-val="{{ false }}">
+        <span style="position:relative;display:block;width:34px;height:64px;color:{{ hintInk }}">
+          <span style="position:absolute;left:50%;bottom:0;width:1.5px;margin-left:1px;border-radius:2px;background:{{ hintInk }};display:block;animation:swipeLine 1.8s cubic-bezier(.4,0,.2,1) infinite;animation-play-state:{{ hintRun }}"></span>
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:50%;top:0;margin-left:-13px;transform-origin:40% 20%;animation:swipeHand 1.8s cubic-bezier(.4,0,.2,1) infinite;animation-play-state:{{ hintRun }}"><path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5"></path><path d="M11 11.5v-2a1.5 1.5 0 1 1 3 0v2.5"></path><path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5"></path><path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7a69.74 69.74 0 0 1 -.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47"></path></svg>
+        </span>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ showCounter }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;left:{{ counterLeft }};bottom:40px;display:flex;align-items:center;gap:12px;font-size:.78rem;font-weight:600;letter-spacing:.08em;pointer-events:none">
+      <span>{{ counterCur }}</span>
+      <span style="position:relative;width:64px;height:2px;background:rgba(245,245,245,.25);overflow:hidden;display:block"><span style="position:absolute;inset:0 auto 0 0;width:{{ counterPct }};background:#EE3A30;transition:width .6s cubic-bezier(.76,0,.24,1);display:block"></span></span>
+      <span style="opacity:.6">{{ counterTotal }}</span>
+    </div>
+  </sc-if>
+</section>
+
+<section ref="{{ catsRef }}" id="cats" data-screen-label="02 Categories" style="zoom:{{ dz }};padding:{{ catsPad }};background:#f5f5f5">
+  <div style="max-width:1440px;margin:0 auto">
+    <h2 data-rev="cats" style="margin:0 0 clamp(30px,5vw,60px);text-align:center;font-size:{{ catsH2Fs }};letter-spacing:{{ catsH2Ls }};font-weight:{{ catsH2Fw }};line-height:1;opacity:{{ rv.cats.op }};transform:translateY({{ rv.cats.y }});transition:opacity .8s, transform .9s cubic-bezier(.2,.7,.2,1)">איכות וטעמים <strong style="font-weight:900">מובחרים בכל קניה</strong></h2>
+    <div style="display:grid;grid-template-columns:{{ catCols }};border-top:1px solid rgba(60,35,19,.13);border-right:1px solid rgba(60,35,19,.13)">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
+        <a href="{{ c.href }}" onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative;display:block;aspect-ratio:{{ catAspect }};height:{{ catHgt }};overflow:hidden;border-left:1px solid rgba(60,35,19,.13);border-bottom:1px solid rgba(60,35,19,.13);color:#f5f5f5">
+          <sc-if value="{{ catPlusOn }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.toggle }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:6;width:26px;height:26px;border-radius:50%;border:0;background:{{ c.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ c.plusRot }});transition:transform .35s ease, background .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
+          <sc-if value="{{ c.img }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ c.img }}" alt="{{ c.n }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ c.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
+          </sc-if>
+          <sc-if value="{{ c.noImg }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#e7e1db 0 10px,#eee9e4 10px 20px);display:flex;align-items:flex-start;justify-content:center;padding-top:22%">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:rgba(60,35,19,.55);direction:ltr">category image · {{ c.n }}</span>
+            </div>
+          </sc-if>
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,.28)"></div>
+          <div style="position:absolute;inset:0;background:{{ c.grad }};transition:background .5s"></div>
+          <div style="position:absolute;right:0;left:0;bottom:0;padding:{{ catTxtPad }};display:flex;flex-direction:column;gap:8px">
+            <strong style="font-size:{{ catNameFs }};font-weight:900;letter-spacing:-.5px">{{ c.n }}</strong>
+            <sc-if value="{{ c.d }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:{{ catDescFs }};font-weight:300;line-height:1.45;max-height:{{ c.descH }};opacity:{{ c.descOp }};overflow:hidden;transition:max-height .5s, opacity .4s">{{ c.d }}</span>
+            </sc-if>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+<sc-if value="{{ cpOn }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ cpClose }}" style="position:fixed;inset:0;z-index:400;background:rgba(20,10,5,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;opacity:{{ cpOp }};transition:opacity .35s ease">
+  <button onClick="{{ cpClose }}" aria-label="סגירה" style="position:absolute;top:calc(18px + env(safe-area-inset-top));left:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,245,245,.35);background:transparent;color:#f5f5f5;font-size:22px;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-x"></i></button>
+  <div onClick="{{ cpStop }}" onTouchStart="{{ cpTs }}" onTouchEnd="{{ cpTe }}" style="position:relative;width:100%;height:{{ cpH }};transform:scale({{ cpSc }});transition:transform .45s cubic-bezier(.2,.7,.2,1)">
+    <sc-for list="{{ cpSlides }}" as="s" hint-placeholder-count="8">
+      <a href="{{ s.href }}" onClick="{{ s.tap }}" style="position:absolute;top:0;left:50%;width:{{ cpW }};height:{{ cpH }};margin-left:{{ cpML }};border-radius:14px;overflow:hidden;color:#f5f5f5;box-shadow:0 24px 60px rgba(0,0,0,.45);transform:translateX({{ s.x }}) scale({{ s.sc }});opacity:{{ s.op }};z-index:{{ s.z }};transition:transform .5s cubic-bezier(.2,.7,.2,1), opacity .4s ease">
+        <img src="{{ s.img }}" alt="{{ s.n }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,10,5,0) 35%, rgba(20,10,5,.88))"></div>
+        <div style="position:absolute;right:0;left:0;bottom:0;padding:22px 20px;display:flex;flex-direction:column;gap:8px">
+          <strong style="font-size:1.75rem;font-weight:900;letter-spacing:-.6px;line-height:1">{{ s.n }}</strong>
+          <span style="font-size:.9rem;font-weight:300;line-height:1.45;text-wrap:pretty">{{ s.d }}</span>
+          <span style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;border:1px solid rgba(245,245,245,.7);font-size:.88rem;font-weight:600">לקטגוריית {{ s.n }}<i class="ti ti-chevron-left"></i></span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+  <div onClick="{{ cpStop }}" style="display:flex;gap:8px;align-items:center">
+    
+    <div style="display:flex;gap:8px;align-items:center">
+    <sc-for list="{{ cpDots }}" as="d" hint-placeholder-count="8">
+      <button onClick="{{ d.go }}" aria-label="{{ d.n }}" style="width:{{ d.w }};height:8px;border-radius:999px;border:0;padding:0;background:{{ d.bg }};transition:width .35s, background .35s"></button>
+    </sc-for>
+    </div>
+    
+  </div>
+</div>
+</sc-if>
+
+<section ref="{{ clubRef }}" id="club" data-screen-label="03 Club" style="position:relative;padding:{{ clubPad }};min-height:{{ clubMinH }};display:flex;flex-direction:column;justify-content:{{ clubJust }};box-sizing:border-box;background:#f5f5f5;border-top:1px solid rgba(60,35,19,.13)">
+  <div style="zoom:{{ dz }};width:100%;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ clubCols }};align-items:center;gap:{{ clubGap }}">
+    <div data-rev="club" style="display:flex;flex-direction:column;align-items:{{ clubItems }};opacity:{{ rv.club.op }};transform:translateY({{ rv.club.y }});transition:opacity .8s, transform .9s cubic-bezier(.2,.7,.2,1)">
+      <h2 style="margin:0;font-size:{{ clubH2Fs }};font-weight:300;letter-spacing:{{ clubH2Ls }};line-height:1;text-align:{{ clubAlign }}">מצטרפים <strong style="font-weight:900">ונהנים</strong></h2>
+      <p style="margin:18px 0 0;font-size:clamp(1.15rem,1.6vw,1.4rem);font-weight:300;line-height:1.4;text-align:{{ clubAlign }}">מצטרפים ונהנים מ-<strong style="font-weight:900">3% צבירה <sc-if value="{{ clubBr }}" hint-placeholder-val="{{ false }}"><br></sc-if>על כל קנייה באתר</strong></p>
+      <sc-if value="{{ exDesktop }}" hint-placeholder-val="{{ true }}">
+        <ul style="margin:28px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;opacity:{{ clubBulOp }};transform:translateY({{ clubBulY }});transition:{{ clubBulTr }}">
+          <sc-for list="{{ clubBullets }}" as="cb" hint-placeholder-count="3">
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:18px;line-height:1.5;font-weight:300;color:#3c2313"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#EE3A30;display:block"></span><span><strong style="font-weight:800">{{ cb.t }}</strong> – {{ cb.d }}</span></li>
+          </sc-for>
+        </ul>
+      </sc-if>
+      <a ref="{{ clubBtnRef }}" href="https://3katzavim.web3d-studio.co.il/מועדון-הלקוחות/" style="position:relative;z-index:5;top:{{ clubBtnTop }};display:inline-flex;visibility:{{ clubBtnVis }};opacity:{{ clubBtnOp }};pointer-events:{{ clubBtnPe }};transition:opacity .5s ease 1.5s, background .35s, color .35s, border-color .35s;background:{{ clubBtnBg }};margin-top:{{ clubBtnMt }};align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;transition:all .35s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">לפרטים והצטרפות</a>
+    </div>
+    <div style="position:relative;display:flex;justify-content:center;opacity:{{ rv.club.op }};transform:translateY({{ rv.club.cardY }});transition:opacity .9s .15s, transform 1.1s cubic-bezier(.34,1.56,.64,1) .15s">
+      <div style="position:relative;width:{{ clubCardW }};transform:translateY({{ clubLift }}) rotate(-9deg) scale({{ clubSc }});transform-origin:50% 0%;transition:transform 1.5s cubic-bezier(.45,.05,.25,1);animation:{{ clubFloat }};animation-play-state:{{ clubRun }}">
+        <span style="position:absolute;inset:0;z-index:19;pointer-events:none;opacity:{{ clubPlusOp }};transition:opacity .3s"><span style="position:absolute;left:23px;top:23px;width:78px;height:78px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite 0s;display:block"></span><span style="position:absolute;left:23px;top:23px;width:60px;height:60px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite 0.3s;display:block"></span><span style="position:absolute;left:23px;top:23px;width:42px;height:42px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite 0.6s;display:block"></span></span>
+        <sc-if value="{{ clubPlusOn }}" hint-placeholder-val="{{ true }}"><button onClick="{{ club.toggle }}" onMouseEnter="{{ club.hover }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:20;opacity:{{ clubPlusOp }};pointer-events:{{ clubPlusPe }};width:26px;height:26px;border-radius:50%;border:0;background:{{ club.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ club.plusRot }});transition:transform .35s ease, background .3s, opacity .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ club.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ club.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
+      <div onMouseEnter="{{ clubEnter }}" onClick="{{ clubTap }}" style="position:relative;display:block;width:100%;perspective:1600px;cursor:pointer">
+        <div style="position:relative;transform:rotate3d(1,-0.62,0,{{ clubAngle }});transition:transform {{ clubDur }} cubic-bezier(.45,.05,.25,1);transform-style:preserve-3d">
+          <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/כרטיס-מועדון.png" alt="כרטיס מועדון" style="display:block;width:100%;height:auto;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:drop-shadow(0 30px 40px rgba(60,35,19,.25))">
+          <div style="position:absolute;inset:0;transform:rotate3d(1,-0.62,0,180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center">
+            <div style="position:relative;width:{{ clubBackW }};aspect-ratio:1.586/1;transform:rotate({{ clubBackTilt }});border-radius:22px;background:radial-gradient(120% 140% at 100% 0%, #5a3720 0%, #3c2313 55%, #2b180c 100%);box-shadow:0 30px 40px rgba(60,35,19,.3), inset 0 0 0 1px rgba(245,245,245,.08);overflow:hidden;color:#f5f5f5">
+              <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-14%;bottom:-30%;width:62%;height:auto;opacity:.16;animation:spin 40s linear infinite">
+              <span style="position:absolute;inset:10px;border:1px solid rgba(245,245,245,.16);border-radius:15px;display:block"></span>
+              <div style="position:absolute;top:9%;right:7%;left:7%;display:flex;align-items:center;justify-content:space-between">
+                <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="" style="height:{{ clubBackLogoH }};width:auto;display:block">
+                <span style="font-size:{{ cbClub }};letter-spacing:.22em;font-weight:600;color:#EE3A30">CLUB</span>
+              </div>
+              <div style="position:absolute;right:7%;left:7%;bottom:30%;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:right">
+                <span style="width:{{ cbLine }};height:2px;background:#EE3A30;display:block;margin-bottom:4px"></span>
+                <strong style="font-size:{{ cbT1 }};font-weight:900;letter-spacing:-.6px;line-height:1">הטבות לחברים</strong>
+                <span style="font-size:{{ cbT2 }};font-weight:300;line-height:1.1;opacity:.85">שלא תרצו לפספס</span>
+              </div>
+              <a href="https://3katzavim.web3d-studio.co.il/מועדון-הלקוחות/" data-cur="white" style="position:absolute;left:7%;bottom:10%;display:inline-flex;align-items:center;gap:6px;padding:{{ clubBackBtnPad }};border-radius:999px;border:1.5px solid #EE3A30;background:#EE3A30;color:#fff;font-size:{{ clubBackBtnFs }};font-weight:700;white-space:nowrap;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לפרטים והצטרפות<i class="ti ti-chevron-left" style="font-size:1.1em"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <sc-if value="{{ plusOn }}" hint-placeholder-val="{{ false }}">
+        <ul ref="{{ clubUlRef }}" style="position:absolute;left:2px;right:2px;top:{{ clubBulTop }};margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;z-index:4;opacity:{{ clubBulOp }};transform:translateY({{ clubBulY }});transition:{{ clubBulTr }};pointer-events:none">
+          <sc-for list="{{ clubBullets }}" as="cb" hint-placeholder-count="3">
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:{{ clubBulFs }};line-height:1.45;font-weight:300;color:#3c2313;text-align:right"><span style="flex:none;width:7px;height:7px;margin-top:7px;border-radius:50%;background:#EE3A30;display:block"></span><span><strong style="font-weight:800">{{ cb.t }}</strong> – {{ cb.d }}</span></li>
+          </sc-for>
+          <sc-if value="{{ plusOn }}" hint-placeholder-val="{{ false }}">
+            <li style="display:flex;justify-content:center;margin-top:30px;pointer-events:{{ clubBtnPe }};opacity:{{ clubBtnOp }};transition:opacity .5s ease .5s">
+              <a href="https://3katzavim.web3d-studio.co.il/מועדון-הלקוחות/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;background:#f5f5f5;font-weight:600">לפרטים והצטרפות</a>
+            </li>
+          </sc-if>
+        </ul>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ exDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center;pointer-events:none;z-index:3;opacity:{{ clubHandOp }};transition:opacity .6s ease {{ clubHandDelay }}">
+        <span style="position:relative;display:block;width:26px;height:40px;border:2px solid #3c2313;border-radius:14px"><span style="position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#3c2313;display:block;animation:wheel 1.6s ease-in-out infinite"></span></span>
+      </div>
+  </sc-if>
+</section>
+
+<sc-if value="{{ exDesktop }}" hint-placeholder-val="{{ true }}">
+  <section ref="{{ whyRef }}" id="why" data-screen-label="04 Why us" style="position:relative;height:280vh;background:#f5f5f5">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+      <div style="position:absolute;left:50%;top:50%;width:{{ ex.w }};height:{{ ex.h }};transform:translate(-50%,-50%);border-radius:{{ ex.r }};overflow:hidden;z-index:2;box-shadow:{{ ex.shadow }}">
+        <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/הנתחים-הכי-יפים-ריבוע.jpg" alt="הנתחים הכי טובים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/הנתחים-הכי-יפים-רחב.jpg" alt="הנתחים הכי טובים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ ex.wideOp }}">
+        <div style="position:absolute;inset:0;background:rgba(52,26,10,.68);opacity:{{ ex.shadeOp }}"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:{{ ex.titleOp }};color:#f5f5f5;text-align:center">
+          <h2 style="margin:0;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-3px;line-height:.9;font-weight:300">הנתחים <strong style="font-weight:900">הכי <span style="display:inline-block;min-width:{{ whyWordMinW }};text-align:right;opacity:{{ whyWordOp }};transform:{{ whyWordTf }};transition:{{ whyWordTr }}">{{ whyWord }}</span></strong></h2>
+        </div>
+      </div>
+      <div style="zoom:{{ dz }};position:absolute;inset:0;padding:0 max(30px,calc((100% - 1440px) / 2));display:grid;grid-template-columns:1fr 340px 1fr;align-items:center;gap:clamp(30px,4vw,70px);opacity:{{ ex.itemsOp }};z-index:1">
+        <div style="display:flex;flex-direction:column;gap:56px;transform:translateX({{ ex.itemsXR }})">
+          <sc-for list="{{ whyR }}" as="w" hint-placeholder-count="2">
+            <div onMouseEnter="{{ w.enter }}" onMouseLeave="{{ w.leave }}" style="display:flex;flex-direction:column;gap:10px;max-width:380px;color:{{ w.ink }};transform:scale({{ w.sc }});transform-origin:right center;transition:color .3s ease, transform .4s cubic-bezier(.2,.7,.2,1)">
+              <i class="ti {{ w.icon }}" style="font-size:30px;color:#EE3A30"></i>
+              <h3 style="margin:0;font-size:1.65rem;font-weight:900;letter-spacing:-.5px">{{ w.t }}</h3>
+              <p style="margin:0;font-size:1.05rem;line-height:1.6;font-weight:300">{{ w.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div></div>
+        <div style="display:flex;flex-direction:column;gap:56px;align-items:flex-end;text-align:left;transform:translateX({{ ex.itemsXL }})">
+          <sc-for list="{{ whyL }}" as="w" hint-placeholder-count="2">
+            <div onMouseEnter="{{ w.enter }}" onMouseLeave="{{ w.leave }}" style="display:flex;flex-direction:column;gap:10px;max-width:380px;align-items:flex-end;color:{{ w.ink }};transform:scale({{ w.sc }});transform-origin:left center;transition:color .3s ease, transform .4s cubic-bezier(.2,.7,.2,1)">
+              <i class="ti {{ w.icon }}" style="font-size:30px;color:#EE3A30"></i>
+              <h3 style="margin:0;font-size:1.65rem;font-weight:900;letter-spacing:-.5px">{{ w.t }}</h3>
+              <p style="margin:0;font-size:1.05rem;line-height:1.6;font-weight:300">{{ w.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="zoom:{{ dz }};position:absolute;top:clamp(80px,12vh,120px);left:0;right:0;text-align:center;opacity:{{ ex.itemsOp }};z-index:1">
+        <h2 style="margin:0;font-size:clamp(2rem,4.2vw,3.6rem);letter-spacing:-1px;font-weight:300">הנתחים <strong style="font-weight:900">הכי <span style="display:inline-block;min-width:{{ whyWordMinW }};text-align:right;opacity:{{ whyWordOp }};transform:{{ whyWordTf }};transition:{{ whyWordTr }}">{{ whyWord }}</span></strong></h2>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center;pointer-events:none;z-index:3;opacity:{{ ex.titleOp }}">
+        <span style="position:relative;display:block;width:26px;height:40px;border:2px solid #f5f5f5;border-radius:14px"><span style="position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#f5f5f5;display:block;animation:wheel 1.6s ease-in-out infinite"></span></span>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center;pointer-events:none;z-index:3">
+        <span style="position:relative;display:block;width:26px;height:40px;border:2px solid #3c2313;border-radius:14px;opacity:{{ whyHintOp }};transform:translateY({{ whyHintY }});transition:{{ whyHintTr }}"><span style="position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#3c2313;display:block;animation:wheel 1.6s ease-in-out infinite;animation-play-state:{{ whyHintRun }}"></span></span>
+      </div>
+    </div>
+  </section>
+</sc-if>
+<sc-if value="{{ exMobile }}" hint-placeholder-val="{{ false }}">
+  <section ref="{{ whyRef }}" id="why" data-screen-label="04 Why us" style="position:relative;height:260vh;background:#f5f5f5">
+    <div style="position:sticky;top:0;height:100vh;height:100svh;overflow:hidden">
+      <div style="position:absolute;left:50%;top:{{ exm.top }};width:{{ exm.w }};height:{{ exm.h }};transform:translate(-50%,-50%);border-radius:{{ exm.r }};overflow:hidden;z-index:2;box-shadow:{{ exm.shadow }}">
+        <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/הנתחים-הכי-יפים-ריבוע.jpg" alt="הנתחים הכי טובים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/הנתחים-הכי-יפים-רחב.jpg" alt="הנתחים הכי טובים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ exm.wideOp }}">
+        <div style="position:absolute;inset:0;background:rgba(52,26,10,.68);opacity:{{ exm.shadeOp }}"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 22px;color:#f5f5f5;text-align:center;opacity:{{ exm.titleOp }}">
+          <h2 style="margin:0;font-size:clamp(3.2rem,15vw,4.6rem);letter-spacing:-2px;line-height:.9;font-weight:300">הנתחים <strong style="font-weight:900">הכי <span style="display:inline-block;min-width:{{ whyWordMinW }};text-align:right;opacity:{{ whyWordOp }};transform:{{ whyWordTf }};transition:{{ whyWordTr }}">{{ whyWord }}</span></strong></h2>
+        </div>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:calc(88px + env(safe-area-inset-bottom));display:flex;justify-content:center;pointer-events:none;z-index:3;opacity:{{ exm.titleOp }}">
+        <span style="position:relative;display:block;width:34px;height:64px;color:#f5f5f5">
+          <span style="position:absolute;left:50%;bottom:0;width:1.5px;margin-left:1px;border-radius:2px;background:#f5f5f5;display:block;animation:swipeLine 1.8s cubic-bezier(.4,0,.2,1) infinite"></span>
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:50%;top:0;margin-left:-13px;transform-origin:40% 20%;animation:swipeHand 1.8s cubic-bezier(.4,0,.2,1) infinite"><path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5"></path><path d="M11 11.5v-2a1.5 1.5 0 1 1 3 0v2.5"></path><path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5"></path><path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7a69.74 69.74 0 0 1 -.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47"></path></svg>
+        </span>
+      </div>
+      
+      <div style="position:absolute;left:0;right:0;top:{{ exm.listTop }};padding:0 22px;opacity:{{ exm.itemsOp }};transform:translateY({{ exm.itemsY }});z-index:1">
+        <sc-for list="{{ whyAll }}" as="w" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(60,35,19,.13)">
+            <i class="ti {{ w.icon }}" style="font-size:26px;line-height:30px;color:#EE3A30;flex:none"></i>
+            <div>
+              <h3 style="margin:0 0 2px;font-size:1.2rem;font-weight:900;letter-spacing:-.4px;line-height:30px">{{ w.t }}</h3>
+              <p style="margin:0;font-size:.95rem;line-height:1.5;font-weight:300">{{ w.d }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<section ref="{{ recipesRef }}" id="recipes" data-screen-label="05 Recipes" style="padding:{{ secPad }};min-height:{{ clubMinH }};display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;background:#fff">
+  <div style="zoom:{{ dz }};width:100%;max-width:1440px;margin:0 auto">
+    <div data-rev="rec" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(30px,4vw,56px);opacity:{{ rv.rec.op }};transform:translateY({{ rv.rec.y }});transition:opacity .8s, transform .9s cubic-bezier(.2,.7,.2,1)">
+      <div>
+        <h2 style="margin:0;font-size:clamp(2rem,3vw,2.8rem);letter-spacing:-1px;font-weight:400;line-height:1.05">מתכונים <strong style="font-weight:900">נבחרים</strong></h2>
+        <p style="margin:14px 0 0;font-size:1.1rem;line-height:1.5;font-weight:400">מתכונים שהלקוחות שלנו מבשלים עם המוצרים שלנו</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:{{ fGap }};flex-wrap:wrap">
+        <span style="font-size:{{ fFs }};font-weight:400;margin-left:4px">מתאים ל</span>
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.pick }}" style="padding:{{ fPad }};border-radius:999px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};font:inherit;font-size:{{ fFs }};font-weight:500;cursor:pointer;transition:all .3s;white-space:nowrap">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div ref="{{ recTrack }}" style="display:flex;gap:30px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding-bottom:6px">
+      <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="3">
+        <a href="https://3katzavim.web3d-studio.co.il/recipes/" onMouseEnter="{{ r.enter }}" onMouseLeave="{{ r.leave }}" style="flex:0 0 {{ recBasis }};scroll-snap-align:start;display:flex;flex-direction:column;color:#3c2313">
+          <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#e7e1db">
+            <sc-if value="{{ plusOn }}" hint-placeholder-val="{{ false }}"><button onClick="{{ r.toggle }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:6;width:26px;height:26px;border-radius:50%;border:0;background:{{ r.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ r.plusRot }});transition:transform .35s ease, background .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ r.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ r.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
+            <img src="{{ r.img }}" alt="{{ r.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ r.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
+            <div style="position:absolute;inset:0;background:rgba(60,35,19,.78);opacity:{{ r.ov }};transition:opacity .4s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#f5f5f5;text-align:center;padding:20px">
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:.85rem;opacity:.8">זמן הכנה</span><strong style="font-size:1.15rem;font-weight:700">{{ r.time }}</strong></div>
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:.85rem;opacity:.8">דרגת קושי</span><strong style="font-size:1.15rem;font-weight:700">{{ r.lvl }}</strong></div>
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:.85rem;opacity:.8">סוג הבשר</span><strong style="font-size:1.15rem;font-weight:700">{{ r.meat }}</strong></div>
+            </div>
+          </div>
+          <h3 style="margin:22px 0 0;padding-bottom:16px;border-bottom:1px solid rgba(60,35,19,.18);font-size:clamp(1.3rem,1.5vw,1.6rem);font-weight:500;letter-spacing:-.3px;line-height:1.2">{{ r.t }}</h3>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:14px">
+            <span style="width:42px;height:42px;border-radius:50%;border:1px solid {{ r.cBorder }};background:{{ r.cBg }};color:{{ r.cInk }};display:flex;align-items:center;justify-content:center;flex:none;transition:all .35s"><i class="ti ti-arrow-left" style="font-size:18px"></i></span>
+            <span style="font-size:1rem;font-weight:500">נראה טוב, בואו נתחיל</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:clamp(30px,4vw,50px)">
+      <a href="https://3katzavim.web3d-studio.co.il/recipes/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;transition:all .35s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">לכל המתכונים</a>
+    </div>
+  </div>
+</section>
+
+<footer data-screen-label="06 Footer" style="zoom:{{ dz }};position:relative;overflow:hidden;background:#24140a;color:#f5f5f5;padding:{{ footPad }}">
+  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:{{ footStampL }};bottom:{{ footStampB }};width:{{ footStampW }};height:auto;opacity:.05;pointer-events:none;animation:spin 80s linear infinite">
+  <div style="position:relative;max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;padding-bottom:clamp(36px,5vw,56px);margin-bottom:clamp(36px,5vw,56px);border-bottom:1px solid rgba(245,245,245,.1)">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:{{ footLogoH }};width:auto;display:block;align-self:flex-start;object-fit:contain">
+        <p style="margin:0;font-size:{{ footTagFs }};font-weight:300;letter-spacing:-.5px;line-height:1.1">בשר פרימיום כשר, <strong style="font-weight:900">מאז 1959</strong></p>
+      </div>
+      <a href="https://orders.3katzavim.co.il/" target="_blank" data-cur="white" style="display:{{ footCtaDisp }};align-items:center;gap:10px;padding:15px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.02rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">להזמנה בקליק<i class="ti ti-chevron-left"></i></a>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ footCols }};gap:{{ footGap }}">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;font-weight:600;color:#EE3A30;margin-bottom:18px"><span style="width:18px;height:1.5px;background:#EE3A30;display:block"></span>תפריט</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ footMenu }}" as="m" hint-placeholder-count="6">
+            <a href="{{ m.href }}" style="font-size:1rem;font-weight:300;color:#f5f5f5;transition:color .25s" style-hover="color:#EE3A30">{{ m.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <sc-for list="{{ branchInfo }}" as="b" hint-placeholder-count="2">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;font-weight:600;color:#EE3A30;margin-bottom:18px"><span style="width:18px;height:1.5px;background:#EE3A30;display:block"></span>{{ b.title }}</div>
+          <div style="font-size:1.15rem;font-weight:500;letter-spacing:-.3px;margin-bottom:14px">{{ b.addr }}</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="{{ b.tel }}" style="display:flex;align-items:center;gap:10px;color:#f5f5f5;font-weight:300"><span style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,245,245,.18);display:flex;align-items:center;justify-content:center;flex:none"><i class="ti ti-phone" style="font-size:15px"></i></span><span style="direction:ltr">{{ b.phone }}</span></a>
+            <a href="{{ b.waze }}" target="_blank" style="display:flex;align-items:center;gap:10px;color:#f5f5f5;font-weight:600"><span style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,245,245,.18);display:flex;align-items:center;justify-content:center;flex:none"><i class="ti ti-map-pin" style="font-size:15px"></i></span>נווט לסניף</a>
+          </div>
+        </div>
+      </sc-for>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;font-weight:600;color:#EE3A30;margin-bottom:18px"><span style="width:18px;height:1.5px;background:#EE3A30;display:block"></span>הרשמה לניוזלטר</div>
+        <p style="margin:0 0 16px;font-size:.95rem;font-weight:300;line-height:1.5;opacity:.8">מבצעים, נתחים חדשים ומתכונים — ישר למייל.</p>
+        <div style="display:flex;background:rgba(245,245,245,.06);border:1px solid rgba(245,245,245,.16);border-radius:999px;overflow:hidden;padding:4px">
+          <input type="email" placeholder="כתובת האימייל שלך" style="flex:1;min-width:0;background:transparent;border:0;color:#f5f5f5;padding:11px 16px;font:inherit;font-size:.95rem;outline:none">
+          <button style="background:#EE3A30;color:#fff;border:0;border-radius:999px;padding:0 22px;font:inherit;font-weight:700;cursor:pointer">שלח</button>
+        </div>
+        <label style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.8rem;font-weight:300;line-height:1.5;opacity:.7">
+          <input type="checkbox" style="margin-top:3px;accent-color:#EE3A30">
+          <span>אני מאשר את <a href="#" style="text-decoration:underline">תנאי השימוש</a> ואת <a href="#" style="text-decoration:underline">מדיניות הפרטיות</a> של שלושה קצבים</span>
+        </label>
+      </div>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,60px);padding-top:22px;border-top:1px solid rgba(245,245,245,.1);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;font-size:.8rem;font-weight:300;opacity:.6">
+      <span>2026 © כל הזכויות שמורות</span>
+      <a href="https://he.click-eat.co.il" target="_blank" style="display:flex;align-items:center;gap:8px">מערכות משלוחים מתקדמות · click eat</a>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ qaDesk }}" hint-placeholder-val="{{ true }}">
+<div style="zoom:{{ dz }};position:fixed;z-index:180;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;gap:6px;direction:ltr">
+  <sc-for list="{{ qaItems }}" as="q" hint-placeholder-count="2">
+    <a href="{{ q.href }}" target="_blank" onMouseEnter="{{ q.enter }}" onMouseLeave="{{ q.leave }}" aria-label="{{ q.label }}" data-cur="white" style="direction:rtl;flex:none;display:flex;align-items:center;gap:12px;height:56px;width:{{ q.w }};min-width:{{ q.w }};max-width:{{ q.w }};padding:0 18px 0 0;overflow:hidden;white-space:nowrap;border-radius:0 999px 999px 0;background:{{ q.bg }};color:#f5f5f5;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:width .4s cubic-bezier(.2,.7,.2,1), background .3s">
+      <i class="ti {{ q.icon }}" style="flex:none;width:24px;font-size:24px;text-align:center"></i>
+      <span style="font-size:1.05rem;font-weight:700;opacity:{{ q.op }};transition:opacity .25s ease {{ q.delay }}">{{ q.label }}</span>
+    </a>
+  </sc-for>
+</div>
+</sc-if>
+    </a>
+  </sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ qaMob }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;z-index:180;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;transform:translateY({{ mbarY }});transition:transform .5s cubic-bezier(.2,.7,.2,1)">
+  <a href="https://api.whatsapp.com/send?phone=972515254100" target="_blank" aria-label="וואטסאפ" style="flex:none;width:56px;height:56px;border-radius:50%;background:#3c2313;color:#f5f5f5;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(20,10,5,.28)"><i class="ti ti-brand-whatsapp" style="font-size:26px"></i></a>
+  <a href="https://orders.3katzavim.co.il/" target="_blank" style="flex:1;height:56px;border-radius:999px;background:#EE3A30;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 18px;font-size:1.08rem;font-weight:700;letter-spacing:-.2px;box-shadow:0 10px 26px rgba(238,58,48,.35)"><span>להזמנה בקליק</span><i class="ti ti-chevron-left" style="font-size:22px"></i></a>
+</div>
+<div style="height:84px;background:#3c2313"></div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;deskScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.7,&quot;max&quot;:1,&quot;step&quot;:0.01,&quot;section&quot;:&quot;דסקטופ&quot;},&quot;mobClip1Speed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.3,&quot;min&quot;:1,&quot;max&quot;:2.5,&quot;step&quot;:0.05,&quot;unit&quot;:&quot;×&quot;,&quot;section&quot;:&quot;מובייל — הסיפור שלנו&quot;},&quot;mobMeatFrac&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.54,&quot;min&quot;:0.3,&quot;max&quot;:1,&quot;step&quot;:0.01,&quot;section&quot;:&quot;מובייל — הסיפור שלנו&quot;},&quot;clubBackTilt&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:-8,&quot;min&quot;:-30,&quot;max&quot;:30,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;°&quot;,&quot;section&quot;:&quot;כרטיס מועדון&quot;},&quot;clubBackW&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;86%&quot;,&quot;section&quot;:&quot;כרטיס מועדון&quot;},&quot;fireLoopLen&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.6,&quot;min&quot;:0.8,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Fire loop&quot;},&quot;speed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.75,&quot;min&quot;:1,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;סינמה&quot;},&quot;mobileScenes&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;short&quot;,&quot;options&quot;:[&quot;short&quot;,&quot;full&quot;],&quot;tsType&quot;:&quot;'short'|'full'&quot;,&quot;section&quot;:&quot;סינמה&quot;},&quot;showCounter&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;סינמה&quot;}}">
+class Component extends DCLogic {
+  B = 'https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/';
+  S = 'https://3katzavim.web3d-studio.co.il';
+  clipKeys = [['hero1','hero-1.mp4'],['heroTo2','hero-to-2.mp4'],['scena2','scena2.mp4'],['scena3','scena3.mp4'],['scena4','scena4.mp4'],['scena5','scena5.mp4'],['scena6','scena6.mp4']];
+  vrefs = Object.fromEntries(this.clipKeys.map(([k]) => [k, React.createRef()]));
+  sceneDefs = {
+    hero: { clips: ['hero1'], label: 'ראשי' },
+    story: { clips: ['heroTo2', 'scena2'], label: 'הסיפור שלנו' },
+    kosher: { clips: ['scena3'], label: 'סוגי כשרות' },
+    packaging: { clips: ['scena4'], label: 'אריזה' },
+    grill: { clips: ['scena5'], label: 'על האש' },
+    deliver: { clips: ['scena6'], label: 'הזמנת משלוח' }
+  };
+  cinemaRef = React.createRef(); catsRef = React.createRef(); clubRef = React.createRef();
+  whyRef = React.createRef(); recipesRef = React.createRef(); recTrack = React.createRef();
+  locked = false; isPlaying = false; lastWheel = 0; unlockAt = 0; chain = []; chainIdx = 0;
+
+  state = { scene: 0, active: 'hero1', prev: null, textOn: true, w: window.innerWidth, vh: window.innerHeight, y: 0,
+    menu: false, dd: null, hCat: -1, hRec: -1, hBr: -1, hDot: -1, filter: 'הכל', exP: 0, rev: {} };
+
+  isMob() { return this.state.w < 820; }
+  scenes() {
+    
+    return ['hero', 'story', 'kosher', 'deliver'];
+  }
+  clipsFor(key) {
+    const short = this.isMob() && (this.props.mobileScenes ?? 'short') === 'short';
+    if (key === 'deliver') return ['scena4', 'scena5', 'scena6'];
+    return this.sceneDefs[key].clips;
+  }
+  rate() { return this.props.speed ?? 1.75; }
+  v(k) { return this.vrefs[k] && this.vrefs[k].current; }
+  stopFireLoop() { this.fireToken = (this.fireToken || 0) + 1; cancelAnimationFrame(this.fireRaf); const v = this.v('scena6'); if (v) { v.ontimeupdate = null; v.onended = null; v.loop = false; } if (this.fireCanvas) { this.fireCanvas.style.transition = 'none'; this.fireCanvas.style.opacity = '0'; } }
+  pauseAll(except) { if (except !== 'scena6') this.stopFireLoop(); this.clipKeys.forEach(([k]) => { const v = this.v(k); if (v && k !== except) { v.pause(); v.onended = null; v.ontimeupdate = null; } }); }
+
+  componentDidMount() {
+    this.wordIdx = 0;
+    this.wordT = setInterval(() => {
+      this.setState({ wOut: true });
+      setTimeout(() => { this.wordIdx = (this.wordIdx + 1) % 5; this.setState({ wOut: false, wIn: true, wIdx: this.wordIdx }); requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ wIn: false }))); }, 250);
+    }, 1300);
+    document.documentElement.dir = 'rtl'; document.documentElement.lang = 'he';
+    this.clipKeys.forEach(([k]) => { const v = this.v(k); if (v) { v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', ''); } });
+    this.loadQueue();
+    this.onWheel = (e) => this.handleWheel(e);
+    this.onTS = (e) => { this.ty = e.touches[0].clientY; };
+    this.onTM = (e) => this.handleTouchMove(e);
+    this.onTE = (e) => this.handleTouchEnd(e);
+    this.onKey = (e) => this.handleKey(e);
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = null; this.measure(); }); };
+    this.onResize = () => { const wasMob = this.isMob(); this.setState({ w: window.innerWidth, vh: window.innerHeight }, () => { if (wasMob !== this.isMob()) this.jump(0); this.measure(); }); };
+    window.addEventListener('wheel', this.onWheel, { passive: false });
+    window.addEventListener('touchstart', this.onTS, { passive: true });
+    window.addEventListener('touchmove', this.onTM, { passive: false });
+    window.addEventListener('touchend', this.onTE, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.io = new IntersectionObserver((ents) => {
+      ents.forEach(en => { if (en.isIntersecting) { const k = en.target.getAttribute('data-rev'); if (!this.state.rev[k]) this.setState(s => ({ rev: { ...s.rev, [k]: true } })); } });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    setTimeout(() => document.querySelectorAll('[data-rev]').forEach(el => this.io.observe(el)), 300);
+    this.measure();
+  }
+  componentWillUnmount() {
+    clearInterval(this.wordT);
+    window.removeEventListener('wheel', this.onWheel); window.removeEventListener('touchstart', this.onTS);
+    window.removeEventListener('touchmove', this.onTM); window.removeEventListener('touchend', this.onTE);
+    window.removeEventListener('keydown', this.onKey); window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize); this.io && this.io.disconnect();
+    clearTimeout(this.failT); clearTimeout(this.jumpT);
+  }
+
+  // load clips one at a time (server rejects parallel requests), with retries
+  loadOne(k) {
+    return new Promise(res => {
+      const v = this.v(k); if (!v) return res();
+      let tries = 0;
+      const done = () => { v.removeEventListener('loadeddata', done); v.removeEventListener('error', fail); res(); };
+      const fail = () => { if (++tries > 4) return done(); setTimeout(() => { v.load(); }, 500 * tries); };
+      v.addEventListener('loadeddata', done); v.addEventListener('error', fail);
+      if (!v.getAttribute('src')) { v.src = v.dataset.src || this.B + this.clipKeys.find(c => c[0] === k)[1]; }
+      v.preload = 'auto'; v.load();
+    });
+  }
+  ensure(k) {
+    const v = this.v(k); if (!v) return Promise.resolve();
+    if (v.readyState >= 2) return Promise.resolve();
+    if (!this.loading) this.loading = {};
+    if (!this.loading[k]) this.loading[k] = this.loadOne(k);
+    return this.loading[k];
+  }
+  async loadQueue() {
+    await this.ensure('hero1');
+    const h = this.v('hero1'); if (h && this.state.scene === 0) { h.loop = true; h.play().catch(() => {}); }
+    for (const [k] of this.clipKeys.slice(1)) { await this.ensure(k); }
+  }
+
+  measure() {
+    const y = window.scrollY, vh = window.innerHeight;
+    let exP = this.state.exP;
+    const el = this.whyRef.current;
+    if (el) { const r = el.getBoundingClientRect(); const span = r.height - vh; exP = Math.min(1, Math.max(0, -r.top / (span || 1))); }
+    if (y !== this.state.y || exP !== this.state.exP || vh !== this.state.vh) this.setState({ y, exP, vh });
+  }
+  atTop() { return window.scrollY <= 2; }
+
+  // ---- cinema engine: one gesture = one full transition ----
+  step = (e) => { if (e && e.preventDefault) e.preventDefault(); const i = this.state.scene; if (i < this.scenes().length - 1) this.playTo(i + 1); };
+  back() { const i = this.state.scene; if (i > 0) this.jump(i - 1); }
+  playTo(t) {
+    const key = this.scenes()[t];
+    this.chain = this.clipsFor(key); this.chainIdx = 0;
+    this.locked = true; this.isPlaying = true;
+    const chainDur = this.chain.reduce((s, k) => { const v = this.v(k); const d = v && v.duration && isFinite(v.duration) ? v.duration : 3; return s + d / ((k === 'heroTo2' && this.isMob()) ? (this.props.mobClip1Speed ?? 1.3) : 1); }, 0) / this.rate();
+    this.setState({ scene: t, textOn: false, chainDur });
+    this.playClip();
+  }
+  playClip() {
+    const k = this.chain[this.chainIdx]; const v = this.v(k);
+    if (!v) return this.finish();
+    if (v.readyState < 2) {
+      const myIdx = this.chainIdx, myChain = this.chain;
+      this.ensure(k).then(() => { if (this.isPlaying && this.chain === myChain && this.chainIdx === myIdx) this.playClipReady(); });
+      return;
+    }
+    this.playClipReady();
+  }
+  playClipReady() {
+    const k = this.chain[this.chainIdx]; const v = this.v(k);
+    this.pauseAll(k); v.loop = false;
+    try { v.currentTime = 0; } catch (e) {}
+    v.playbackRate = this.rate() * ((k === 'heroTo2' && this.isMob()) ? (this.props.mobClip1Speed ?? 1.3) : 1);
+    this.swapTo(k); if (this.state.preText) this.setState({ preText: false });
+    clearTimeout(this.v4T);
+    if (k === 'scena4' && this.isMob()) {
+      const moveT = (this.props.mobV4Hold ?? 4) / v.playbackRate;
+      this.setState({ v4Hold: true, v4Shift: false, v4MoveDur: moveT, v4Light: true });
+      requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ v4Shift: true })));
+    } else if (k === 'scena5' && this.state.v4Hold && this.isMob()) {
+      const rel = Math.max(0.6, (v.duration && isFinite(v.duration) ? v.duration / v.playbackRate : 3) * 0.6);
+      this.setState({ v4Hold: false, v4Shift: false, v4Rel: rel });
+      clearTimeout(this.v4LT); this.v4LT = setTimeout(() => this.setState({ v4Light: false }), rel * 1000 + 50);
+    } else { if (this.state.v4Hold) this.setState({ v4Hold: false, v4Shift: false }); if (this.state.v4Light && !/scena[56]/.test(k)) this.setState({ v4Light: false }); } if (this.state.kGrow && k !== 'scena3') this.setState({ kGrow: false });
+    const isLast = this.chainIdx === this.chain.length - 1;
+    let advanced = false;
+    v.onended = () => { if (advanced) return; advanced = true; if (!isLast) { this.chainIdx++; this.playClip(); } else this.finish(); };
+    v.ontimeupdate = () => {
+      if (!isLast || !v.duration || this.state.textOn) return;
+      const left = (v.duration - v.currentTime) / v.playbackRate;
+      const early = (this.isMob() && this.scenes()[this.state.scene] === 'story') ? 0.5 : 0;
+      if (this.isMob() && k === 'scena3' && !this.state.kGrow && left < 1) this.setState({ kGrow: true });
+      if (!this.state.preText && left < 2.2 + early) this.setState({ preText: true });
+      if (left < 0.9 + early) this.setState({ textOn: true });
+    };
+    clearTimeout(this.failT);
+    const dur = (v.duration && isFinite(v.duration) ? v.duration : 8) / v.playbackRate;
+    this.failT = setTimeout(() => { if (this.isPlaying && this.chain[this.chainIdx] === k) v.onended && v.onended(); }, dur * 1000 + 2500);
+    const p = v.play(); if (p && p.catch) p.catch(() => { setTimeout(() => v.onended && v.onended(), 600); });
+  }
+  greyRef = React.createRef();
+  whyListRef = React.createRef();
+  clubUlRef = React.createRef(); clubBtnRef = React.createRef();
+  fitClubBtn() {
+    const u = this.clubUlRef.current, b = this.clubBtnRef.current; if (!u || !b || !this.isMob()) return;
+    const ur = u.getBoundingClientRect(), br = b.getBoundingClientRect();
+    const curTop = parseFloat(b.style.top) || 0;
+    const uBottom = ur.bottom - (this.state.hClub ? 0 : 14);
+    const next = Math.round(curTop + (uBottom + 40 - br.top));
+    if (Math.abs(next - (this.state.clubBtnY ?? -9999)) > 1) this.setState({ clubBtnY: next });
+  }
+
+  greyFade() {
+    const g = this.greyRef.current; if (!g) return;
+    g.style.transition = 'none'; g.style.opacity = '0';
+    clearTimeout(this.greyT);
+  }
+  swapTo(k) {
+    if (k === 'scena2' && this.isMob() && this.isPlaying) this.greyFade();
+    if (this.state.active === k) return;
+    const prev = this.state.active; const v = this.v(k);
+    this.setState({ active: k, prev });
+    clearTimeout(this.prevT);
+    const clear = () => { clearTimeout(this.prevT); this.prevT = setTimeout(() => { if (this.state.active === k) this.setState({ prev: null }); }, 120); };
+    if (v && v.requestVideoFrameCallback && !v.paused) v.requestVideoFrameCallback(clear);
+    else if (v) { v.addEventListener('playing', clear, { once: true }); this.prevT = setTimeout(() => this.setState({ prev: null }), 600); }
+  }
+  finish() {
+    clearTimeout(this.failT);
+    const k = this.chain[this.chainIdx]; const v = this.v(k); if (v) { v.onended = null; v.ontimeupdate = null; }
+    this.isPlaying = false; this.locked = false; this.unlockAt = performance.now();
+    this.setState({ textOn: true });
+    if (v && this.scenes()[this.state.scene] === 'deliver') this.fireLoop(v);
+  }
+  fireLoop(v) {
+    const start = () => {
+      const d = v.duration; if (!d || !isFinite(d)) return;
+      const len = this.props.fireLoopLen ?? 1.6;
+      const a = Math.max(0, d - len - 0.15), b = d - 0.15;
+      v.playbackRate = 1; v.loop = false; v.onended = null; v.ontimeupdate = null;
+      let cv = this.fireCanvas;
+      if (!cv) {
+        cv = this.fireCanvas = document.createElement('canvas');
+        Object.assign(cv.style, { position: 'absolute', inset: '0', width: '100%', height: '100%', zIndex: '3', pointerEvents: 'none', opacity: '0' });
+      }
+      const cs = getComputedStyle(v); cv.style.objectFit = cs.objectFit; cv.style.objectPosition = cs.objectPosition;
+      if (cv.parentNode !== v.parentNode) v.parentNode.appendChild(cv);
+      const W = Math.min(v.videoWidth, 1600), H = Math.round(W * v.videoHeight / v.videoWidth);
+      const token = this.fireToken = (this.fireToken || 0) + 1;
+      const frames = []; const pending = [];
+      const alive = () => this.fireToken === token;
+      const pingpong = () => {
+        if (!alive() || frames.length < 4) return;
+        frames.sort((x, y) => x.t - y.t);
+        cv.width = W; cv.height = H; const ctx = cv.getContext('2d');
+        ctx.drawImage(frames[frames.length - 1].bm, 0, 0, W, H);
+        cv.style.transition = 'none'; cv.style.opacity = '1'; v.pause();
+        const t0s = frames[0].t, span = frames[frames.length - 1].t - t0s;
+        let dir = -1, pos = span, last = performance.now(), shown = -1;
+        const tick = (now) => {
+          if (!alive()) return;
+          pos += dir * (now - last) / 1000; last = now;
+          if (pos <= 0) { pos = -pos; dir = 1; } else if (pos >= span) { pos = 2 * span - pos; dir = -1; }
+          const target = t0s + pos; let i = 0;
+          while (i < frames.length - 1 && frames[i + 1].t <= target) i++;
+          if (i !== shown) { ctx.drawImage(frames[i].bm, 0, 0, W, H); shown = i; }
+          this.fireRaf = requestAnimationFrame(tick);
+        };
+        this.fireRaf = requestAnimationFrame((n) => { last = n; tick(n); });
+      };
+      const done = () => { Promise.all(pending).then(pingpong); };
+      if (!v.requestVideoFrameCallback || !window.createImageBitmap) { v.loop = true; v.play().catch(() => {}); return; }
+      const onFrame = (now, meta) => {
+        if (!alive()) return;
+        const t = meta.mediaTime;
+        if (t >= a - 0.02) {
+          pending.push(createImageBitmap(v, { resizeWidth: W, resizeHeight: H, resizeQuality: 'medium' }).then(bm => frames.push({ t, bm })).catch(() => {}));
+        }
+        if (t >= b || v.ended) { done(); return; }
+        v.requestVideoFrameCallback(onFrame);
+      };
+      v.onended = () => { if (alive()) done(); };
+      if (v.currentTime >= b || v.currentTime < a) { try { v.currentTime = a; } catch (e) {} }
+      v.requestVideoFrameCallback(onFrame);
+      v.play().catch(() => {});
+    };
+    if (v.readyState >= 1) start(); else v.addEventListener('loadedmetadata', start, { once: true });
+  }
+  skip() {
+    if (!this.isPlaying) return;
+    const last = this.chain[this.chain.length - 1]; const v = this.v(last);
+    this.pauseAll(); this.chainIdx = this.chain.length - 1;
+    if (v && v.duration) { try { v.currentTime = Math.max(0, v.duration - 0.05); } catch (e) {} }
+    this.swapTo(last); this.setState({ prev: null }); this.finish();
+  }
+  jump(t) {
+    clearTimeout(this.failT); clearTimeout(this.jumpT);
+    const key = this.scenes()[t]; const clips = this.clipsFor(key); const last = clips[clips.length - 1];
+    this.pauseAll(); this.isPlaying = false; this.locked = true;
+    const v = this.v(last);
+    if (v) {
+      if (key === 'hero') { v.loop = true; v.playbackRate = 1; v.play().catch(() => {}); }
+      else if (key === 'deliver') { this.ensure(last).then(() => this.fireLoop(v)); }
+      else { const seek = () => { try { v.currentTime = Math.max(0, v.duration - 0.05); } catch (e) {} }; this.ensure(last).then(seek); }
+    }
+    this.setState({ scene: t, active: last, prev: null, textOn: false });
+    this.jumpT = setTimeout(() => { this.locked = false; this.unlockAt = performance.now(); this.setState({ textOn: true }); }, 480);
+  }
+
+  handleWheel(e) {
+    if (this.state.menu || this.state.cp != null) return;
+    const now = performance.now(); const fresh = now - this.lastWheel > 200; this.lastWheel = now;
+    if (now < (this.glideUntil || 0)) { e.preventDefault(); return; }
+    if (!this.atTop()) {
+      if (e.deltaY < 0 && this.nearCats()) { e.preventDefault(); if (fresh) this.toCinema(); return; }
+      const snap = this.snapTarget(e.deltaY);
+      if (snap != null) { e.preventDefault(); if (fresh) this.glide(snap); }
+      return;
+    }
+    const dy = e.deltaY; if (Math.abs(dy) < 1) return;
+    const last = this.scenes().length - 1, i = this.state.scene;
+    if (this.locked) { e.preventDefault(); if (fresh && dy > 0) this.skip(); return; }
+    if (dy > 0) {
+      if (i < last) { e.preventDefault(); if (fresh) this.step(); }
+      else { e.preventDefault(); if (fresh && now - this.unlockAt > 350) this.toCats(); }
+    } else if (i > 0) { e.preventDefault(); if (fresh) this.back(); }
+  }
+  handleTouchMove(e) {
+    if (this.state.menu || this.state.cp != null || this.ty == null) return;
+    if (!this.atTop()) {
+      const dy0 = this.ty - e.touches[0].clientY;
+      if (performance.now() < (this.glideUntil || 0) || (dy0 < 0 && this.nearCats()) || this.snapTarget(dy0 || 1) != null && Math.abs(dy0) > 4) e.preventDefault();
+      return;
+    }
+    const dy = this.ty - e.touches[0].clientY; const i = this.state.scene;
+    if (this.locked || dy > 0 || (dy < 0 && i > 0)) e.preventDefault();
+  }
+  handleTouchEnd(e) {
+    if (this.state.menu || this.state.cp != null || this.ty == null) return;
+    const dy = this.ty - (e.changedTouches[0] ? e.changedTouches[0].clientY : this.ty); this.ty = null;
+    if (!this.atTop()) {
+      if (Math.abs(dy) < 30 || performance.now() < (this.glideUntil || 0)) return;
+      if (dy < 0 && this.nearCats()) { this.toCinema(); return; }
+      const t = this.snapTarget(dy); if (t != null) this.glide(t);
+      return;
+    }
+    if (Math.abs(dy) < 40) return;
+    const last = this.scenes().length - 1, i = this.state.scene;
+    if (this.locked) { if (dy > 0) this.skip(); return; }
+    if (dy > 0 && i < last) this.step(); else if (dy > 0) this.toCats(); else if (dy < 0 && i > 0) this.back();
+  }
+  openCp(i) { this.setState({ cp: i, cpVis: false }); requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ cpVis: true }))); }
+  closeCp() { this.setState({ cpVis: false }); setTimeout(() => this.setState({ cp: null }), 350); }
+  nearCats() { const el = this.catsRef.current; if (!el) return false; const t = el.getBoundingClientRect().top; return t > -40 && t < 120; }
+  glide(top) { const d = Math.abs(top - window.scrollY); const dur = Math.min(1600, Math.max(700, d * 0.5)); this.glideUntil = performance.now() + dur + 150; const from = window.scrollY, t0 = performance.now(); cancelAnimationFrame(this.glideRaf); const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; const step = now => { const p = Math.min(1, (now - t0) / dur); window.scrollTo(0, from + (top - from) * ease(p)); if (p < 1) this.glideRaf = requestAnimationFrame(step); }; this.glideRaf = requestAnimationFrame(step); }
+  toCats() { const el = this.catsRef.current; if (el) this.glide(el.getBoundingClientRect().top + window.scrollY); }
+  toCinema() { this.glide(0); }
+  snapTarget(dy) {
+    const c = this.catsRef.current, k = this.clubRef.current, wy = this.whyRef.current; if (!c || !k) return null;
+    const vh = window.innerHeight, y = window.scrollY;
+    const top = el => el.getBoundingClientRect().top + y;
+    const pts = [top(c), top(k)];
+    if (wy) { const wt = top(wy); pts.push(wt); pts.push(wt + wy.offsetHeight - vh); }
+    const rc = this.recipesRef.current; if (rc) pts.push(top(rc));
+    let near = -1; pts.forEach((p, i) => { if (Math.abs(y - p) < 60) near = i; });
+    if (dy > 0) {
+      if (near >= 0) return near < pts.length - 1 ? pts[near + 1] : null;
+      const nx = pts.findIndex(p => p > y + 2); if (nx > 0 && nx <= pts.length - 1) return pts[nx];
+      return null;
+    }
+    if (near > 0) return pts[near - 1];
+    if (near === 0) return null;
+    const last = pts[pts.length - 1];
+    if (y > pts[0] && y < last) { let pi = 0; pts.forEach((p, i) => { if (p < y) pi = i; }); return pts[pi]; }
+    if (y > last && y < last + 60) return last;
+    return null;
+  }
+
+  handleKey(e) {
+    if (this.state.cp != null) {
+      const N = 8;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); this.setState(s => ({ cp: (s.cp + 1) % N })); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); this.setState(s => ({ cp: ((s.cp - 1) % N + N) % N })); }
+      else if (e.key === 'Escape') this.closeCp();
+      else if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' '].includes(e.key)) e.preventDefault();
+      return;
+    }
+    if (!this.atTop() || /INPUT|TEXTAREA/.test(document.activeElement && document.activeElement.tagName)) return;
+    const down = ['ArrowDown', 'PageDown', ' '].includes(e.key), up = ['ArrowUp', 'PageUp'].includes(e.key);
+    const last = this.scenes().length - 1, i = this.state.scene;
+    if (down && (this.locked || i < last)) { e.preventDefault(); this.locked ? this.skip() : this.step(); }
+    else if (down) { e.preventDefault(); this.toCats(); }
+    else if (up && i > 0) { e.preventDefault(); if (!this.locked) this.back(); }
+  }
+
+  scrollToEl(ref) { const el = ref.current; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (ref === this.whyRef && !this.isMob() ? 0 : 60), behavior: 'smooth' }); }
+  goScene(t) { if (window.scrollY > 2) { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => this.jump(t), 500); } else if (t !== this.state.scene) { if (t === this.state.scene + 1) this.playTo(t); else this.jump(t); } }
+
+  renderVals() {
+    const st = this.state, mob = this.isMob(), w = st.w, vh = st.vh;
+    const sc = this.scenes(), curKey = sc[st.scene];
+    const inCinema = st.y < vh - 70;
+    const exR = this.whyRef.current ? this.whyRef.current.getBoundingClientRect() : null;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const a = ease(Math.min(1, st.exP / 0.6));
+    const exDark = !mob && exR && exR.top <= 60 && exR.bottom > 60 && a < 0.55;
+    const lightScene = inCinema && (curKey === 'story' || curKey === 'kosher') && st.textOn;
+    const firstSec = inCinema && curKey === 'hero';
+    const dark = firstSec;
+    const scrolled = !inCinema && !exDark;
+
+    const sx = {};
+    ['hero', 'story', 'kosher', 'packaging', 'grill', 'deliver'].forEach(k => {
+      const on = curKey === k && st.textOn;
+      sx[k] = { op: on ? 1 : 0, y: (on || (mob && (k === 'story' || k === 'kosher'))) ? '0px' : '28px', pe: on ? 'auto' : 'none', stampOp: curKey === k ? .13 : 0, run: curKey === k && st.y < vh ? 'running' : 'paused' };
+    });
+    const clips = this.clipKeys.map(([k, f]) => ({ ref: this.vrefs[k], src: this.B + f, op: (k === st.active || k === st.prev) ? 1 : 0, z: k === st.active ? 2 : (k === st.prev ? 1 : 0) }));
+
+    const shadeMap = mob ? {
+      hero: 'rgba(0,0,0,.46)', story: 'linear-gradient(to bottom, rgba(245,243,240,.92) 0%, rgba(245,243,240,.6) 40%, rgba(245,243,240,0) 70%)',
+      kosher: 'linear-gradient(to bottom, rgba(245,243,240,.95) 0%, rgba(245,243,240,.7) 50%, rgba(245,243,240,0) 75%)', packaging: 'rgba(20,10,5,.1)', grill: 'rgba(20,10,5,.1)', deliver: 'rgba(52,26,10,.6)'
+    } : {
+      hero: 'rgba(0,0,0,0)',
+      story: 'rgba(0,0,0,0)',
+      kosher: 'rgba(0,0,0,0)',
+      packaging: 'linear-gradient(to top, rgba(20,10,5,.35), rgba(20,10,5,0) 40%)', grill: 'linear-gradient(to top, rgba(20,10,5,.35), rgba(20,10,5,0) 40%)',
+      deliver: 'rgba(52,26,10,.58)'
+    };
+    const isLastScene = st.scene === sc.length - 1;
+    const hintText = this.isPlaying ? '' : (isLastScene ? 'המשיכו לגלול' : 'החליקו להמשך');
+
+    const navDefs = [
+      { label: 'הבית', href: '#', on: true },
+      { label: 'הנתחים שלנו', href: 'Cuts.dc.html' },
+      { label: 'מה על האש?', href: 'Recipes.dc.html' },
+      { label: 'הסיפור שלנו', href: 'Story.dc.html' },
+      { label: 'הסניפים', href: 'Branch.dc.html?b=holon', kids: [['חולון', 'Branch.dc.html?b=holon'], ['גבעת שמואל', 'Branch.dc.html?b=givat']] },
+      { label: 'עוד', href: '#', kids: [['כשרות', 'Kosher.dc.html'], ['טיפים מהקצבים', 'Tips.dc.html'], ['מועדון הלקוחות', 'Club.dc.html'], ['גלריה', 'Gallery.dc.html'], ['צור קשר', 'Contact.dc.html']] }
+    ];
+    const nav = navDefs.map((n, i) => ({
+      label: n.label, href: n.href, hasKids: !!n.kids, open: st.dd === i && !!n.kids, cur: n.on ? 'page' : 'false', fw: n.on ? 700 : 500, color: n.on ? '#EE3A30' : 'inherit',
+      num: String(i + 1).padStart(2, '0'), mOpen: st.mDd === i && !!n.kids, mRot: st.mDd === i ? '45deg' : '0deg',
+      mToggle: () => this.setState(s => ({ mDd: s.mDd === i ? null : i })),
+      kids: (n.kids || []).map(([l, h]) => ({ label: l, href: h })),
+      enter: () => this.setState({ dd: i })
+    }));
+
+    const secEls = [this.catsRef, this.clubRef, this.whyRef, this.recipesRef];
+    let activeSec = -1;
+    secEls.forEach((r, i) => { const el = r.current; if (el && el.getBoundingClientRect().top <= vh * 0.45) activeSec = i; });
+    const cinemaDot = { hero: 0, story: 1, kosher: 2, deliver: 3 }[curKey];
+    const activeDot = inCinema ? cinemaDot : 4 + activeSec;
+    const dotDefs = [['ראשי', () => this.goScene(0)], ['הסיפור שלנו', () => this.goScene(1)], ['סוגי כשרות', () => this.goScene(2)], ['הזמנת משלוח', () => this.goScene(sc.length - 1)],
+      ['קטגוריות', () => this.scrollToEl(this.catsRef)], ['מועדון לקוחות', () => this.scrollToEl(this.clubRef)], ['למה אנחנו', () => this.scrollToEl(this.whyRef)], ['מתכונים', () => this.scrollToEl(this.recipesRef)]];
+    const dotInk = dark ? '#f5f5f5' : '#3c2313';
+    const dots = dotDefs.map(([label, go], i) => ({
+      label, go, enter: () => this.setState({ hDot: i }), leave: () => this.setState({ hDot: -1 }),
+      w: i === activeDot ? '30px' : '7px', bg: i === activeDot ? '#EE3A30' : dotInk,
+      labelOp: st.hDot === i ? 1 : 0, labelX: st.hDot === i ? '0px' : '6px', labelColor: dotInk
+    }));
+
+    const bh = mob ? '150px' : (vh <= 820 ? '200px' : 'clamp(220px,26vh,280px)');
+    const branches = [
+      { name: 'גבעת שמואל', addr: 'מתחם הולמס פלייס', href: this.S + '/branch/גבעת-שמואל/', img: this.S + '/wp-content/uploads/2025/11/IMG_7918-2.jpg' },
+      { name: 'חולון', addr: 'פנחס אילון 13', href: this.S + '/branch/חולון/', img: this.S + '/wp-content/uploads/2025/12/2d833f3b-2225-4594-b9ff-03d91b36c428.jpg' }
+    ].map((b, i) => ({ ...b, enter: () => { if (!this.isMob() && this.state.hBr !== i) this.setState({ hBr: i }); }, leave: () => { if (!this.isMob() && this.state.hBr === i) this.setState({ hBr: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hBr: s.hBr === i ? -1 : i })); }, plusBg: st.hBr === i ? '#EE3A30' : '#fff', plusInk: st.hBr === i ? '#fff' : '#3c2313', plusRot: st.hBr === i ? '45deg' : '0deg',
+      bg: st.hBr === i ? 'rgba(60,35,19,.72)' : 'linear-gradient(to top, rgba(10,5,2,.72) 0%, rgba(10,5,2,.1) 45%, rgba(10,5,2,0))',
+      ov: st.hBr === i ? 1 : 0, padB: mob ? '0px' : (st.hBr === i ? '22%' : '9%'), brJust: mob ? 'center' : 'flex-end', extraH: st.hBr === i ? '110px' : '0px', arrow: st.hBr === i ? '#EE3A30' : '#f5f5f5' }));
+    const kosher = [
+      { icon: 'ti-feather', pad: mob ? '0 0 13px' : '0 0 0 40px', border: mob ? 'none' : '1px solid rgba(60,35,19,.18)', t: 'עוף והודו טרי', d: 'רבנות חלק. (ניתן להזמין כשרות של הרב מחפוד / קהילות יומיים מראש. המחירים שונים מבאתר)', delay: '.05s' },
+      { icon: 'ti-meat', pad: mob ? '13px 0' : '0 40px', border: mob ? 'none' : '1px solid rgba(60,35,19,.18)',  t: 'בקר וטלה טרי', d: 'חלק גלאט מחפוד, עטרה בית יוסף. (ניתן להזמין כשרות של קהילות / לנדא יומיים מראש.)', delay: '.12s' },
+      { icon: 'ti-fish', pad: mob ? '13px 0 0' : '0 40px 0 0', border: 'none', t: 'דגים', d: 'הרב רווח / בד״ץ עדה חרדית', delay: '.19s' }
+    ];
+
+    const catDefs = [
+      ['בשר', 'assets/cats/meat.png', 'מגוון נתחי בשר מובחרים, עסיסיים ואיכותיים. כל נתח נבחר בקפידה, בדגש על רמת היישון , שיוש והטריות.'],
+      ['עופות', 'assets/cats/poultry.png', "עופות טריים ללא אנטיביוטיקה, בגידול נקי ומבוקר – כי הבריאות מתחילה בבחירה הנכונה."], ['דגים', 'assets/cats/fish.png', "מבחר דגים טריים וקפואים, נקיים ומוכנים לבישול – לטעמים ים תיכוניים במיטבם."], ['מארזים', 'assets/cats/packs.png', "מארזים משפחתיים, זוגיים או חגיגיים – כל מה שצריך לארוחה מפנקת, במקום אחד."], ['אלכוהול', 'assets/cats/alcohol.png', "יין ומשקאות חריפים שנבחרו במיוחד לליווי מושלם של כל ארוחה."],
+      ['קפואים', 'assets/cats/frozen.png', "פתרונות מהירים וטעימים – קבבים, ירקות ועוד מוצרים קפואים באיכות מעולה."], ['פרמיום', 'assets/cats/premium.png', "מוצרי עלית לקהל שמחפש את הקצה העליון של האיכות – מבשרים מיושנים ועד תענוגות נדירים."], ['מוצרי מזווה', 'assets/cats/pantry.png', "רכיבים איכותיים שישלימו כל מנה – תבלינים, שמנים, רטבים ועוד מצרכים משובחים."]
+    ];
+    const cats = catDefs.map(([n, img, d], i) => {
+      const h = st.hCat === i;
+      return { n, img: img || '', noImg: !img, d: d || '', href: this.S + '/product-category/' + n.replace(/ /g, '-') + '/',
+        open: (e) => { if (!this.isMob()) return; e.preventDefault(); this.openCp(i); },
+        enter: () => { if (!this.isMob()) this.setState({ hCat: i }); }, leave: () => { if (!this.isMob()) this.setState({ hCat: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hCat: s.hCat === i ? -1 : i })); }, plusBg: st.hCat === i ? '#EE3A30' : '#fff', plusInk: st.hCat === i ? '#fff' : '#3c2313', plusRot: st.hCat === i ? '45deg' : '0deg',
+        scale: h ? 1.06 : 1, descH: h ? '120px' : '0px', descOp: h ? 1 : 0,
+        grad: h ? 'linear-gradient(180deg, rgba(60,35,19,.52), rgba(60,35,19,.88))' : 'linear-gradient(180deg, rgba(60,35,19,.05) 40%, rgba(60,35,19,.62))' };
+    });
+    const N = cats.length, cpi = st.cp ?? 0, cpW = Math.min(Math.round(w * 0.74), 340), gap = 14;
+    const cpSlides = cats.map((c, i) => { let d = ((i - cpi) % N + N) % N; if (d > N / 2) d -= N; const a = Math.abs(d);
+      return { n: c.n, d: c.d, img: c.img, href: c.href, x: (-d * (cpW + gap)) + 'px', sc: a === 0 ? 1 : 0.9, op: a <= 1 ? (a === 0 ? 1 : 0.55) : 0, z: 10 - a,
+        tap: (e) => { if (d !== 0) { e.preventDefault(); this.setState({ cp: i }); } } }; });
+    const cpData = { cpOn: st.cp != null, cpOp: st.cpVis ? 1 : 0, cpSc: st.cpVis ? 1 : 0.92, cpW: cpW + 'px', cpH: Math.round(cpW * 1.25) + 'px', cpML: (-cpW / 2) + 'px', cpSlides,
+      cpDots: cats.map((c, i) => ({ n: c.n, w: i === cpi ? '22px' : '8px', bg: i === cpi ? '#EE3A30' : 'rgba(245,245,245,.4)', go: () => this.setState({ cp: i }) })),
+      cpPrev: () => this.setState(s => ({ cp: ((s.cp - 1) % N + N) % N })), cpNext: () => this.setState(s => ({ cp: (s.cp + 1) % N })),
+      cpClose: () => this.closeCp(), cpStop: (e) => e.stopPropagation(),
+      cpTs: (e) => { this.cpX = e.touches[0].clientX; }, cpTe: (e) => { if (this.cpX == null) return; const dx = e.changedTouches[0].clientX - this.cpX; this.cpX = null; if (Math.abs(dx) < 40) return; this.cpMoved = performance.now(); this.setState(s => ({ cp: ((s.cp + (dx > 0 ? 1 : -1)) % N + N) % N })); },
+      catPlusOn: false };
+    const rvf = (k, extra) => { const on = !!st.rev[k]; return { op: on ? 1 : 0, y: on ? '0px' : '40px', ...(extra ? extra(on) : {}) }; };
+    const rv = { cats: rvf('cats'), club: rvf('club', on => ({ cardY: on ? '-28px' : '60px' })), rec: rvf('rec') };
+
+    const whyItems0 = [
+      { icon: 'ti-certificate', t: 'הכשרות', d: 'כשרות ללא פשרות, המגובה בפיקוח הדוק לכל אורך שרשרת האספקה.' },
+      { icon: 'ti-rosette-discount-check', t: 'איכות הבשר', d: 'כל נתח עובר בקרת איכות קפדנית - כי הטוב ביותר זה הסטנדרט שלנו.' },
+      { icon: 'ti-heart-handshake', t: 'יחס אישי ומשפחתי', d: 'כל לקוח מתקבל כאורח של כבוד, עם שירות מכל הלב.' },
+      { icon: 'ti-map-pin', t: 'הסניפים שלנו', d: 'שני סניפים בגבעת שמואל ובחולון, שירות מהיר ומגוון רחב.' }
+    ];
+    const whyItems = whyItems0.map((it, k) => ({ ...it, ink: st.hWhy === k ? '#EE3A30' : '#3c2313', sc: st.hWhy === k ? 1.05 : 1,
+      enter: () => this.setState({ hWhy: k }), leave: () => this.setState({ hWhy: -1 }) }));
+    const whyAll = whyItems0;
+    const lerp = (x, y, t) => x + (y - x) * t;
+    const io = Math.min(1, Math.max(0, (st.exP - 0.55) / 0.25));
+    const ex = {
+      w: lerp(w, 340, a) + 'px', h: lerp(vh, 340, a) + 'px', r: lerp(0, 6, a) + 'px',
+      wideOp: 1 - a, shadeOp: 1 - a, titleOp: Math.max(0, 1 - st.exP / 0.3),
+      shadow: a > 0.9 ? '0 30px 60px rgba(60,35,19,.22)' : 'none',
+      itemsOp: io, itemsXR: (1 - io) * 40 + 'px', itemsXL: -(1 - io) * 40 + 'px'
+    };
+    const mS = Math.min(w * 0.44, 180) - 60, mTop = 96;
+    const exm = {
+      w: lerp(w, mS, a) + 'px', h: lerp(vh, mS, a) + 'px', r: lerp(0, 6, a) + 'px', top: lerp(vh / 2, mTop + mS / 2, a) + 'px',
+      wideOp: 1 - a, shadeOp: 1 - a, titleOp: Math.max(0, 1 - st.exP / 0.3),
+      shadow: a > 0.9 ? '0 20px 40px rgba(60,35,19,.2)' : 'none',
+      listTop: (mTop + mS + 8) + 'px', listHandOp: io > 0.97 ? 1 : 0, itemsOp: io, itemsY: (1 - io) * 30 + 'px'
+    };
+
+    const recDefs = [
+      ['בשר עם חומוס, קל וטעים', 'בשר-עם-חומוס-קל-וטעים.jpg', 'כ-4.5–5 שעות', 'קל', 'בקר', 'סיר בישול'],
+      ['סלט חזה עוף קייצי ומרענן', 'סלט-חזה-עוף-קייצי-ומרענן.jpg', 'כ-20 דקות', 'קל', 'עוף', 'מחבת זריזה'],
+      ['אסאדו מתוק עם גזר', 'אסאדו-מתוק-עם-גזר.jpg', 'כ-2–2.5 שעות', 'קל', 'בקר', 'תנור ביתי'],
+      ['דג בס שלם על הפלנצ׳ה', 'דג-בס-שלם-על-הפלנצ׳ה.jpg', 'כ־1 שעה ו־15 דקות', 'קל', 'דג', 'גריל בשטח'],
+      ['קציצות עוף עם שעועית צהובה', 'קציצות-עוף-עם-שעועית-צהובה.jpg', 'כ-50 דקות', 'קל–בינוני', 'עוף', 'סיר בישול'],
+      ['נתח אונטריב ועצמות מח בתנור', 'נתח-אונטריב-ועצמות-מח-בתנור.jpg', 'כ־4–4.5 שעות', 'בינוני-גבוה', 'בקר', 'תנור ביתי'],
+      ['פיקנייה מיוחדת', 'פיקנייה-מיוחדת.jpg', 'כ־4 שעות', 'קל', 'בקר', 'גריל בשטח'],
+      ['מוקפץ בקר צבעוני', 'מוקפץ-בקר-צבעוני.jpg', 'כ־30–35 דקות', 'בינוני', 'בקר', 'מחבת זריזה'],
+      ['חריימה', 'חריימה.jpg', 'כ-1 שעה', 'בינוני', 'דג', 'סיר בישול'],
+      ['עוף ופתיתים בסיר אחד בתנור', 'עוף-ופתיתים-בסיר-אחד.jpg', 'כשעה ו-45 דקות', 'קל', 'עוף', 'תנור ביתי'],
+      ['צלעות טלה על מצע טנזיה', 'צלעות-טלה-על-מצע-טנזיה.jpg', 'כ־1 שעה ו־30 דקות', 'קשה', 'טלה', 'גריל בשטח'],
+      ['קוביות חזה עוף במייפל', 'קוביות-חזה-עוף-במייפל.jpg', 'כ־25–30 דקות', 'קל', 'עוף', 'מחבת זריזה']
+    ];
+    const recipes = recDefs.filter(r => st.filter === 'הכל' || r[5] === st.filter).map(([t, f, time, lvl, meat], i) => ({
+      t, img: 'https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/01/' + f, time, lvl, meat,
+      enter: () => { if (!this.isMob()) this.setState({ hRec: i }); }, leave: () => { if (!this.isMob()) this.setState({ hRec: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hRec: s.hRec === i ? -1 : i })); }, plusBg: st.hRec === i ? '#EE3A30' : '#fff', plusInk: st.hRec === i ? '#fff' : '#3c2313', plusRot: st.hRec === i ? '45deg' : '0deg',
+      scale: st.hRec === i ? 1.06 : 1, ov: st.hRec === i ? 1 : 0,
+      cBg: st.hRec === i ? '#EE3A30' : 'transparent', cBorder: st.hRec === i ? '#EE3A30' : '#3c2313', cInk: st.hRec === i ? '#fff' : '#3c2313'
+    }));
+    const filters = ['הכל', 'סיר בישול', 'תנור ביתי', 'גריל בשטח', 'מחבת זריזה'].map(f => {
+      const on = st.filter === f;
+      return { label: f, pick: () => { this.setState({ filter: f, hRec: -1 }); const tr = this.recTrack.current; if (tr) tr.scrollLeft = 0; },
+        bg: on ? '#3c2313' : 'transparent', color: on ? '#f5f5f5' : '#3c2313', border: on ? '#3c2313' : '#3c2313' };
+    });
+    const recMove = (dir) => () => { const tr = this.recTrack.current; if (!tr) return; const card = tr.firstElementChild; const dx = card ? card.getBoundingClientRect().width + 30 : 300; tr.scrollBy({ left: dir * dx, behavior: 'smooth' }); };
+
+    const quick = [
+      { label: 'הזמנת משלוח', icon: 'ti-truck-delivery', href: 'https://orders.3katzavim.co.il/' },
+      { label: 'מיקום', icon: 'ti-map-pin', href: 'https://goo.gl/maps/2LRkCLft8UiYivWx7' },
+      { label: 'טלפון', icon: 'ti-phone', href: 'tel:03-800-2626' },
+      { label: 'וואטסאפ', icon: 'ti-brand-whatsapp', href: 'https://api.whatsapp.com/send?phone=972515254100' }
+    ];
+    const qaFlags = { qaDesk: !mob, qaMob: mob, mbarY: '0px' };
+    const qaItems = [
+      { label: 'הזמינו עכשיו', icon: 'ti-truck-delivery', href: 'https://orders.3katzavim.co.il/' },
+      { label: 'דברו איתנו', icon: 'ti-brand-whatsapp', href: 'https://api.whatsapp.com/send?phone=972515254100' }
+    ].map((q, i) => { const on = st.hQa === i; return { ...q, w: on ? '210px' : '60px', bg: on ? '#d6302a' : '#EE3A30', op: on ? 1 : 0, delay: on ? '.15s' : '0s',
+      enter: () => this.setState({ hQa: i }), leave: () => this.setState({ hQa: -1 }) }; });
+    const qa = mob ? { dir: 'row', left: '0', right: '0', bottom: '0', gap: '0', bg: '#3c2313', pad: '6px 6px calc(6px + env(safe-area-inset-bottom))', shadow: '0 -6px 24px rgba(20,10,5,.2)', h: '52px', w: 'auto', flex: '1', r: '6px', itemBg: 'transparent', labels: true, y: inCinema && st.scene === 0 ? '100%' : '0%' }
+      : { dir: 'column', left: '0', right: 'auto', bottom: 'calc(50% - 56px)', gap: '0', bg: '#5c1a14', pad: '0', shadow: '0 10px 30px rgba(0,0,0,.25)', h: '56px', w: '60px', flex: 'none', r: '0', itemBg: 'transparent', labels: false, y: '0%' };
+
+    const catsEl = this.catsRef.current; let inCats = false;
+    if (mob && catsEl) { const r = catsEl.getBoundingClientRect(); inCats = r.top <= 60 && r.bottom > 60; }
+    const whyEl = this.whyRef.current; if (mob && whyEl && !inCats) { const r = whyEl.getBoundingClientRect(); inCats = r.top <= 60 && r.bottom > 60; }
+    const clubEl = this.clubRef.current; if (mob && clubEl && !inCats) { const r = clubEl.getBoundingClientRect(); inCats = r.top <= 60 && r.bottom > 60; }
+    const hdrSolid = !firstSec;
+    return {
+      hdr: { dark, light: !dark, pad: mob ? '12px 18px' : (scrolled ? (w <= 1300 ? '10px 28px' : '10px 44px') : (w <= 1300 ? '12px 28px' : '16px 44px')),
+        bg: hdrSolid ? '#f6f6f6' : 'transparent', blur: 'none',
+        shadow: hdrSolid ? '0 2px 24px rgba(60,35,19,.07)' : 'none', color: dark ? '#f5f5f5' : '#3c2313',
+        logoH: mob ? '34px' : (scrolled ? '38px' : '46px'),
+        cur: dark ? 'white' : 'dark', ctaBg: (dark || lightScene) ? 'transparent' : '#EE3A30', ctaBorder: dark ? 'rgba(245,245,245,.85)' : (lightScene ? '#3c2313' : '#EE3A30'), ctaColor: dark ? '#f5f5f5' : (lightScene ? '#3c2313' : '#fff') },
+      stamp: mob ? { left: '-8%', bottom: '0', w: '260px' } : { left: '-9%', bottom: '-14%', w: 'min(36vw,62vh)' },
+      hdrLogoOp: (mob && curKey === 'hero' && st.y < 10) ? 0 : 1, hdrLogoPe: (mob && curKey === 'hero' && st.y < 10) ? 'none' : 'auto',
+      heroJustify: mob ? 'center' : 'flex-start', heroPad: mob ? '20px 20px 330px' : 'calc(clamp(130px,22vh,230px) - 50px) 24px 120px', heroLogo: mob,
+      showNav: w > 1000, showBurger: w <= 1000, navGap: w <= 1150 ? '0px' : '4px', navFont: w <= 1150 ? '.8rem' : '.95rem',
+      nav, closeDd: () => this.setState({ dd: null }), menuOpen: st.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      goTop: (e) => { e.preventDefault(); this.goScene(0); },
+      showDots: w > 900, dots, dotRight: w <= 1100 ? '10px' : (w <= 1300 ? '14px' : '28px'),
+      cinemaRef: this.cinemaRef, greyRef: this.greyRef, clubUlRef: this.clubUlRef, clubBtnRef: this.clubBtnRef, whyListRef: this.whyListRef, clips, clipPos: '50% 50%', ...(() => {
+        if (!mob) return { vidBoxW: '100%', vidBoxB: '-30px', vidTf: (curKey === 'story' || curKey === 'kosher') ? 'translateY(-30px)' : 'translateY(0px)' };
+        const natW = vh * 1920 / 1032;
+        const vidBoxB = '0px';
+        const v4 = curKey === 'deliver' && st.v4Hold;
+        if (curKey === 'story' || curKey === 'kosher' || v4) {
+          const grow = v4 || (curKey === 'kosher' && (st.kGrow || (!this.isPlaying && st.textOn))) ? (this.props.mobKosherGrow ?? 1.1) : 1; const s = Math.min(1, (w / (this.props.mobMeatFrac ?? 0.54)) / natW); return { vidBoxW: natW + 'px', vidBoxB, vidTf: 'translate(' + (v4 && st.v4Shift ? -200 : (grow > 1 ? -40 : -20)) + 'px,' + -50 + 'px) scale(' + (s * grow).toFixed(4) + ')' }; }
+        return { vidBoxW: natW + 'px', vidBoxB, vidTf: 'translate(' + (-(natW - w) * 0.58).toFixed(1) + 'px,0px) scale(1)' };
+      })(),
+      ...(() => { const on = mob && curKey === 'story' && this.isPlaying; const total = Math.max(0.6, (st.chainDur || 3) - 0.3); const d = Math.min(2, total * 0.5); if (mob && curKey === 'kosher') return { vidDelay: '0s', vidDur: st.kGrow ? '1s' : '0s' };
+        if (mob && curKey === 'deliver' && (st.v4Hold || st.v4Light)) return { vidDelay: '0s', vidDur: st.v4Hold ? (st.v4Shift ? (st.v4MoveDur || 2).toFixed(2) + 's' : '0s') : (st.v4Rel || 1.5).toFixed(2) + 's' };
+        return { vidDelay: on ? d + 's' : '0s', vidDur: on ? Math.max(0.6, total - d).toFixed(2) + 's' : (this.isPlaying ? total.toFixed(2) + 's' : '0s') }; })(),
+      cinemaBg: (!mob && (curKey === 'story' || curKey === 'kosher')) ? '#f6f6f6' : (mob && (curKey === 'story' || curKey === 'kosher' || (curKey === 'deliver' && st.v4Light))) ? '#f6f6f6' : '#1a0f08', cinemaBgDur: (mob && (curKey === 'story' || curKey === 'kosher' || (curKey === 'deliver' && st.v4Light))) ? '0s' : '.6s',
+      clipPosDur: this.isPlaying ? Math.max(0.6, (st.chainDur || 3) - 0.3).toFixed(2) + 's' : '0s', shade: shadeMap[curKey], shadeOp: (curKey === 'deliver' && !st.preText && !st.textOn) ? 0 : 1, shadeDur: (curKey === 'deliver' && !st.preText && !st.textOn) ? '0s' : (curKey === 'deliver' ? '1.6s' : '.8s'), sx, step: this.step,
+      heroH1: mob ? '50px' : 'clamp(3rem,6.6vw,8rem)', heroSub: mob ? '19px' : 'clamp(1.1rem,1.9vw,2.3rem)',
+      storyH: mob ? 'clamp(2.3rem,10vw,3rem)' : (vh <= 820 ? 'clamp(2.2rem,3.8vw,3.2rem)' : 'clamp(2.4rem,4.4vw,3.8rem)'),
+      deliverH: mob ? 'clamp(2.5rem,11vw,3.4rem)' : (vh <= 820 ? 'clamp(2.8rem,5.5vw,4.8rem)' : 'clamp(3rem,6.5vw,5.8rem)'),
+      bodyCopy: mob ? '1.1rem' : (vh <= 820 ? '1.2rem' : '1.4rem'),
+      storyAlign: mob ? 'flex-start' : 'center', brAspect: mob ? 'auto' : '1/1', brHgt: mob ? Math.round((w - 44 - 16) / 2 * 0.8 - 30) + 'px' : 'auto', brNameFs: mob ? '18.2px' : 'clamp(1.2rem,1.3vw,1.5rem)', brShade: mob ? 'linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.35) 100%)' : 'linear-gradient(to top, rgba(10,5,2,.55) 0%, rgba(10,5,2,0) 45%)', brGridW: mob ? '100%' : '496px', brGridMt: mob ? 'calc(clamp(24px,5vh,56px) - 15px)' : 'clamp(24px,5vh,56px)', storyPad: mob ? '91px 22px 96px' : '90px max(70px,calc((100% - 1440px) / 2)) 90px', scenePad: mob ? '90px 22px 96px' : '90px max(70px,calc((100% - 1440px) / 2)) 90px',
+      hintOp: (st.textOn && !this.isPlaying && !(curKey === 'story' || curKey === 'kosher')) ? 1 : 0, hintY: (st.textOn && !this.isPlaying) ? '0px' : '10px',
+      hintTr: (st.textOn && !this.isPlaying) ? 'opacity .9s ease .7s, transform .9s cubic-bezier(.2,.7,.2,1) .7s' : 'opacity .25s ease, transform .25s ease',
+      hintInk: (curKey === 'story' || curKey === 'kosher') ? '#3c2313' : '#f5f5f5', hintText, hintMouse: !mob, hintSwipe: mob, hintRun: (st.textOn && !this.isPlaying && st.y < vh) ? 'running' : 'paused',
+      showCounter: (this.props.showCounter ?? false) && !mob, counterLeft: 'max(30px,calc((100% - 1440px) / 2))',
+      counterCur: String(st.scene + 1).padStart(2, '0'), counterTotal: String(sc.length).padStart(2, '0'), counterPct: ((st.scene + 1) / sc.length * 100) + '%',
+      branches, kosher, branchH: bh, storyLift: mob ? '0px' : '-160px', kosherAlign: 'flex-start', kDir: mob ? 'row' : 'column', kGap: mob ? '14px' : 'clamp(10px,1.6vh,16px)', kosherShift: mob ? '0' : 'clamp(0px,5vw,100px)', kosherPad: mob ? '92px 0 0' : 'clamp(130px,20vh,220px) 0 0', kosherCols: mob ? '1fr' : 'repeat(3,minmax(0,1fr))', storyInk: '#3c2313', branchBoxH: 'calc(' + bh + ' * 1.05)',
+      catsRef: this.catsRef, clubRef: this.clubRef, whyRef: this.whyRef, recipesRef: this.recipesRef, recTrack: this.recTrack,
+      catAspect: mob ? 'auto' : '1/0.864', catTxtPad: mob ? '0 10px 10px' : 'clamp(16px,2vw,28px)', catHgt: mob ? Math.round((w - 36) / 2 * 0.756 - 20) + 'px' : 'auto',
+      catNameFs: mob ? 'calc(clamp(1.25rem,1.9vw,1.65rem) - 6px)' : 'calc(clamp(1.25rem,1.9vw,1.65rem) - 4px)', catDescFs: mob ? 'calc(.95rem - 4px)' : 'calc(.95rem - 3px)', catsPad: mob ? '91px 18px 70px' : '120px max(30px,calc((100% - 1440px) / 2))', catsH2Fs: mob ? 'calc(clamp(2.1rem,10vw,2.9rem) - 2px)' : 'clamp(2rem,4.2vw,3.6rem)', catsH2Fw: '300', catsH2Ls: mob ? '-1.5px' : '-1px',
+      secPad: mob ? '70px 18px' : '120px max(30px,calc((100% - 1440px) / 2))',
+      cats, catCols: w <= 900 ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))', rv,
+      plusOn: mob, clubPlusOn: true, club: { toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => s.hClub ? null : ({ hClub: true, clubDeg: (s.clubDeg || 0) + 540 })); }, hover: () => { if (!this.isMob()) this.setState(s => s.hClub ? null : ({ hClub: true, clubDeg: (s.clubDeg || 0) + 540 })); }, plusBg: st.hClub ? '#EE3A30' : '#fff', plusInk: st.hClub ? '#fff' : '#3c2313', plusRot: st.hClub ? '45deg' : '0deg' },
+      clubAngle: (st.clubDeg || 0) + 'deg', clubDur: st.hClub ? '1.5s' : '.8s',
+      clubBackW: this.props.clubBackW ?? '86%', clubBackTilt: (this.props.clubBackTilt ?? -8) + 'deg',
+      clubEnter: () => { if (!this.isMob()) this.setState(s => s.hClub ? null : ({ hClub: true, clubDeg: (s.clubDeg || 0) + 540 })); }, clubTap: () => this.setState(s => s.hClub ? null : ({ hClub: true, clubDeg: (s.clubDeg || 0) + 540 })),
+      clubLeave: () => null,
+      clubMinH: mob ? '100svh' : '100vh', clubItems: mob ? 'center' : 'flex-start', clubPad: mob ? '90px 18px 70px' : '120px max(30px,calc((100% - 1440px) / 2))', clubJust: mob ? 'flex-start' : 'center', clubH2Fs: mob ? 'clamp(2.1rem,10vw,2.9rem)' : 'clamp(2.6rem,5.2vw,4.4rem)', clubH2Ls: mob ? '-1.5px' : '-2px', clubAlign: mob ? 'center' : 'start', clubBr: mob,
+      clubSc: (mob && st.hClub) ? 0.8 : 1, clubLift: st.hClub ? (mob ? '-110px' : '-60px') : '0px', clubBulOp: st.hClub ? 1 : 0, clubBulY: st.hClub ? '0px' : '14px',
+      clubBulTr: st.hClub ? 'opacity .5s ease 1.1s, transform .6s cubic-bezier(.2,.7,.2,1) 1.1s' : 'opacity .25s ease, transform .25s ease',
+      clubBulFs: mob ? '15px' : '17px', clubBulTop: mob ? 'calc(100% - 90px)' : 'calc(100% - 20px)', clubBtnOp: st.hClub ? 1 : 0, clubBtnPe: st.hClub ? 'auto' : 'none', clubPlusOp: st.hClub ? 0 : 1, clubPlusPe: st.hClub ? 'none' : 'auto', clubHandOp: st.hClub ? 1 : 0, clubHandDelay: st.hClub ? '4s' : '0s',
+      clubBullets: [{ t: 'מבצעים בלעדיים', d: 'רק לחברי מועדון.' }, { t: 'צבירת נקודות', d: 'מכל סכום, בכל רכישה באתר.' }, { t: 'קדימות בהשקות', d: 'הראשונים לדעת (ולטעום) כשנכנס נתח חדש או מבצע מוגבל.' }],
+      clubBtnMt: mob ? '128px' : '40px', clubBtnVis: mob ? 'hidden' : 'visible', clubBtnTop: mob ? '0px' : '0px', clubBtnBg: mob ? '#f5f5f5' : 'transparent', clubFloat: 'none', fGap: mob ? '6px' : '10px', fPad: mob ? '6px 12px' : '7px 18px', fFs: mob ? '.85rem' : '.95rem', clubBackBtnPad: mob ? '4px 9px' : '10px 22px', clubBackBtnFs: mob ? '9px' : '15px', clubBackLogoH: mob ? '23px' : '48px',
+      cbT1: mob ? '1.2rem' : 'clamp(1.5rem,2.4vw,2.4rem)', cbT2: mob ? '10.5px' : 'calc(clamp(.9rem,1.1vw,1.1rem) + 1px)', cbLine: mob ? '18px' : '28px', cbClub: mob ? '8px' : '12px', clubGap: mob ? '0px' : 'clamp(30px,5vw,80px)', clubCardW: mob ? 'min(80%,416px)' : 'min(100%,520px)', clubCols: mob ? '1fr' : 'minmax(0,1fr) minmax(0,1fr)',
+      exDesktop: !mob, exMobile: mob, ex, exm, dz: mob ? 1 : (this.props.deskScale ?? 1),
+      whyWord: ['טובים', 'מובחרים', 'טעימים', 'איכותיים', 'מבוקשים'][st.wIdx || 0], whyWordOp: (st.wOut || st.wIn) ? 0 : 1, whyWordTf: mob ? ('translateY(' + (st.wOut ? '-0.15em' : '0em') + ')') : ('translateX(' + ((st.wOut || st.wIn) ? '-0.5em' : '0em') + ')'), whyWordTr: st.wIn ? 'none' : 'opacity .25s ease, transform .3s cubic-bezier(.2,.7,.2,1)', whyWordMinW: mob ? '0' : '4.6em', whyWordY: st.wOut ? '-0.15em' : '0em', whyAll, whyR: whyItems.slice(0, 2), whyL: whyItems.slice(2),
+      whyHintOp: ex.itemsOp > 0.97 ? 1 : 0, whyHintY: ex.itemsOp > 0.97 ? '0px' : '10px', whyHintRun: ex.itemsOp > 0.97 ? 'running' : 'paused',
+      whyHintTr: ex.itemsOp > 0.97 ? 'opacity .9s ease .5s, transform .9s cubic-bezier(.2,.7,.2,1) .5s' : 'opacity .25s ease, transform .25s ease',
+      recipes, filters, recBasis: mob ? '82%' : (w <= 1100 ? 'calc((100% - 30px) / 2)' : 'calc((100% - 60px) / 3)'),
+      recPrev: recMove(1), recNext: recMove(-1),
+      footPad: mob ? '60px 22px 100px' : '90px max(30px,calc((100% - 1440px) / 2)) 40px',
+      footGap: mob ? '40px' : '50px', footLogoH: mob ? '48px' : '64px', footTagFs: mob ? '1.4rem' : 'clamp(1.6rem,2.2vw,2.2rem)',
+      footStampW: mob ? '320px' : '520px', footStampL: mob ? '-120px' : '-160px', footStampB: mob ? '-120px' : '-200px',
+      footCols: mob ? '1fr' : (w <= 900 ? '1fr 1fr' : '1fr 1fr 1.2fr 1.4fr'),
+      footMenu: [['הבית', '#'], ['הנתחים שלנו', 'Cuts.dc.html'], ['מה על האש?', 'Recipes.dc.html'], ['טיפים מהקצבים', 'Tips.dc.html'], ['הסיפור שלנו', 'Story.dc.html'], ['כשרות', 'Kosher.dc.html'], ['הסניפים', 'Branch.dc.html?b=holon'], ['מועדון הלקוחות', 'Club.dc.html'], ['צור קשר', 'Contact.dc.html'], ['להזמנה אונליין', 'https://orders.3katzavim.co.il/']].map(([label, href]) => ({ label, href })),
+      branchInfo: [
+        { title: 'סניף חולון', addr: 'פנחס אילון 13', phone: '03-800-2626', tel: 'tel:03-800-2626', waze: 'https://waze.com/ul/hsv8wp7hcj' },
+        { title: 'סניף גבעת שמואל', addr: 'מתחם הולמס פלייס', phone: '03-632-4634', tel: 'tel:03-632-4634', waze: 'https://waze.com/ul/hsv8y90kx4' }
+      ],
+      clubRun: (() => { const el = this.clubRef.current; if (!el) return 'paused'; const r = el.getBoundingClientRect(); return r.top < vh && r.bottom > 0 ? 'running' : 'paused'; })(),
+      ...qaFlags, qaItems, ...cpData, footCtaDisp: mob ? 'none' : 'inline-flex', hintBottom: mob ? 'calc(88px + env(safe-area-inset-bottom))' : '40px', hdrCtaDisp: mob ? 'none' : 'inline-flex', quick: mob ? quick : [quick[0], quick[3]], qa
+    };
+  }
+}
+</script>
+</body>
+</html>

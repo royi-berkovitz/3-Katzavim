@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מועדון הלקוחות | שלושה קצבים</title>
+<meta name="description" content="מועדון הלקוחות של שלושה קצבים – הטבות לחברים, מבצעים בלעדיים וצבירה של 3% בקניות אונליין.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ringPulse{0%{opacity:0;transform:translate(-50%,-50%) scale(1.25)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(.55)}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main>
+<section data-screen-label="01 Hero" style="position:relative;margin-top:{{ hdrH }};min-height:{{ heroMinH }};display:flex;align-items:center;overflow:hidden;background:{{ heroBg }};color:#f5f5f5">
+  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;right:{{ bullPos }};bottom:{{ bullPos }};width:{{ bullW }};height:auto;opacity:{{ bullOp }};pointer-events:none;animation:spin 90s linear infinite">
+  <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }};display:grid;grid-template-columns:{{ heroCols }};gap:{{ heroGap }};align-items:center">
+    <div style="position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:{{ heroTxtGap }};background:{{ txtBg }};margin:{{ txtM }};padding:{{ txtP }}">
+      <sc-if value="{{ heroMob }}" hint-placeholder-val="{{ false }}"><img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-110px;bottom:-110px;width:280px;height:auto;opacity:.06;pointer-events:none;animation:spin 90s linear infinite"></sc-if>
+      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#f5f5f5"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מועדון הלקוחות של שלושה קצבים</div>
+      <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.98;text-wrap:balance">יותר טעים <strong style="font-weight:900">כשאתם בפנים.</strong></h1>
+      <p style="margin:0;max-width:540px;font-size:{{ leadFs }};font-weight:300;line-height:1.5;text-wrap:pretty">מצטרפים למשפחה, נהנים מהטבות לחברים וצוברים 3% בקניות אונליין בהתאם לתנאי המועדון. כי מי שאוהב בשר טוב, מגיע לו קצת יותר.</p>
+      <a href="#join" onClick="{{ toJoin }}" data-cur="white" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;width:{{ fullW }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;margin-top:6px;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">גם אני רוצה להצטרף<i class="ti ti-arrow-down"></i></a>
+    </div>
+
+    <div style="position:relative;display:flex;justify-content:center;padding:{{ cardWrapPad }};margin:{{ cardWrapM }};background:{{ cardWrapBg }}">
+      <div onMouseLeave="{{ leaveCard }}" style="position:relative;width:{{ cardW }};transform:rotate(-9deg);transform-origin:50% 50%">
+        <span style="position:absolute;inset:0;z-index:19;pointer-events:none;opacity:{{ ringOp }};transition:opacity .3s">
+          <span style="position:absolute;left:23px;top:23px;width:78px;height:78px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite 0s;display:block"></span>
+          <span style="position:absolute;left:23px;top:23px;width:60px;height:60px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite .3s;display:block"></span>
+          <span style="position:absolute;left:23px;top:23px;width:42px;height:42px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite .6s;display:block"></span>
+        </span>
+        <button onClick="{{ toggle }}" onMouseEnter="{{ hoverFlip }}" aria-label="{{ btnLabel }}" aria-pressed="{{ flipped }}" style="position:absolute;top:10px;left:10px;z-index:20;width:26px;height:26px;border-radius:50%;border:0;background:#fff;padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);opacity:{{ ringOp }};pointer-events:{{ btnPe }};transition:opacity .3s">
+          <span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:#3c2313;display:block"></span>
+          <span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:#3c2313;display:block;transform:scaleY({{ vBar }});transition:transform .3s"></span>
+        </button>
+        <div onMouseEnter="{{ hoverFlip }}" onClick="{{ open }}" style="position:relative;width:100%;perspective:1600px">
+          <div style="position:relative;transform:rotate3d(1,-0.62,0,{{ angle }});transition:transform {{ dur }} cubic-bezier(.45,.05,.25,1);transform-style:preserve-3d">
+            <div style="position:relative;backface-visibility:hidden;-webkit-backface-visibility:hidden">
+              <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/כרטיס-מועדון.png" alt="כרטיס מועדון הלקוחות של שלושה קצבים" style="display:block;width:100%;height:auto;opacity:{{ fImgOp }};filter:{{ cardShadow }}">
+              <sc-if value="{{ fPanelOn }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><div style="position:relative;width:{{ panelW }};height:{{ panelH }};aspect-ratio:{{ panelAr }};border-radius:22px;background:radial-gradient(120% 140% at 100% 0%, #ffffff 0%, #f7f4f1 60%, #ece6e0 100%);box-shadow:{{ panelShadow }}, inset 0 0 0 1px rgba(60,35,19,.1);overflow:hidden;color:#3c2313">
+                <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-14%;bottom:-30%;width:62%;height:auto;opacity:.07;animation:spin 40s linear infinite">
+                <span style="position:absolute;inset:10px;border:1px solid rgba(60,35,19,.14);border-radius:15px;display:block"></span>
+                <div style="position:absolute;top:9%;right:7%;left:7%;display:flex;align-items:center;justify-content:space-between">
+                  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/logo.png" alt="" style="height:{{ backLogoH }};width:auto;display:block">
+                  <span style="font-size:{{ backClubFs }};letter-spacing:.22em;font-weight:600;color:#EE3A30">CLUB</span>
+                </div>
+                <div style="position:absolute;right:7%;left:7%;bottom:16%;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+                  <span style="font-size:{{ backSmFs }};font-weight:600;letter-spacing:.14em;color:#EE3A30;font-variant-numeric:tabular-nums">הטבה {{ fNum }}</span>
+                  <span style="width:28px;height:2px;background:#EE3A30;display:block;margin-bottom:4px"></span>
+                  <strong style="font-size:{{ backBigFs }};font-weight:900;letter-spacing:-1px;line-height:1">{{ fTitle }}</strong>
+                </div>
+              </div></div>
+              </sc-if>
+            </div>
+            <div style="position:absolute;inset:0;transform:rotate3d(1,-0.62,0,180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center">
+              <div style="position:relative;width:{{ panelW }};height:{{ panelH }};aspect-ratio:{{ panelAr }};border-radius:22px;background:radial-gradient(120% 140% at 100% 0%, #ffffff 0%, #f7f4f1 60%, #ece6e0 100%);box-shadow:{{ panelShadow }}, inset 0 0 0 1px rgba(60,35,19,.1);overflow:hidden;color:#3c2313">
+                <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-14%;bottom:-30%;width:62%;height:auto;opacity:.07;animation:spin 40s linear infinite">
+                <span style="position:absolute;inset:10px;border:1px solid rgba(60,35,19,.14);border-radius:15px;display:block"></span>
+                <div style="position:absolute;top:9%;right:7%;left:7%;display:flex;align-items:center;justify-content:space-between">
+                  <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/logo.png" alt="" style="height:{{ backLogoH }};width:auto;display:block">
+                  <span style="font-size:{{ backClubFs }};letter-spacing:.22em;font-weight:600;color:#EE3A30">CLUB</span>
+                </div>
+                <div style="position:absolute;right:7%;left:7%;bottom:16%;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+                  <span style="font-size:{{ backSmFs }};font-weight:600;letter-spacing:.14em;color:#EE3A30;font-variant-numeric:tabular-nums">הטבה {{ bNum }}</span>
+                  <span style="width:28px;height:2px;background:#EE3A30;display:block;margin-bottom:4px"></span>
+                  <strong style="font-size:{{ backBigFs }};font-weight:900;letter-spacing:-1px;line-height:1">{{ bTitle }}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section ref="{{ pctRef }}" data-screen-label="02 Three percent" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ pctCols }};gap:{{ pctGap }};align-items:center">
+    <div style="position:relative;direction:ltr;display:flex;align-items:flex-end;justify-content:{{ pctJust }};line-height:.78;color:#EE3A30" aria-label="3 אחוז">
+      <span aria-hidden="true" style="font-size:{{ pctFs }};font-weight:900;letter-spacing:-.06em;font-variant-numeric:tabular-nums">{{ pctVal }}</span>
+      <span aria-hidden="true" style="font-size:{{ pctSignFs }};font-weight:300;letter-spacing:-.04em;margin-bottom:.08em">%</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1.2px;font-weight:400;line-height:1.05">כל קנייה שווה <strong style="font-weight:900">קצת יותר.</strong></h2>
+      <p style="margin:0;max-width:560px;font-size:{{ pFs }};font-weight:300;line-height:1.55;text-wrap:pretty">חברי המועדון נהנים מצבירה של 3% על רכישות אונליין, בהתאם לתנאי המועדון.</p>
+      <ul style="margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;width:100%;max-width:560px">
+        <sc-for list="{{ terms }}" as="t" hint-placeholder-count="3">
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:12px;padding:15px 0;border-top:1px solid rgba(60,35,19,.14);font-size:1.02rem;font-weight:300;line-height:1.5">
+            <span style="font-size:1.1rem;font-weight:900;color:#EE3A30;font-variant-numeric:tabular-nums">{{ t.n }}</span>
+            <span>{{ t.d }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 Benefits" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <h2 style="margin:0 0 {{ h2Mb }};font-size:{{ h2Fs }};letter-spacing:-1.2px;font-weight:400;line-height:1.05">הטבות לחברים <strong style="font-weight:900">שלא תרצו לפספס</strong></h2>
+    <div style="display:grid;grid-template-columns:{{ benCols }};gap:{{ benGap }}">
+      <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="3">
+        <div onMouseEnter="{{ b.enter }}" onMouseLeave="{{ b.leave }}" onClick="{{ b.tap }}" style="position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:{{ benPad }};background:{{ b.bg }};color:{{ b.ink }};border-radius:14px;overflow:hidden;min-height:{{ benMinH }};transition:background .45s, color .45s">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+            <i class="ti {{ b.icon }}" style="font-size:34px;color:#EE3A30"></i>
+            <span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;color:#EE3A30;font-variant-numeric:tabular-nums">{{ b.num }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <strong style="font-size:{{ benTFs }};font-weight:900;letter-spacing:-.6px;line-height:1.05">{{ b.t }}</strong>
+            <div style="display:grid;grid-template-rows:{{ b.rows }};transition:grid-template-rows .55s cubic-bezier(.2,.7,.2,1)">
+              <div style="overflow:hidden;min-height:0">
+                <p style="margin:0;padding-top:14px;font-size:1.02rem;font-weight:300;line-height:1.55;text-wrap:pretty;opacity:{{ b.op }};transition:opacity .4s ease {{ b.delay }}">{{ b.d }}</p>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ benMob }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="position:absolute;left:18px;bottom:22px;width:28px;height:28px;border-radius:50%;background:{{ b.plusBg }};display:flex;align-items:center;justify-content:center;transform:rotate({{ b.rot }});transition:transform .35s, background .35s"><i class="ti ti-plus" style="font-size:15px;color:{{ b.plusInk }}"></i></span>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 How it works" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <h2 style="margin:0 0 {{ h2Mb }};font-size:{{ h2Fs }};letter-spacing:-1.2px;font-weight:400;line-height:1.05">איך זה <strong style="font-weight:900">עובד?</strong></h2>
+    <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:{{ stepCols }};gap:{{ stepGap }}">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <li style="display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:2px solid #3c2313">
+          <span style="font-size:{{ stepNumFs }};font-weight:900;letter-spacing:-1.5px;line-height:1;color:#EE3A30">{{ s.n }}</span>
+          <strong style="font-size:1.35rem;font-weight:700;letter-spacing:-.3px">{{ s.t }}</strong>
+          <span style="font-size:1rem;font-weight:300;line-height:1.55;text-wrap:pretty">{{ s.d }}</span>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<section id="join" ref="{{ joinRef }}" data-screen-label="05 Join" style="padding:{{ joinOuter }};scroll-margin-top:{{ hdrH }}">
+  <div style="position:relative;max-width:1440px;margin:0 auto;background:#3c2313;color:#f5f5f5;border-radius:{{ joinRad }};overflow:hidden;display:grid;grid-template-columns:{{ joinCols }};gap:{{ joinGap }};align-items:center;padding:{{ joinPad }}">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-80px;bottom:-80px;width:300px;height:auto;opacity:.07;pointer-events:none;animation:spin 70s linear infinite">
+    <div style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#f5f5f5"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>הצטרפות למועדון</div>
+      <h2 style="margin:0;font-size:{{ joinFs }};font-weight:300;letter-spacing:-1.4px;line-height:1">ברוכים הבאים <strong style="font-weight:900">למשפחה.</strong></h2>
+      <p style="margin:0;max-width:520px;font-size:{{ pFs }};font-weight:300;line-height:1.55">ההצטרפות מתבצעת באתר ההזמנות שלנו. נרשמים פעם אחת – ומשם כל קנייה אונליין כבר שווה קצת יותר.</p>
+    </div>
+    <div style="position:relative;display:flex;flex-direction:column;align-items:{{ joinBtnAlign }};justify-content:center">
+      <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="להצטרפות למועדון — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 34px;width:{{ fullW }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.08rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">להצטרפות למועדון<i class="ti ti-chevron-left"></i></a>
+
+    </div>
+  </div>
+  <div style="display:flex;justify-content:center;padding:{{ askPad }}">
+    <a href="https://api.whatsapp.com/send?phone=972515254100" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;color:#3c2313;font-weight:600;font-size:1.02rem" style-hover="color:#EE3A30"><i class="ti ti-brand-whatsapp" style="font-size:20px;color:#EE3A30"></i>שאלה על המועדון? דברו איתנו</a>
+  </div>
+</section>
+
+<section data-screen-label="06 FAQ" style="padding:{{ faqPad }}">
+  <div style="max-width:960px;margin:0 auto">
+    <h2 style="margin:0 0 {{ h2Mb }};font-size:{{ h2sFs }};letter-spacing:-.8px;font-weight:400;line-height:1.05">שאלות <strong style="font-weight:900">נפוצות</strong></h2>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="4">
+        <div style="border-top:1px solid rgba(60,35,19,.16)">
+          <button onClick="{{ q.tog }}" aria-expanded="{{ q.exp }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;padding:16px 0;border:0;background:transparent;color:#3c2313;font:inherit;font-size:{{ faqQFs }};font-weight:600;text-align:right">
+            <span>{{ q.q }}</span>
+            <span style="flex:none;width:32px;height:32px;border-radius:50%;border:1px solid rgba(60,35,19,.25);display:flex;align-items:center;justify-content:center;transform:rotate({{ q.rot }});transition:transform .3s"><i class="ti ti-plus" style="font-size:15px"></i></span>
+          </button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;padding:0 0 22px;max-width:760px;font-size:1rem;font-weight:300;line-height:1.6">{{ q.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</main>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, flipped: false, angle: 0, fC: -1, bC: 0, dur: 1.9, pct: 0, hB: -1, faq: -1 };
+  pctRef = React.createRef(); joinRef = React.createRef();
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    this.io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting && !this.counted) { this.counted = true; this.count(); } }), { threshold: .4 });
+    if (this.pctRef.current) this.io.observe(this.pctRef.current);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); this.io && this.io.disconnect(); cancelAnimationFrame(this.raf); this.stopCycle(); }
+  stopCycle() { clearTimeout(this.cyT); clearTimeout(this.swT); }
+  turn(deg, dur, patch, next, hold) { this.setState(s => ({ ...patch, angle: s.angle + deg, dur })); this.cyT = setTimeout(next, (dur + hold) * 1000); }
+  backUp() { return (Math.round(this.state.angle / 180) % 2 + 2) % 2 === 1; }
+  openCard() { if (this.state.flipped) return; this.stopCycle(); this.setState({ flipped: true }); this.seq(0); }
+  seq(k) {
+    if (!this.state.flipped) return;
+    if (k === 0) this.turn(540, 1.9, { fC: -1, bC: 0 }, () => this.seq(1), 1);
+    else if (k === 1) this.turn(180, .9, { fC: 1 }, () => this.seq(2), 1);
+    else if (k === 2) this.turn(180, .9, { bC: 2 }, () => this.seq(3), 1);
+    else if (k === 3) this.turn(180, .9, { fC: -1 }, () => this.seq(4), 1);
+    else this.turn(180, .9, { bC: 0 }, () => this.seq(1), 1);
+  }
+  closeCard() { if (!this.state.flipped) return; this.stopCycle(); const back = this.backUp();
+    if (back) this.setState(s => ({ flipped: false, fC: -1, angle: s.angle + 540, dur: 1.9 }));
+    else if (this.state.fC >= 0) { this.setState(s => ({ flipped: false, angle: s.angle + 360, dur: 1.4 })); this.swT = setTimeout(() => this.setState({ fC: -1 }), 700); }
+    else this.setState({ flipped: false }); }
+  count() { const t0 = performance.now(), D = 1400; const tick = (t) => { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); this.setState({ pct: e * 3 }); if (k < 1) this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    const benefits = [
+      { icon: 'ti-discount', t: 'מבצעים בלעדיים', d: 'מבצעים והטבות שמגיעים רק לחברי המועדון – על נתחים נבחרים, מארזים ומוצרים לעונה. פשוט שווה להיות בפנים.' },
+      { icon: 'ti-coins', t: 'צבירה של 3%', d: 'על כל רכישה אונליין נצברים 3% לטובת הקניות הבאות שלכם, בהתאם לתנאי המועדון. ככה כל הזמנה שווה קצת יותר.' },
+      { icon: 'ti-flame', t: 'קדימות בהשקות', d: 'נכנס נתח חדש? יוצא מבצע מוגבל? חברי המועדון הם הראשונים לדעת – ולטעום – לפני כולם.' }
+    ].map((b, i) => { const on = st.hB === i;
+      return { ...b, num: String(i + 1).padStart(2, '0'), bg: on ? '#3c2313' : '#fff', ink: on ? '#f5f5f5' : '#3c2313', rows: on ? '1fr' : '0fr', op: on ? 1 : 0, delay: on ? '.15s' : '0s',
+        rot: on ? '45deg' : '0deg', plusBg: on ? '#f5f5f5' : '#3c2313', plusInk: on ? '#3c2313' : '#f5f5f5',
+        enter: () => { if (!mob) this.setState({ hB: i }); }, leave: () => { if (!mob) this.setState({ hB: -1 }); }, tap: () => { if (mob) this.setState(s => ({ hB: s.hB === i ? -1 : i })); } }; });
+    const faqDef = [
+      ['איך מצטרפים למועדון?', 'ההצטרפות מתבצעת באתר ההזמנות של שלושה קצבים. לוחצים על "להצטרפות למועדון", נרשמים – וזהו.'],
+      ['על מה מקבלים 3% צבירה?', 'על רכישות באתר ההזמנות אונליין, בהתאם לתנאי המועדון.'],
+      ['איך משתמשים בצבירה?', 'את הצבירה אפשר לממש ברכישות הבאות באתר, בהתאם לתנאי המועדון.'],
+      ['יש לי שאלה על החשבון שלי במועדון', 'נשמח לעזור – כתבו לנו בוואטסאפ או התקשרו לאחד הסניפים.']
+    ];
+    const faq = faqDef.map(([q, a], i) => ({ q, a, open: st.faq === i, exp: st.faq === i ? 'true' : 'false', rot: st.faq === i ? '45deg' : '0deg', tog: () => this.setState(s => ({ faq: s.faq === i ? -1 : i })) }));
+    return {
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      hdrH: mob ? '66px' : '100px', heroMinH: mob ? 'auto' : 'min(86vh,780px)', heroMob: mob, cardShadow: mob ? 'drop-shadow(0 12px 14px rgba(0,0,0,.28))' : 'drop-shadow(0 40px 50px rgba(0,0,0,.45))', panelShadow: mob ? '0 12px 14px rgba(0,0,0,.28)' : '0 40px 50px rgba(0,0,0,.45)', panelW: mob ? '100%' : '86%', panelH: mob ? '100%' : 'auto', panelAr: mob ? 'auto' : '1.586/1', bullOp: mob ? 0 : .05,
+      heroBg: mob ? '#f5f5f5' : 'radial-gradient(120% 120% at 15% 30%, #4a2c18 0%, #2b180c 55%, #1a0f08 100%)',
+      txtBg: mob ? 'radial-gradient(130% 160% at 20% 10%, #4a2c18 0%, #2b180c 70%)' : 'transparent', cardWrapM: mob ? '0 -20px' : '0', cardWrapBg: mob ? '#2b180c' : 'none', txtM: mob ? '-40px -20px 0' : '0', txtP: mob ? '40px 20px 34px' : '0', heroPad: mob ? '40px 20px 56px' : '60px 30px',
+      heroCols: mob ? '1fr' : '1fr 1fr', heroGap: mob ? '0px' : '60px', heroTxtGap: mob ? '16px' : '22px', h1Fs: mob ? '3rem' : 'clamp(4rem,6.4vw,6.6rem)', leadFs: mob ? '1.05rem' : '1.25rem',
+      bullW: mob ? '320px' : '560px', bullPos: mob ? '-120px' : '-180px', fullW: mob ? '100%' : 'auto',
+      cardW: mob ? '78%' : 'min(100%,560px)', cardWrapPad: mob ? '10px 20px 44px' : '0',
+      angle: st.angle + 'deg', dur: st.dur + 's', fImgOp: st.fC >= 0 ? 0 : 1, fPanelOn: st.fC >= 0,
+      fNum: String(Math.max(st.fC, 0) + 1).padStart(2, '0') + '/03', fTitle: benefits[Math.max(st.fC, 0)].t, bNum: String(st.bC + 1).padStart(2, '0') + '/03', bTitle: benefits[st.bC].t, flipped: st.flipped ? 'true' : 'false', ringOp: st.flipped ? 0 : 1, vBar: st.flipped ? 0 : 1, btnLabel: st.flipped ? 'לסגור את הכרטיס' : 'להפוך את כרטיס המועדון',
+      toggle: (e) => { e.stopPropagation(); this.openCard(); }, open: () => { if (mob && st.flipped) this.closeCard(); else this.openCard(); },
+      leaveCard: () => { if (!mob) this.closeCard(); }, btnPe: st.flipped ? 'none' : 'auto',
+      hoverFlip: () => { if (!mob) this.openCard(); },
+       benMob: mob,
+      backLogoH: mob ? '20px' : '32px', backClubFs: mob ? '9px' : '12px', backBigFs: mob ? '1.35rem' : 'clamp(1.8rem,2.6vw,2.6rem)', backSmFs: mob ? '11px' : '1rem',
+      toJoin: (e) => { e.preventDefault(); const el = this.joinRef.current; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (mob ? 66 : 100), behavior: 'smooth' }); },
+      pctRef: this.pctRef, joinRef: this.joinRef, pctVal: st.pct >= 2.995 ? '3' : st.pct.toFixed(1),
+      secPad: mob ? '64px 20px 0' : '120px ' + side + ' 0', pctCols: mob ? '1fr' : '1fr 1fr', pctGap: mob ? '18px' : '80px', pctJust: mob ? 'flex-end' : 'center',
+      pctFs: mob ? '9rem' : 'clamp(14rem,22vw,22rem)', pctSignFs: mob ? '4rem' : 'clamp(6rem,9vw,9rem)',
+      h2Fs: mob ? '2.1rem' : 'clamp(2.4rem,3.2vw,3.2rem)', h2sFs: mob ? '1.8rem' : '2.4rem', h2Mb: mob ? '24px' : '40px', pFs: mob ? '1.02rem' : '1.15rem',
+      terms: [
+        { n: '01', d: 'הצבירה חלה על רכישות באתר ההזמנות אונליין.' },
+        { n: '02', d: 'את הצבירה מממשים ברכישות הבאות באתר.' },
+        { n: '03', d: 'הכול בהתאם לתנאי המועדון המעודכנים.' }
+      ],
+      benefits, benCols: mob ? '1fr' : 'repeat(3,minmax(0,1fr))', benGap: mob ? '12px' : '22px', benPad: mob ? '24px 22px 54px' : '36px 32px', benMinH: mob ? '0' : '255px', askPad: mob ? '22px 20px 0' : '28px 0 0', benTFs: mob ? '1.6rem' : '2rem',
+      steps: [
+        { n: '01', t: 'נרשמים', d: 'באתר ההזמנות, בכמה פרטים בסיסיים.' },
+        { n: '02', t: 'מזמינים', d: 'את הנתחים שאתם אוהבים – עד פתח הבית.' },
+        { n: '03', t: 'נהנים', d: 'מצבירה, ממבצעים בלעדיים ומקדימות בהשקות.' }
+      ],
+      stepCols: mob ? '1fr' : 'repeat(3,minmax(0,1fr))', stepGap: mob ? '28px' : '40px', stepNumFs: mob ? '2.4rem' : '3.2rem',
+      joinOuter: mob ? '64px 0 0' : '120px ' + side + ' 0', joinRad: mob ? '0' : '14px', joinCols: mob ? '1fr' : '1.2fr 1fr', joinGap: mob ? '28px' : '60px',
+      joinPad: mob ? '44px 20px 48px' : '70px 70px', joinFs: mob ? '2.4rem' : 'clamp(2.8rem,4vw,4rem)', joinBtnAlign: mob ? 'stretch' : 'flex-end',
+      faq, faqPad: mob ? '64px 20px 72px' : '120px ' + side + ' 130px', faqQFs: mob ? '1.05rem' : '1.2rem'
+    };
+  }
+}
+</script>
+</body>
+</html>

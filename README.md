@@ -1,16 +1,37 @@
-# שלושה קצבים — עמוד בית (סטטי)
+# שלושה קצבים — אתר סטטי
 
-- `index.html` — עמוד הבית (רספונסיבי: דסקטופ ברוחב מלא, מובייל ברוחב צר)
-- `support.js` — מנוע הריצה של העמוד (חובה לצד index.html)
-- `mobile.html` — אותו עמוד בתוך מסגרת טלפון 390px לתצוגת מובייל בדסקטופ
-- `assets/` — תמונות קטגוריות וסמני עכבר (חובה לצד index.html)
+אתר סטטי לגמרי, ללא build. מעלים את התיקייה כמו שהיא ל-GitHub ומחברים ל-Vercel.
 
-חשוב: להעלות את כל התיקייה כמו שהיא, עם המבנה הזה בשורש הריפו.
+## העלאה
+1. חלצו את ה-ZIP. תוכן התיקייה (index.html, assets/, data/ וכו') צריך להיות בשורש הריפו.
+2. Vercel → Add New Project → בחירת הריפו.
+3. Framework Preset: **Other**. Build Command: ריק. Output Directory: ריק (שורש).
+4. Deploy.
 
-## Vercel
-העלאה כמו שהיא — אין build. Framework: Other, Output directory: `/`.
+## עמודים
+| קובץ | עמוד |
+|---|---|
+| index.html / Home.dc.html | עמוד הבית |
+| Cuts.dc.html | הנתחים שלנו |
+| Category.dc.html?cat=beef / poultry / lamb / fish | קטגוריה |
+| Recipes.dc.html | מה על האש? |
+| Recipe.dc.html?slug=… | מתכון |
+| ShoppingList.dc.html | רשימת קניות (נפתח מעמוד מתכון) |
+| Tips.dc.html | טיפים מהקצבים |
+| Story.dc.html | הסיפור שלנו |
+| Branch.dc.html?b=holon / givat | סניף |
+| Kosher.dc.html | כשרות |
+| Club.dc.html | מועדון הלקוחות |
+| Contact.dc.html | צור קשר |
+| Gallery.dc.html | גלריה |
 
-## GitHub Pages
-Settings → Pages → Deploy from branch → root.
+SiteHeader.dc.html / SiteFooter.dc.html — רכיבים משותפים, נטענים בכל עמוד. support.js — חובה, נטען בכל עמוד.
 
-סרטונים ותמונות נוספות נטענים מהאתר החי (3katzavim.web3d-studio.co.il).
+## תוכן
+- data/content.json — מתכונים, טיפים, קטגוריות, סניפים ושעות.
+- assets/ — תמונות ווידאו. חלק מהתמונות נטענות ישירות מ-3katzavim.web3d-studio.co.il / 3katzavim.co.il — הדומיינים צריכים להישאר זמינים (או להעתיק את הקבצים מקומית).
+
+## פתוח
+- גלריה: לחיבור אינסטגרם — כתובת פיד (Behold / SnapWidget) בפרופ feedUrl ב-Gallery.dc.html; כתובת החשבון ב-igUrl.
+- 28 מתכונים בלי מצרכים/שלבים — מקשרים למתכון המקורי.
+- נוסח כשרות והטבות מועדון — לאישור הבעלים.

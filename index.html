@@ -43,9 +43,9 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
   </a>
   <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
     <nav style="display:flex;align-items:center;gap:{{ navGap }};flex:1;justify-content:center">
-      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="8">
+      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="6">
         <div onMouseEnter="{{ it.enter }}" onMouseLeave="{{ closeDd }}" style="position:relative;padding:10px 0">
-          <a href="{{ it.href }}" style="display:flex;align-items:center;gap:4px;font-size:{{ navFont }};font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap" style-hover="color:#EE3A30">
+          <a href="{{ it.href }}" aria-current="{{ it.cur }}" style="display:flex;align-items:center;gap:4px;font-size:{{ navFont }};font-weight:{{ it.fw }};color:{{ it.color }};padding:6px 10px;border-radius:999px;white-space:nowrap" style-hover="color:#EE3A30">
             {{ it.label }}
             <sc-if value="{{ it.hasKids }}" hint-placeholder-val="{{ false }}"><i class="ti ti-chevron-down" style="font-size:14px;opacity:.7"></i></sc-if>
           </a>
@@ -208,8 +208,8 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
     <h2 data-rev="cats" style="margin:0 0 clamp(30px,5vw,60px);text-align:center;font-size:{{ catsH2Fs }};letter-spacing:{{ catsH2Ls }};font-weight:{{ catsH2Fw }};line-height:1;opacity:{{ rv.cats.op }};transform:translateY({{ rv.cats.y }});transition:opacity .8s, transform .9s cubic-bezier(.2,.7,.2,1)">איכות וטעמים <strong style="font-weight:900">מובחרים בכל קניה</strong></h2>
     <div style="display:grid;grid-template-columns:{{ catCols }};border-top:1px solid rgba(60,35,19,.13);border-right:1px solid rgba(60,35,19,.13)">
       <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
-        <a href="{{ c.href }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative;display:block;aspect-ratio:{{ catAspect }};height:{{ catHgt }};overflow:hidden;border-left:1px solid rgba(60,35,19,.13);border-bottom:1px solid rgba(60,35,19,.13);color:#f5f5f5">
-          <sc-if value="{{ plusOn }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.toggle }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:6;width:26px;height:26px;border-radius:50%;border:0;background:{{ c.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ c.plusRot }});transition:transform .35s ease, background .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
+        <a href="{{ c.href }}" onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative;display:block;aspect-ratio:{{ catAspect }};height:{{ catHgt }};overflow:hidden;border-left:1px solid rgba(60,35,19,.13);border-bottom:1px solid rgba(60,35,19,.13);color:#f5f5f5">
+          <sc-if value="{{ catPlusOn }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.toggle }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:6;width:26px;height:26px;border-radius:50%;border:0;background:{{ c.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ c.plusRot }});transition:transform .35s ease, background .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
           <sc-if value="{{ c.img }}" hint-placeholder-val="{{ false }}">
             <img src="{{ c.img }}" alt="{{ c.n }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ c.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
           </sc-if>
@@ -220,7 +220,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
           </sc-if>
           <div style="position:absolute;inset:0;background:rgba(0,0,0,.28)"></div>
           <div style="position:absolute;inset:0;background:{{ c.grad }};transition:background .5s"></div>
-          <div style="position:absolute;right:0;left:0;bottom:0;padding:clamp(16px,2vw,28px);display:flex;flex-direction:column;gap:8px">
+          <div style="position:absolute;right:0;left:0;bottom:0;padding:{{ catTxtPad }};display:flex;flex-direction:column;gap:8px">
             <strong style="font-size:{{ catNameFs }};font-weight:900;letter-spacing:-.5px">{{ c.n }}</strong>
             <sc-if value="{{ c.d }}" hint-placeholder-val="{{ false }}">
               <span style="font-size:{{ catDescFs }};font-weight:300;line-height:1.45;max-height:{{ c.descH }};opacity:{{ c.descOp }};overflow:hidden;transition:max-height .5s, opacity .4s">{{ c.d }}</span>
@@ -231,6 +231,33 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
     </div>
   </div>
 </section>
+<sc-if value="{{ cpOn }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ cpClose }}" style="position:fixed;inset:0;z-index:400;background:rgba(20,10,5,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;opacity:{{ cpOp }};transition:opacity .35s ease">
+  <button onClick="{{ cpClose }}" aria-label="סגירה" style="position:absolute;top:calc(18px + env(safe-area-inset-top));left:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,245,245,.35);background:transparent;color:#f5f5f5;font-size:22px;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-x"></i></button>
+  <div onClick="{{ cpStop }}" onTouchStart="{{ cpTs }}" onTouchEnd="{{ cpTe }}" style="position:relative;width:100%;height:{{ cpH }};transform:scale({{ cpSc }});transition:transform .45s cubic-bezier(.2,.7,.2,1)">
+    <sc-for list="{{ cpSlides }}" as="s" hint-placeholder-count="8">
+      <a href="{{ s.href }}" onClick="{{ s.tap }}" style="position:absolute;top:0;left:50%;width:{{ cpW }};height:{{ cpH }};margin-left:{{ cpML }};border-radius:14px;overflow:hidden;color:#f5f5f5;box-shadow:0 24px 60px rgba(0,0,0,.45);transform:translateX({{ s.x }}) scale({{ s.sc }});opacity:{{ s.op }};z-index:{{ s.z }};transition:transform .5s cubic-bezier(.2,.7,.2,1), opacity .4s ease">
+        <img src="{{ s.img }}" alt="{{ s.n }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,10,5,0) 35%, rgba(20,10,5,.88))"></div>
+        <div style="position:absolute;right:0;left:0;bottom:0;padding:22px 20px;display:flex;flex-direction:column;gap:8px">
+          <strong style="font-size:1.75rem;font-weight:900;letter-spacing:-.6px;line-height:1">{{ s.n }}</strong>
+          <span style="font-size:.9rem;font-weight:300;line-height:1.45;text-wrap:pretty">{{ s.d }}</span>
+          <span style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;border:1px solid rgba(245,245,245,.7);font-size:.88rem;font-weight:600">לקטגוריית {{ s.n }}<i class="ti ti-chevron-left"></i></span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+  <div onClick="{{ cpStop }}" style="display:flex;gap:8px;align-items:center">
+    
+    <div style="display:flex;gap:8px;align-items:center">
+    <sc-for list="{{ cpDots }}" as="d" hint-placeholder-count="8">
+      <button onClick="{{ d.go }}" aria-label="{{ d.n }}" style="width:{{ d.w }};height:8px;border-radius:999px;border:0;padding:0;background:{{ d.bg }};transition:width .35s, background .35s"></button>
+    </sc-for>
+    </div>
+    
+  </div>
+</div>
+</sc-if>
 
 <section ref="{{ clubRef }}" id="club" data-screen-label="03 Club" style="position:relative;padding:{{ clubPad }};min-height:{{ clubMinH }};display:flex;flex-direction:column;justify-content:{{ clubJust }};box-sizing:border-box;background:#f5f5f5;border-top:1px solid rgba(60,35,19,.13)">
   <div style="zoom:{{ dz }};width:100%;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ clubCols }};align-items:center;gap:{{ clubGap }}">
@@ -418,7 +445,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
         <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:{{ footLogoH }};width:auto;display:block;align-self:flex-start;object-fit:contain">
         <p style="margin:0;font-size:{{ footTagFs }};font-weight:300;letter-spacing:-.5px;line-height:1.1">בשר פרימיום כשר, <strong style="font-weight:900">מאז 1959</strong></p>
       </div>
-      <a href="https://orders.3katzavim.co.il/" target="_blank" data-cur="white" style="display:{{ footCtaDisp }};align-items:center;gap:10px;padding:15px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.02rem;transition:background .3s, color .3s" style-hover="background:transparent;color:#EE3A30">להזמנה בקליק<i class="ti ti-chevron-left"></i></a>
+      <a href="https://orders.3katzavim.co.il/" target="_blank" data-cur="white" style="display:{{ footCtaDisp }};align-items:center;gap:10px;padding:15px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.02rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">להזמנה בקליק<i class="ti ti-chevron-left"></i></a>
     </div>
     <div style="display:grid;grid-template-columns:{{ footCols }};gap:{{ footGap }}">
       <div>
@@ -754,7 +781,7 @@ class Component extends DCLogic {
   }
 
   handleWheel(e) {
-    if (this.state.menu) return;
+    if (this.state.menu || this.state.cp != null) return;
     const now = performance.now(); const fresh = now - this.lastWheel > 200; this.lastWheel = now;
     if (now < (this.glideUntil || 0)) { e.preventDefault(); return; }
     if (!this.atTop()) {
@@ -772,7 +799,7 @@ class Component extends DCLogic {
     } else if (i > 0) { e.preventDefault(); if (fresh) this.back(); }
   }
   handleTouchMove(e) {
-    if (this.state.menu || this.ty == null) return;
+    if (this.state.menu || this.state.cp != null || this.ty == null) return;
     if (!this.atTop()) {
       const dy0 = this.ty - e.touches[0].clientY;
       if (performance.now() < (this.glideUntil || 0) || (dy0 < 0 && this.nearCats()) || this.snapTarget(dy0 || 1) != null && Math.abs(dy0) > 4) e.preventDefault();
@@ -782,7 +809,7 @@ class Component extends DCLogic {
     if (this.locked || dy > 0 || (dy < 0 && i > 0)) e.preventDefault();
   }
   handleTouchEnd(e) {
-    if (this.state.menu || this.ty == null) return;
+    if (this.state.menu || this.state.cp != null || this.ty == null) return;
     const dy = this.ty - (e.changedTouches[0] ? e.changedTouches[0].clientY : this.ty); this.ty = null;
     if (!this.atTop()) {
       if (Math.abs(dy) < 30 || performance.now() < (this.glideUntil || 0)) return;
@@ -795,6 +822,8 @@ class Component extends DCLogic {
     if (this.locked) { if (dy > 0) this.skip(); return; }
     if (dy > 0 && i < last) this.step(); else if (dy > 0) this.toCats(); else if (dy < 0 && i > 0) this.back();
   }
+  openCp(i) { this.setState({ cp: i, cpVis: false }); requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ cpVis: true }))); }
+  closeCp() { this.setState({ cpVis: false }); setTimeout(() => this.setState({ cp: null }), 350); }
   nearCats() { const el = this.catsRef.current; if (!el) return false; const t = el.getBoundingClientRect().top; return t > -40 && t < 120; }
   glide(top) { const d = Math.abs(top - window.scrollY); const dur = Math.min(1600, Math.max(700, d * 0.5)); this.glideUntil = performance.now() + dur + 150; const from = window.scrollY, t0 = performance.now(); cancelAnimationFrame(this.glideRaf); const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; const step = now => { const p = Math.min(1, (now - t0) / dur); window.scrollTo(0, from + (top - from) * ease(p)); if (p < 1) this.glideRaf = requestAnimationFrame(step); }; this.glideRaf = requestAnimationFrame(step); }
   toCats() { const el = this.catsRef.current; if (el) this.glide(el.getBoundingClientRect().top + window.scrollY); }
@@ -821,6 +850,14 @@ class Component extends DCLogic {
   }
 
   handleKey(e) {
+    if (this.state.cp != null) {
+      const N = 8;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); this.setState(s => ({ cp: (s.cp + 1) % N })); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); this.setState(s => ({ cp: ((s.cp - 1) % N + N) % N })); }
+      else if (e.key === 'Escape') this.closeCp();
+      else if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' '].includes(e.key)) e.preventDefault();
+      return;
+    }
     if (!this.atTop() || /INPUT|TEXTAREA/.test(document.activeElement && document.activeElement.tagName)) return;
     const down = ['ArrowDown', 'PageDown', ' '].includes(e.key), up = ['ArrowUp', 'PageUp'].includes(e.key);
     const last = this.scenes().length - 1, i = this.state.scene;
@@ -866,20 +903,18 @@ class Component extends DCLogic {
     const hintText = this.isPlaying ? '' : (isLastScene ? 'המשיכו לגלול' : 'החליקו להמשך');
 
     const navDefs = [
-      { label: 'עמוד הבית', href: '#' },
-      { label: 'סניפים', href: '#', kids: [['חולון', '/branch/חולון/'], ['גבעת שמואל', '/branch/גבעת-שמואל/']] },
-      { label: 'אודות', href: '#', kids: [['הסיפור שלנו', '/הסיפור-שלנו/'], ['כשרות', '/כשרות/'], ['גלריה', '/גלריה/']] },
-      { label: 'מועדון הלקוחות', href: this.S + '/מועדון-הלקוחות/' },
-      { label: 'מתכונים', href: this.S + '/recipes/' },
-      { label: 'מה אוכלים', href: '#', kids: [['בקר', '/product-category/בקר/'], ['עוף והודו', '/product-category/עוף-והודו/'], ['טלה', '/product-category/טלה/'], ['אווז', '/product-category/אווז/']] },
-      { label: 'טיפים מהקצבים', href: this.S + '/טיפים-מהקצבים/' },
-      { label: 'צור קשר', href: this.S + '/צור-קשר/' }
+      { label: 'הבית', href: '#', on: true },
+      { label: 'הנתחים שלנו', href: 'Cuts.dc.html' },
+      { label: 'מה על האש?', href: 'Recipes.dc.html' },
+      { label: 'הסיפור שלנו', href: 'Story.dc.html' },
+      { label: 'הסניפים', href: 'Branch.dc.html?b=holon', kids: [['חולון', 'Branch.dc.html?b=holon'], ['גבעת שמואל', 'Branch.dc.html?b=givat']] },
+      { label: 'עוד', href: '#', kids: [['כשרות', 'Kosher.dc.html'], ['טיפים מהקצבים', 'Tips.dc.html'], ['מועדון הלקוחות', 'Club.dc.html'], ['גלריה', 'Gallery.dc.html'], ['צור קשר', 'Contact.dc.html']] }
     ];
     const nav = navDefs.map((n, i) => ({
-      label: n.label, href: n.href, hasKids: !!n.kids, open: st.dd === i && !!n.kids,
+      label: n.label, href: n.href, hasKids: !!n.kids, open: st.dd === i && !!n.kids, cur: n.on ? 'page' : 'false', fw: n.on ? 700 : 500, color: n.on ? '#EE3A30' : 'inherit',
       num: String(i + 1).padStart(2, '0'), mOpen: st.mDd === i && !!n.kids, mRot: st.mDd === i ? '45deg' : '0deg',
       mToggle: () => this.setState(s => ({ mDd: s.mDd === i ? null : i })),
-      kids: (n.kids || []).map(([l, h]) => ({ label: l, href: this.S + h })),
+      kids: (n.kids || []).map(([l, h]) => ({ label: l, href: h })),
       enter: () => this.setState({ dd: i })
     }));
 
@@ -918,10 +953,21 @@ class Component extends DCLogic {
     const cats = catDefs.map(([n, img, d], i) => {
       const h = st.hCat === i;
       return { n, img: img || '', noImg: !img, d: d || '', href: this.S + '/product-category/' + n.replace(/ /g, '-') + '/',
+        open: (e) => { if (!this.isMob()) return; e.preventDefault(); this.openCp(i); },
         enter: () => { if (!this.isMob()) this.setState({ hCat: i }); }, leave: () => { if (!this.isMob()) this.setState({ hCat: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hCat: s.hCat === i ? -1 : i })); }, plusBg: st.hCat === i ? '#EE3A30' : '#fff', plusInk: st.hCat === i ? '#fff' : '#3c2313', plusRot: st.hCat === i ? '45deg' : '0deg',
         scale: h ? 1.06 : 1, descH: h ? '120px' : '0px', descOp: h ? 1 : 0,
         grad: h ? 'linear-gradient(180deg, rgba(60,35,19,.52), rgba(60,35,19,.88))' : 'linear-gradient(180deg, rgba(60,35,19,.05) 40%, rgba(60,35,19,.62))' };
     });
+    const N = cats.length, cpi = st.cp ?? 0, cpW = Math.min(Math.round(w * 0.74), 340), gap = 14;
+    const cpSlides = cats.map((c, i) => { let d = ((i - cpi) % N + N) % N; if (d > N / 2) d -= N; const a = Math.abs(d);
+      return { n: c.n, d: c.d, img: c.img, href: c.href, x: (-d * (cpW + gap)) + 'px', sc: a === 0 ? 1 : 0.9, op: a <= 1 ? (a === 0 ? 1 : 0.55) : 0, z: 10 - a,
+        tap: (e) => { if (d !== 0) { e.preventDefault(); this.setState({ cp: i }); } } }; });
+    const cpData = { cpOn: st.cp != null, cpOp: st.cpVis ? 1 : 0, cpSc: st.cpVis ? 1 : 0.92, cpW: cpW + 'px', cpH: Math.round(cpW * 1.25) + 'px', cpML: (-cpW / 2) + 'px', cpSlides,
+      cpDots: cats.map((c, i) => ({ n: c.n, w: i === cpi ? '22px' : '8px', bg: i === cpi ? '#EE3A30' : 'rgba(245,245,245,.4)', go: () => this.setState({ cp: i }) })),
+      cpPrev: () => this.setState(s => ({ cp: ((s.cp - 1) % N + N) % N })), cpNext: () => this.setState(s => ({ cp: (s.cp + 1) % N })),
+      cpClose: () => this.closeCp(), cpStop: (e) => e.stopPropagation(),
+      cpTs: (e) => { this.cpX = e.touches[0].clientX; }, cpTe: (e) => { if (this.cpX == null) return; const dx = e.changedTouches[0].clientX - this.cpX; this.cpX = null; if (Math.abs(dx) < 40) return; this.cpMoved = performance.now(); this.setState(s => ({ cp: ((s.cp + (dx > 0 ? 1 : -1)) % N + N) % N })); },
+      catPlusOn: false };
     const rvf = (k, extra) => { const on = !!st.rev[k]; return { op: on ? 1 : 0, y: on ? '0px' : '40px', ...(extra ? extra(on) : {}) }; };
     const rv = { cats: rvf('cats'), club: rvf('club', on => ({ cardY: on ? '-28px' : '60px' })), rec: rvf('rec') };
 
@@ -1036,7 +1082,7 @@ class Component extends DCLogic {
       counterCur: String(st.scene + 1).padStart(2, '0'), counterTotal: String(sc.length).padStart(2, '0'), counterPct: ((st.scene + 1) / sc.length * 100) + '%',
       branches, kosher, branchH: bh, storyLift: mob ? '0px' : '-160px', kosherAlign: 'flex-start', kDir: mob ? 'row' : 'column', kGap: mob ? '14px' : 'clamp(10px,1.6vh,16px)', kosherShift: mob ? '0' : 'clamp(0px,5vw,100px)', kosherPad: mob ? '92px 0 0' : 'clamp(130px,20vh,220px) 0 0', kosherCols: mob ? '1fr' : 'repeat(3,minmax(0,1fr))', storyInk: '#3c2313', branchBoxH: 'calc(' + bh + ' * 1.05)',
       catsRef: this.catsRef, clubRef: this.clubRef, whyRef: this.whyRef, recipesRef: this.recipesRef, recTrack: this.recTrack,
-      catAspect: mob ? 'auto' : '1/0.864', catHgt: mob ? Math.round((w - 36) / 2 * 0.756 - 20) + 'px' : 'auto',
+      catAspect: mob ? 'auto' : '1/0.864', catTxtPad: mob ? '0 10px 10px' : 'clamp(16px,2vw,28px)', catHgt: mob ? Math.round((w - 36) / 2 * 0.756 - 20) + 'px' : 'auto',
       catNameFs: mob ? 'calc(clamp(1.25rem,1.9vw,1.65rem) - 6px)' : 'calc(clamp(1.25rem,1.9vw,1.65rem) - 4px)', catDescFs: mob ? 'calc(.95rem - 4px)' : 'calc(.95rem - 3px)', catsPad: mob ? '91px 18px 70px' : '120px max(30px,calc((100% - 1440px) / 2))', catsH2Fs: mob ? 'calc(clamp(2.1rem,10vw,2.9rem) - 2px)' : 'clamp(2rem,4.2vw,3.6rem)', catsH2Fw: '300', catsH2Ls: mob ? '-1.5px' : '-1px',
       secPad: mob ? '70px 18px' : '120px max(30px,calc((100% - 1440px) / 2))',
       cats, catCols: w <= 900 ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))', rv,
@@ -1062,13 +1108,13 @@ class Component extends DCLogic {
       footGap: mob ? '40px' : '50px', footLogoH: mob ? '48px' : '64px', footTagFs: mob ? '1.4rem' : 'clamp(1.6rem,2.2vw,2.2rem)',
       footStampW: mob ? '320px' : '520px', footStampL: mob ? '-120px' : '-160px', footStampB: mob ? '-120px' : '-200px',
       footCols: mob ? '1fr' : (w <= 900 ? '1fr 1fr' : '1fr 1fr 1.2fr 1.4fr'),
-      footMenu: [['לחנות', 'https://orders.3katzavim.co.il/'], ['מתכונים', this.S + '/recipes/'], ['הסיפור שלנו', this.S + '/הסיפור-שלנו/'], ['צור קשר', this.S + '/צור-קשר/'], ['מדיניות פרטיות', this.S + '/מדיניות-הפרטיות/'], ['הצהרת נגישות', this.S + '/הצהרת-נגישות/']].map(([label, href]) => ({ label, href })),
+      footMenu: [['הבית', '#'], ['הנתחים שלנו', 'Cuts.dc.html'], ['מה על האש?', 'Recipes.dc.html'], ['טיפים מהקצבים', 'Tips.dc.html'], ['הסיפור שלנו', 'Story.dc.html'], ['כשרות', 'Kosher.dc.html'], ['הסניפים', 'Branch.dc.html?b=holon'], ['מועדון הלקוחות', 'Club.dc.html'], ['צור קשר', 'Contact.dc.html'], ['להזמנה אונליין', 'https://orders.3katzavim.co.il/']].map(([label, href]) => ({ label, href })),
       branchInfo: [
         { title: 'סניף חולון', addr: 'פנחס אילון 13', phone: '03-800-2626', tel: 'tel:03-800-2626', waze: 'https://waze.com/ul/hsv8wp7hcj' },
         { title: 'סניף גבעת שמואל', addr: 'מתחם הולמס פלייס', phone: '03-632-4634', tel: 'tel:03-632-4634', waze: 'https://waze.com/ul/hsv8y90kx4' }
       ],
       clubRun: (() => { const el = this.clubRef.current; if (!el) return 'paused'; const r = el.getBoundingClientRect(); return r.top < vh && r.bottom > 0 ? 'running' : 'paused'; })(),
-      ...qaFlags, qaItems, footCtaDisp: mob ? 'none' : 'inline-flex', hintBottom: mob ? 'calc(88px + env(safe-area-inset-bottom))' : '40px', hdrCtaDisp: mob ? 'none' : 'inline-flex', quick: mob ? quick : [quick[0], quick[3]], qa
+      ...qaFlags, qaItems, ...cpData, footCtaDisp: mob ? 'none' : 'inline-flex', hintBottom: mob ? 'calc(88px + env(safe-area-inset-bottom))' : '40px', hdrCtaDisp: mob ? 'none' : 'inline-flex', quick: mob ? quick : [quick[0], quick[3]], qa
     };
   }
 }

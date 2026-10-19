@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מה על האש? — מגזין המתכונים | שלושה קצבים</title>
+<meta name="description" content="מתכונים מהמטבח של שלושה קצבים — בקר, עוף, טלה ודגים, עם הבשר הנכון והטעם המושלם.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="recipes" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main>
+<section data-screen-label="01 Hero" style="position:relative;margin-top:{{ hdrH }};min-height:{{ heroH }};display:flex;align-items:flex-end;overflow:hidden;background:#24140a;color:#f5f5f5">
+  <sc-if value="{{ heroMob }}" hint-placeholder-val="{{ false }}"><video ref="{{ heroVid }}" src="assets/recipes-hero-mobile.mp4" poster="assets/recipes-hero-mobile.png" preload="auto" aria-label="סטייק נצלה במחבת ברזל על להבות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ heroPos }}"></video></sc-if>
+  <sc-if value="{{ heroDesk }}" hint-placeholder-val="{{ true }}"><video ref="{{ heroVid }}" src="assets/recipes-hero-desktop.mp4" poster="assets/recipes-hero-desktop.png" preload="auto" aria-label="סטייק נצלה במחבת ברזל על להבות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ heroPos }}"></video></sc-if>
+  <div style="position:absolute;inset:0;background:{{ heroGrad }}"></div>
+  <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }};display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#fff"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מגזין המתכונים של שלושה קצבים</div>
+    <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.95;text-shadow:0 2px 24px rgba(0,0,0,.45)">מה על <strong style="font-weight:900">האש?</strong></h1>
+    <p style="margin:0;max-width:560px;font-size:{{ leadFs }};font-weight:400;line-height:1.45;text-wrap:pretty;text-shadow:0 1px 14px rgba(0,0,0,.6)">המתכונים שאנחנו אוהבים להכין – עכשיו גם אצלכם בבית. בין אם יש לכם שעה פנויה או רק רבע שעה, תמיד יחכה כאן מתכון עם הבשר הנכון.</p>
+    <div style="display:{{ heroBtnsDisp }};flex-wrap:wrap;gap:12px;margin-top:8px">
+      <a href="#list" onClick="{{ toList }}" style="display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לגלות מתכונים<i class="ti ti-arrow-down"></i></a>
+      <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" aria-label="להזמנת בשר — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;border:1.5px solid rgba(255,255,255,.75);color:#fff;font-weight:600;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#3c2313">להזמנת בשר<i class="ti ti-chevron-left"></i></a>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ feat }}" hint-placeholder-val="{{ false }}">
+<section data-screen-label="02 Featured" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#EE3A30"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>נבחר מהמטבח</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <sc-for list="{{ featDots }}" as="d" hint-placeholder-count="3">
+          <button onClick="{{ d.go }}" aria-label="{{ d.label }}" aria-current="{{ d.cur }}" style="width:{{ d.w }};height:8px;border-radius:999px;border:0;padding:0;background:{{ d.bg }};transition:width .35s, background .35s"></button>
+        </sc-for>
+      </div>
+    </div>
+    <div onMouseEnter="{{ featEnter }}" onMouseLeave="{{ featLeave }}" style="display:grid;grid-template-columns:{{ featCols }};background:#fff;color:#3c2313;overflow:hidden;box-shadow:0 20px 60px rgba(60,35,19,.08)">
+      <div onTouchStart="{{ featTs }}" onTouchEnd="{{ featTe }}" style="position:relative;aspect-ratio:{{ featAspect }};min-height:{{ featImgMinH }};align-self:stretch;overflow:hidden;background:#e7e1db">
+        <a href="{{ feat.href }}" aria-label="{{ feat.title }}" style="position:absolute;inset:0;display:block">
+          <sc-for list="{{ featSlides }}" as="f" hint-placeholder-count="0">
+            <div role="img" aria-label="{{ f.title }}" style="position:absolute;inset:0;background-image:url(&quot;{{ f.img }}&quot;);background-size:cover;background-position:center;opacity:{{ f.op }};transform:scale({{ f.sc }});transition:opacity .9s ease, transform 6s linear"></div>
+          </sc-for>
+        </a>
+        <button onClick="{{ featPrev }}" aria-label="המתכון הקודם" style="position:absolute;top:50%;right:16px;z-index:3;width:48px;height:48px;margin-top:-24px;border-radius:50%;border:0;background:rgba(245,245,245,.5);color:#3c2313;display:flex;align-items:center;justify-content:center;padding:0;box-shadow:0 8px 24px rgba(20,10,5,.25);transition:background .25s, color .25s, transform .25s" style-hover="background:#EE3A30;color:#fff;transform:scale(1.06)"><i class="ti ti-chevron-right" style="font-size:22px;transform:translateX(2px)"></i></button>
+        <button onClick="{{ featNext }}" aria-label="המתכון הבא" style="position:absolute;top:50%;left:16px;z-index:3;width:48px;height:48px;margin-top:-24px;border-radius:50%;border:0;background:rgba(245,245,245,.5);color:#3c2313;display:flex;align-items:center;justify-content:center;padding:0;box-shadow:0 8px 24px rgba(20,10,5,.25);transition:background .25s, color .25s, transform .25s" style-hover="background:#EE3A30;color:#fff;transform:scale(1.06)"><i class="ti ti-chevron-left" style="font-size:22px;transform:translateX(-2px)"></i></button>
+      </div>
+      <div style="padding:{{ featPad }};display:grid;align-items:center">
+        <sc-for list="{{ featItems }}" as="it" hint-placeholder-count="0">
+        <div aria-hidden="{{ it.hidden }}" style="grid-area:1 / 1;display:flex;flex-direction:column;justify-content:center;gap:22px;opacity:{{ it.op }};visibility:{{ it.vis }};pointer-events:{{ it.pe }};transform:translateY({{ it.y }});transition:{{ it.tr }}">
+        <h2 style="margin:0;font-size:{{ featH2 }};font-weight:900;letter-spacing:-1.2px;line-height:1;text-wrap:balance">{{ it.title }}</h2>
+        <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:18px {{ metaGap }};padding:24px 0 4px;border-top:1px solid rgba(60,35,19,.14)">
+          <span aria-hidden="true" style="position:absolute;top:24px;bottom:4px;right:50%;width:1px;background:rgba(60,35,19,.14);display:block"></span>
+          <sc-for list="{{ it.meta }}" as="m" hint-placeholder-count="0">
+            <div style="display:flex;align-items:center;gap:12px"><i class="ti {{ m.icon }}" style="font-size:22px;color:#EE3A30;flex:none"></i><div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:.8rem;opacity:.65">{{ m.k }}</span><strong style="font-size:1.05rem;font-weight:700;line-height:1.2">{{ m.v }}</strong></div></div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ it.tipCompact }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ it.openTip }}" aria-haspopup="dialog" style="align-self:flex-start;display:flex;align-items:center;gap:14px;min-height:56px;padding:6px 6px 6px 44px;margin-bottom:10px;border:1px solid rgba(60,35,19,.16);border-radius:999px;background:#f1ece8;color:#3c2313;font:inherit">
+            <span style="width:44px;height:44px;border-radius:50%;background:#3c2313;color:#fff;display:flex;align-items:center;justify-content:center;flex:none;position:relative"><span style="position:absolute;left:50%;top:50%;width:16px;height:2.6px;margin:-1.3px 0 0 -8px;border-radius:2px;background:#fff;display:block"></span><span style="position:absolute;left:50%;top:50%;width:2.6px;height:16px;margin:-8px 0 0 -1.3px;border-radius:2px;background:#fff;display:block"></span></span>
+            <span style="display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:right"><strong style="font-size:1.05rem;font-weight:700;color:#EE3A30;display:flex;align-items:center;gap:6px"><i class="ti ti-chef-hat" style="font-size:19px"></i>טיפ מהקצב</strong><span style="font-size:.82rem;opacity:.75">{{ it.who }} משתף סוד מהדלפק</span></span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ it.tipFull }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;margin-top:{{ tipBoxMt }};top:-20px;margin-bottom:-20px;background:#f1ece8;border-radius:14px;padding:{{ it.pad }};height:{{ tipBoxH }};display:flex;align-items:center">
+            <sc-if value="{{ it.chef }}" hint-placeholder-val="{{ false }}">
+              <div aria-hidden="true" style="position:absolute;left:{{ it.imgL }};bottom:0;width:{{ it.imgW }};height:{{ it.imgH }};border-bottom-left-radius:14px;pointer-events:none;background-image:url(&quot;{{ it.chef }}&quot;);background-repeat:no-repeat;background-size:{{ it.imgSize }};background-position:{{ it.imgPos }}"></div>
+            </sc-if>
+            <div ref="{{ it.txtRef }}" style="position:relative;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px;color:#EE3A30"><i class="ti ti-chef-hat" style="font-size:{{ tipIco }}"></i><strong style="font-size:{{ tipHFs }};font-weight:700">טיפ מהקצב</strong></div>
+              <p style="margin:0;font-size:{{ tipTxtFs }};font-weight:400;line-height:1.45;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">“{{ it.tip }}”</p>
+              <span style="font-size:.85rem;font-weight:600">{{ it.who }}, שלושה קצבים</span>
+            </div>
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="{{ it.href }}" tabindex="{{ it.tab }}" style="display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;border:1.5px solid #3c2313;background:transparent;color:#3c2313;font-weight:600;font-size:1rem;transition:background .3s, color .3s, transform .3s" style-hover="background:#3c2313;color:#f5f5f5;transform:translateY(-2px)">למתכון המלא<i class="ti ti-chevron-left"></i></a>
+        </div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section id="list" ref="{{ listRef }}" data-screen-label="03 All recipes" style="padding:{{ listPad }};scroll-margin-top:{{ hdrH }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">כל <strong style="font-weight:900">המתכונים</strong></h2>
+      <div aria-live="polite" style="font-size:1rem;font-weight:500">{{ countLabel }}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:{{ chipsMb }}">
+      <div role="group" aria-label="סוג הבשר" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 {{ bleed }};padding:0 {{ bleedPad }}">
+        <sc-for list="{{ meatChips }}" as="c" hint-placeholder-count="6">
+          <button onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="flex:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:inherit;font-size:.95rem;font-weight:600;white-space:nowrap;transition:all .25s">{{ c.label }}<span style="font-size:.78rem;font-weight:500;opacity:.65">{{ c.n }}</span></button>
+        </sc-for>
+      </div>
+      <div role="group" aria-label="דרגת קושי" style="display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 {{ bleed }};padding:0 {{ bleedPad }}">
+        <span style="flex:none;font-size:.9rem;font-weight:400;margin-left:4px">דרגת קושי</span>
+        <sc-for list="{{ diffChips }}" as="c" hint-placeholder-count="4">
+          <button onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="flex:none;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:inherit;font-size:.9rem;font-weight:500;white-space:nowrap;transition:all .25s">{{ c.label }}</button>
+        </sc-for>
+        <sc-if value="{{ filtered }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ clear }}" style="flex:none;min-height:40px;padding:0 10px;border:0;background:transparent;color:#EE3A30;font:inherit;font-size:.9rem;font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap">ניקוי סינון</button>
+        </sc-if>
+      </div>
+    </div>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:60px 20px;text-align:center;border:1px dashed rgba(60,35,19,.25);display:flex;flex-direction:column;align-items:center;gap:14px">
+        <strong style="font-size:1.3rem;font-weight:700">אין מתכונים שמתאימים לבחירה הזו</strong>
+        <button onClick="{{ clear }}" style="min-height:44px;padding:0 22px;border-radius:999px;border:1px solid #3c2313;background:transparent;color:#3c2313;font:inherit;font-weight:600">לכל המתכונים</button>
+      </div>
+    </sc-if>
+
+    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:{{ gridGap }}">
+      <sc-for list="{{ cards }}" as="r" hint-placeholder-count="0">
+        <a href="{{ r.href }}" onMouseEnter="{{ r.enter }}" onMouseLeave="{{ r.leave }}" style="display:flex;flex-direction:column;color:#3c2313">
+          <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#e7e1db">
+            <div role="img" aria-label="{{ r.title }}" style="position:absolute;inset:0;background-image:url(&quot;{{ r.img }}&quot;);background-size:cover;background-position:center;transform:scale({{ r.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)"></div>
+            <span style="position:absolute;top:12px;right:12px;padding:6px 12px;border-radius:999px;background:rgba(245,245,245,.94);font-size:.78rem;font-weight:700;color:#3c2313">{{ r.meat }}</span>
+          </div>
+          <h3 style="margin:18px 0 0;padding-bottom:14px;border-bottom:1px solid rgba(60,35,19,.18);font-size:{{ cardH3 }};font-weight:500;letter-spacing:-.3px;line-height:1.2;text-wrap:pretty">{{ r.title }}</h3>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px">
+            <div style="display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;font-weight:400">
+              <span style="display:flex;align-items:center;gap:5px"><i class="ti ti-clock" style="font-size:15px;opacity:.7"></i>{{ r.time }}</span>
+              <span style="display:flex;align-items:center;gap:5px"><i class="ti ti-chef-hat" style="font-size:15px;opacity:.7"></i>{{ r.diff }}</span>
+            </div>
+            <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;border:1px solid {{ r.cBorder }};background:{{ r.cBg }};color:{{ r.cInk }};display:flex;align-items:center;justify-content:center;flex:none;transition:all .35s"><i class="ti ti-arrow-left" style="font-size:17px"></i></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:center;margin-top:{{ moreMt }}">
+        <button onClick="{{ more }}" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 30px;border-radius:999px;border:1.5px solid #3c2313;background:transparent;color:#3c2313;font:inherit;font-size:1rem;font-weight:600;transition:background .3s, color .3s" style-hover="background:#3c2313;color:#f5f5f5">עוד מתכונים<span style="font-weight:400;opacity:.7">({{ restN }})</span><i class="ti ti-chevron-down"></i></button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section data-screen-label="04 Mid CTA" style="padding:{{ midTop }} {{ sidePad }} {{ midMb }}">
+  <div style="max-width:1440px;margin:0 auto;background:#3c2313;color:#f5f5f5;display:flex;flex-direction:{{ midDir }};align-items:{{ midAlign }};justify-content:space-between;gap:22px;padding:{{ midPad }};position:relative;min-height:{{ midMinH }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"><img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;right:-60px;top:50%;width:260px;height:auto;margin-top:-130px;opacity:.07;animation:spin 70s linear infinite"></div>
+    <img src="assets/butcher-cta.png" alt="קצב משלושה קצבים מחזיק נתח טומהוק" style="position:absolute;left:{{ midImgL }};bottom:0;height:{{ midImgH }};width:auto;max-width:none;clip-path:inset(0 0 {{ midImgClip }} 0);margin-bottom:calc(-1 * {{ midImgClip }});pointer-events:none">
+    <p style="position:relative;margin:0;font-size:{{ midFs }};font-weight:300;letter-spacing:-.8px;line-height:1.1">כבר יודעים מה מבשלים? <strong style="font-weight:900">הבשר מחכה לכם</strong></p>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="לבחירת בשרים — מעבר לאתר ההזמנות" style="position:relative;flex:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:{{ midBtnPad }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לבחירת בשרים<i class="ti ti-chevron-left"></i></a>
+  </div>
+</section>
+
+<section data-screen-label="05 Tips" style="padding:{{ tipsPad }};background:#fff">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:30px">
+      <div>
+        <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">טיפים <strong style="font-weight:900">מהקצבים</strong></h2>
+        <p style="margin:12px 0 0;font-size:1.05rem;font-weight:300;line-height:1.5">הידע הקטן שעושה את ההבדל הגדול בצלחת.</p>
+      </div>
+      <a href="Tips.dc.html" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:1rem;border-bottom:1.5px solid currentColor;padding-bottom:3px">לכל הטיפים<i class="ti ti-arrow-left"></i></a>
+    </div>
+    <div style="display:{{ tipsDisp }};grid-template-columns:repeat(3,minmax(0,1fr));gap:{{ tipsGap }};overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 {{ bleed }};padding:0 {{ bleedPad }}">
+      <sc-for list="{{ tips }}" as="t" hint-placeholder-count="3">
+        <a href="Tips.dc.html" style="flex:0 0 {{ tipBasis }};scroll-snap-align:center;display:flex;flex-direction:column;gap:14px;padding:28px 26px;background:#f5f5f5;color:#3c2313;min-height:230px;transition:background .3s" style-hover="background:#efe9e4">
+          <span style="font-size:2.4rem;font-weight:900;letter-spacing:-1px;line-height:1;color:#EE3A30">{{ t.num }}</span>
+          <strong style="font-size:1.3rem;font-weight:700;letter-spacing:-.3px;line-height:1.2">{{ t.title }}</strong>
+          <span style="font-size:.95rem;font-weight:300;line-height:1.55;text-wrap:pretty">{{ t.excerpt }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="06 Closing CTA" style="position:relative;min-height:{{ closeH }};display:flex;align-items:center;overflow:hidden;background:#24140a;color:#f5f5f5">
+  <img src="https://3katzavim.co.il/wp-content/uploads/2026/01/נתח-אונטריב-ועצמות-מח-בתנור.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(20,10,5,.35), rgba(20,10,5,.85))"></div>
+  <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ closePad }};display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+    <h2 style="margin:0;max-width:720px;font-size:{{ closeFs }};font-weight:300;letter-spacing:-1.5px;line-height:1">עכשיו נשאר רק <strong style="font-weight:900">לבחור את הבשר</strong></h2>
+    <p style="margin:0;max-width:520px;font-size:1.05rem;font-weight:300;line-height:1.5">הנתחים המובחרים בכשרות גבוהה מחכים לצאת אליכם, עד פתח הבית.</p>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="לאתר ההזמנות — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לאתר ההזמנות<i class="ti ti-chevron-left"></i></a>
+  </div>
+</section>
+</main>
+
+<sc-if value="{{ tpOn }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ tpClose }}" style="position:fixed;inset:0;z-index:400;background:rgba(20,10,5,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:{{ tpOp }};transition:opacity .35s ease">
+  <div role="dialog" aria-modal="true" aria-label="טיפ מהקצב" ref="{{ tpCardRef }}" onClick="{{ tpStop }}" dir="rtl" style="position:relative;width:{{ tp.cw }};height:{{ tp.ch }};background:#f1ece8;border-radius:18px;color:#3c2313;box-shadow:0 30px 80px rgba(0,0,0,.45);transform:scale({{ tpSc }});transition:transform .45s cubic-bezier(.2,.7,.2,1)">
+    <div aria-hidden="true" style="position:absolute;left:{{ tp.l }};bottom:0;width:{{ tp.w }};height:{{ tp.h }};pointer-events:none;background-image:url(&quot;{{ tp.chef }}&quot;);background-repeat:no-repeat;background-size:{{ tp.size }};background-position:{{ tp.pos }};border-bottom-left-radius:18px"></div>
+    <button onClick="{{ tpClose }}" aria-label="סגירה" style="position:absolute;top:14px;left:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:#3c2313;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;padding:0"><i class="ti ti-x"></i></button>
+    <div style="position:relative;height:100%;overflow:hidden;margin-left:25%;padding:26px 22px 0 0;display:block">
+      <div aria-hidden="true" style="float:left;width:100%;height:{{ tp.fh }};shape-outside:{{ tp.poly }}"></div>
+      <div style="color:#EE3A30;white-space:nowrap;line-height:1.3"><i class="ti ti-chef-hat" style="font-size:24px;vertical-align:-4px;margin-left:8px"></i><strong style="font-size:1.2rem;font-weight:800">טיפ מהקצב</strong></div>
+      <p style="position:relative;margin:2px 0 10px;font-size:.85rem;font-weight:700;white-space:nowrap">{{ tp.who }}, שלושה קצבים</p>
+      <p ref="{{ tpQRef }}" style="position:relative;margin:0;font-size:{{ tpFs }};font-weight:400;line-height:1.45">“{{ tp.tip }}”</p>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, data: null, meat: 'הכל', diff: 'הכל', shown: 0, hR: -1, hF: false, fi: 0, fOut: false };
+  featTips = {
+    'רוסטביף-אנטריקוט-צרפתי': 'לתת לנתח לנוח לפחות 10\u00a0דקות לפני הפריסה, כדי לשמור על המיצים.',
+    'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה': 'לפני ההכנה, ייבשו את הדג היטב בעזרת מגבת נייר – כך הציפוי נדבק טוב יותר והקרום יוצא מושלם.',
+    'עוף-בדבש-שכולם-אוהבים': 'הוציאו את העוף מהמקרר כחצי שעה לפני שהוא נכנס לתנור – בשר בטמפרטורת החדר מתבשל באופן אחיד יותר.'
+  };
+  featChefs = { 'רוסטביף-אנטריקוט-צרפתי': { src: 'assets/butcher-roast.png', ar: 1.5, crop: 0.88, who: 'יוגב' }, 'עוף-בדבש-שכולם-אוהבים': { src: 'assets/butcher-honey.png', ar: 1.5, crop: 0.82, who: 'אבי' }, 'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה': { src: 'assets/butcher-fish.png', ar: 1024 / 1536, crop: 1, vis: 0.78, boost: 1.18, who: 'אנטון' } };
+  tipRefs = {};
+  tipRef(i) { if (!this.tipRefs[i]) this.tipRefs[i] = (el) => { if (this['tro' + i]) this['tro' + i].disconnect(); if (!el) return;
+    this['tro' + i] = new ResizeObserver(() => { const v = Math.round(el.getBoundingClientRect().height); if (Math.abs(v - ((this.state.tipTxt || {})[i] || 0)) > 1) this.setState(s => ({ tipTxt: { ...(s.tipTxt || {}), [i]: v } })); });
+    this['tro' + i].observe(el); }; return this.tipRefs[i]; }
+  featSlugs = ['רוסטביף-אנטריקוט-צרפתי', 'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה', 'עוף-בדבש-שכולם-אוהבים'];
+  stepFeat(d) { const n = this.featSlugs.length; this.goFeat(((this.state.fi + d) % n + n) % n); }
+  openTip(i) { this.setState({ tpFs: 0.92, tp: i, tpVis: false, hF: true }); document.documentElement.style.overflow = 'hidden'; requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ tpVis: true }))); }
+  closeTip() { this.setState({ tpVis: false }); document.documentElement.style.overflow = ''; setTimeout(() => this.setState({ tp: null, hF: false }), 350); }
+  goFeat(i) { if (i === this.state.fi) return; this.setState({ fOut: true }); clearTimeout(this.ft); this.ft = setTimeout(() => this.setState({ fi: i, fOut: false }), 280); }
+  sil = {};
+  loadSil(src) {
+    if (this.sil[src]) return; this.sil[src] = 'loading';
+    const im = new Image();
+    im.onload = () => { const H = 420, W = Math.max(1, Math.round(im.naturalWidth * H / im.naturalHeight)), c = document.createElement('canvas'); c.width = W; c.height = H;
+      const x = c.getContext('2d'); x.drawImage(im, 0, 0, W, H); const d = x.getImageData(0, 0, W, H).data, right = new Int16Array(H).fill(-1);
+      for (let y = 0; y < H; y++) for (let k = W - 1; k >= 0; k--) if (d[(y * W + k) * 4 + 3] > 170) { right[y] = k; break; }
+      this.sil[src] = { W, H, right }; this.forceUpdate(); };
+    im.src = src;
+  }
+  silPoly(g) {
+    const s = this.sil[g.src]; if (!s || s === 'loading') { this.loadSil(g.src); return 'none'; }
+    const pts = ['0px 0px'], step = 4, tol = 6;
+    for (let yw = 0; yw < g.Hw; yw += step) {
+      let mx = -1e9;
+      for (let c = yw - tol; c <= yw + step + tol; c += 2) { const iy = Math.floor((c + g.offY - g.imgT) / g.imgH * s.H); if (iy < 0 || iy >= s.H || s.right[iy] < 0) continue;
+        let cx = Math.min(g.imgL + (s.right[iy] + 1) * g.imgW / s.W, g.clipR); if (cx < g.clipL) continue; if (cx > mx) mx = cx; }
+      const ex = mx > -1e9 ? Math.max(0, Math.min(Math.round(mx - g.offX + g.gap), g.WW - g.minCol)) : 0;
+      pts.push(ex + 'px ' + yw + 'px', ex + 'px ' + Math.min(yw + step, g.Hw) + 'px');
+    }
+    pts.push('0px ' + g.Hw + 'px');
+    return 'polygon(' + pts.join(',') + ')';
+  }
+  listRef = React.createRef(); tpQRef = React.createRef(); tpCardRef = React.createRef();
+  componentDidUpdate() {
+    if (this.state.tp == null) return;
+    const q = this.tpQRef.current, c = this.tpCardRef.current; if (!q || !c) return;
+    const fs = this.state.tpFs || 0.92, over = q.getBoundingClientRect().bottom > c.getBoundingClientRect().bottom - 14;
+    if (over && fs > 0.74) this.setState({ tpFs: Math.round((fs - 0.03) * 100) / 100 });
+  }
+  heroVidEl = null;
+  heroVid = (v) => { if (!v || v === this.heroVidEl) { this.heroVidEl = v; return; } this.heroVidEl = v;
+    v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    const go = () => v.play().catch(() => {}); go(); v.addEventListener('canplay', go, { once: true }); };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    this.fTimer = setInterval(() => { if (!this.state.hF && this.state.data && !document.hidden) this.goFeat((this.state.fi + 1) % this.featSlugs.length); }, 6500);
+    this.onK = (e) => { if (/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) return; if (this.state.tp != null) { if (e.key === 'Escape') this.closeTip(); return; } if (e.key === 'ArrowLeft') this.stepFeat(1); else if (e.key === 'ArrowRight') this.stepFeat(-1); };
+    window.addEventListener('keydown', this.onK);
+    fetch('data/content.json').then(r => r.json()).then(data => this.setState({ data })).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); clearInterval(this.fTimer); window.removeEventListener('keydown', this.onK); clearTimeout(this.ft); }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
+    const all = (st.data && st.data.recipes) || [];
+    const href = (s) => 'Recipe.dc.html?slug=' + encodeURIComponent(s);
+    const chip = (on) => ({ border: on ? '#3c2313' : 'rgba(60,35,19,.25)', bg: on ? '#3c2313' : 'transparent', color: on ? '#f5f5f5' : '#3c2313', on: on ? 'true' : 'false' });
+    const meats = ['הכל', 'בקר', 'עוף', 'הודו', 'טלה', 'דג'];
+    const meatChips = meats.map(m => ({ label: m === 'דג' ? 'דגים' : m, n: m === 'הכל' ? all.length : all.filter(r => r.meat === m).length, ...chip(st.meat === m), pick: () => this.setState({ meat: m, shown: 0 }) }));
+    const diffChips = ['הכל', 'קל', 'בינוני', 'קשה'].map(d => ({ label: d, ...chip(st.diff === d), pick: () => this.setState({ diff: d, shown: 0 }) }));
+    const list = all.filter(r => (st.meat === 'הכל' || r.meat === st.meat) && (st.diff === 'הכל' || r.diff.includes(st.diff)));
+    const page = mob ? 6 : 9, shown = st.shown || page;
+    const cards = list.slice(0, shown).map((r, i) => { const h = st.hR === i && !mob;
+      return { ...r, meat: r.meat === 'דג' ? 'דגים' : r.meat, href: href(r.slug), scale: h ? 1.06 : 1,
+        cBorder: h ? '#EE3A30' : 'rgba(60,35,19,.3)', cBg: h ? '#EE3A30' : 'transparent', cInk: h ? '#fff' : '#3c2313',
+        enter: () => this.setState({ hR: i }), leave: () => this.setState({ hR: -1 }) }; });
+    const feats = this.featSlugs.map(s => all.find(r => r.slug === s)).filter(Boolean).map(r => { const d = (st.data.recipeDetails || {})[r.slug] || {}; return { ...r, href: href(r.slug), method: d.method || '', tip: this.featTips[r.slug] || d.tip || '', chef: (this.featChefs[r.slug] || {}).src || '', chefAr: (this.featChefs[r.slug] || {}).ar || 1, chefCrop: (this.featChefs[r.slug] || {}).crop || 1, chefVis: (this.featChefs[r.slug] || {}).vis || 1, chefBoost: (this.featChefs[r.slug] || {}).boost || 1, who: (this.featChefs[r.slug] || {}).who || 'הקצבים' }; });
+    const fi = feats.length ? st.fi % feats.length : 0, feat = feats[fi] || null;
+    const featMeta = feat ? [['ti-clock', 'זמן הכנה', feat.time], ['ti-chef-hat', 'דרגת קושי', feat.diff], ['ti-meat', 'סוג הבשר', feat.meat === 'דג' ? 'דגים' : feat.meat]].concat(feat.method ? [['ti-flame', 'אופן ההכנה', feat.method]] : []).map(([icon, k, v]) => ({ icon, k, v })) : [];
+    const featSlides = feats.map((f, i) => ({ title: f.title, img: f.img, op: i === fi ? 1 : 0, sc: i === fi ? 1.06 : 1 }));
+    const featDots = feats.map((f, i) => ({ label: f.title, cur: i === fi ? 'true' : 'false', w: i === fi ? '26px' : '8px', bg: i === fi ? '#EE3A30' : 'rgba(60,35,19,.25)', go: () => this.goFeat(i) }));
+    const tips = ((st.data && st.data.tips) || []).slice(0, 3).map((t, i) => ({ ...t, num: String(i + 1).padStart(2, '0') }));
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    const fh = st.hF && !mob, cmp = w < 1300, tipBH = mob ? 150 : (w < 1600 ? 180 : 200), tH = cmp ? 170 : (w < 1600 ? 210 : 240), tOver = mob ? 24 : 34, chefOn = !!(feat && feat.chef);
+    const cW = chefOn ? Math.round(Math.min(tH * feat.chefAr / feat.chefVis, feat.chefAr > 1 ? (cmp ? 170 : (w < 1600 ? 260 : 300)) : (cmp ? 190 : (w < 1600 ? 250 : 300)))) : 0, cNeed = chefOn ? Math.round(cW / feat.chefAr * feat.chefVis) : 0;
+    const featItems = feats.map((f, i) => { const on = i === fi && !st.fOut, cur = i === fi;
+      const meta = [['ti-clock', 'זמן הכנה', f.time], ['ti-chef-hat', 'דרגת קושי', f.diff], ['ti-meat', 'סוג הבשר', f.meat === 'דג' ? 'דגים' : f.meat]].concat(f.method ? [['ti-flame', 'אופן ההכנה', f.method]] : []).map(([icon, k, v]) => ({ icon, k, v }));
+      const co = !!f.chef, FH = Math.round((tipBH + tOver) * (f.chefBoost || 1)), W = co ? Math.round(FH / f.chefVis * f.chefAr * f.chefCrop) : 0;
+      return { title: f.title, href: f.href, tip: f.tip, chef: f.chef, who: f.who, meta, tipFull: !!f.tip && !mob, tipCompact: !!f.tip && mob, openTip: () => this.openTip(i), pad: co ? ('20px 22px 20px ' + (W - 6) + 'px') : '22px 24px', imgW: W + 'px', imgH: FH + 'px', imgL: '-12px', imgSize: 'auto ' + Math.round(100 / (f.chefVis || 1)) + '%', imgPos: (f.chefVis || 1) < 1 ? 'center top' : 'center bottom',
+        op: on ? 1 : 0, vis: cur ? 'visible' : 'hidden', pe: cur ? 'auto' : 'none', hidden: cur ? 'false' : 'true', tab: cur ? '0' : '-1', y: on ? '0px' : '8px',
+        txtRef: null,
+        tr: cur ? 'opacity .3s ease, transform .4s cubic-bezier(.2,.7,.2,1), visibility 0s' : 'opacity .3s ease, transform .4s ease, visibility 0s linear .3s' }; });
+    const tipBoxH = tipBH + 'px';
+    const tf = st.tp != null ? feats[st.tp] : null, cwN = Math.min(Math.round(w * 0.86), 360);
+    let tp = { fh: '0px', poly: 'none', ch: Math.round(cwN * 1.33) + 'px', sw: '0px', shh: '0px', thr: '.5', sm: '30px', fl: '0px', mt: '0px', mr: '0px', spH: '0px', cw: cwN + 'px', chef: '', tip: '', who: '', w: '0px', h: '0px', l: '0px', size: 'auto', pos: 'left bottom' };
+    if (tf) { const land = tf.chefAr > 1, vis = tf.chefVis || 1, crop = tf.chefCrop || 1, Wp = Math.round(cwN * (land ? 1.0 : 0.82) * ({ 'עוף-בדבש-שכולם-אוהבים': 1.05 * 0.93, 'רוסטביף-אנטריקוט-צרפתי': 1.12, 'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה': 0.9 }[tf.slug] || 1) * 1.1), Hp = Math.round(Wp * vis / (tf.chefAr * crop)), gut = Math.max(0, Math.round((w - cwN) / 2) - 6);
+      tp = { ch: Math.round(cwN * 1.33) + 'px', cw: cwN + 'px', chef: tf.chef, tip: tf.tip, who: tf.who, w: Wp + 'px', h: Hp + 'px', l: (-Math.min(land ? 22 : 18, gut) - (tf.slug === 'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה' ? -54 : (tf.slug === 'עוף-בדבש-שכולם-אוהבים' ? -30 : 0)) - 60) + 'px', size: 'auto ' + Math.round(100 / vis) + '%', pos: vis < 1 ? 'center top' : 'center bottom', spH: Math.max(0, Math.round(cwN * 1.33) - 26 - Hp) + 'px' };
+      const lN = parseInt(tp.l, 10), CW = cwN - 22, avail = Math.round(cwN * 1.33) - 26; const half = Math.round(cwN * 0.25), WW = cwN - half - 22, ml = lN - half; tp.fl = ml + 'px'; tp.mr = Math.min(0, WW - 84 - (ml + Wp)) + 'px'; tp.mt = Math.min(0, avail - Hp) + 'px'; tp.thr = '.7'; tp.sm = '40px';
+      { const cardH = Math.round(cwN * 1.33), fullW2 = Math.round(Wp / crop), fullH2 = Math.round(Hp / vis), L = parseInt(tp.l, 10), half2 = Math.round(cwN * 0.25);
+        tp.fh = (cardH - 26) + 'px'; tp.poly = this.silPoly({ src: tf.chef, imgL: L + (Wp - fullW2) / 2, imgT: cardH - Hp, imgW: fullW2, imgH: fullH2, clipL: L, clipR: L + Wp, offX: half2, offY: 26, Hw: cardH - 26, WW: cwN - half2 - 22, gap: 40, minCol: 84 }); }
+      const fullW = Math.round(Wp / crop), fullH = Math.round(Hp / vis), shift = Math.round((fullW - Wp) / 2);
+      tp.sw = fullW + 'px'; tp.shh = fullH + 'px'; tp.fl = (ml - shift) + 'px'; tp.mr = Math.min(0, WW - 84 - (ml - shift + fullW)) + 'px'; tp.mt = Math.round((Math.round(cwN * 1.33) - Hp) - 26 - parseInt(tp.spH, 10) + (tf.slug === 'רוסטביף-אנטריקוט-צרפתי' ? 26 : 0)) + 'px'; }
+    return {
+      tp, tpQRef: this.tpQRef, tpCardRef: this.tpCardRef, tpFs: (st.tpFs || 0.92) + 'rem', tpOn: st.tp != null, tpOp: st.tpVis ? 1 : 0, tpSc: st.tpVis ? 1 : 0.92, tpClose: () => this.closeTip(), tpStop: (e) => e.stopPropagation(),
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      featItems, tipBoxH,
+      heroMob: mob, heroBtnsDisp: mob ? 'inline-grid' : 'flex', heroDesk: !mob, heroVid: this.heroVid, hdrH: mob ? '68px' : '82px', heroH: mob ? '520px' : 'min(78vh,720px)', heroPos: mob ? '50% 30%' : '35% 50%',
+      heroGrad: mob ? 'linear-gradient(180deg, rgba(12,6,3,.25) 0%, rgba(12,6,3,.2) 30%, rgba(12,6,3,.85) 60%, rgba(12,6,3,.96) 100%)' : 'linear-gradient(0deg, rgba(12,6,3,.55) 0%, rgba(12,6,3,0) 45%), radial-gradient(ellipse 80% 110% at 100% 100%, rgba(12,6,3,.97) 0%, rgba(12,6,3,.9) 35%, rgba(12,6,3,.65) 60%, rgba(12,6,3,0) 100%)',
+      heroPad: mob ? '0 20px 36px' : '0 ' + side + ' clamp(60px,9vh,100px)', h1Fs: mob ? '3.4rem' : 'clamp(4.5rem,7vw,7.5rem)', leadFs: mob ? '1.05rem' : '1.25rem',
+      toList: (e) => { e.preventDefault(); const el = this.listRef.current; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (mob ? 68 : 82), behavior: 'smooth' }); },
+      secPad: mob ? '56px 20px 0' : '110px ' + side + ' 0', feat, featImg: feat ? feat.img : undefined,  featPad: mob ? '26px 22px 30px' : 'clamp(36px,4vw,64px)',
+      featH2: mob ? '2rem' : 'clamp(2.4rem,3.4vw,3.4rem)', featMeta, featSlides, featDots,
+      featPrev: () => this.stepFeat(-1), featNext: () => this.stepFeat(1),
+      featTs: (e) => { this.ftx = e.touches[0].clientX; }, featTe: (e) => { if (this.ftx == null) return; const dx = e.changedTouches[0].clientX - this.ftx; this.ftx = null; if (Math.abs(dx) > 40) this.stepFeat(dx > 0 ? 1 : -1); }, tipBoxMt: mob ? '30px' : '34px', tipBoxPad: chefOn ? ('20px 22px 20px ' + (cW + (cmp ? -2 : -6)) + 'px') : '22px 24px', tipBoxMinH: chefOn ? (cNeed - tOver) + 'px' : '0px',
+      tipImgL: cmp ? '-4px' : '-10px', tipImgW: cW + 'px', tipImgTop: '-' + tOver + 'px', tipImgH: cNeed + 'px', tipIco: cmp ? '22px' : '28px', tipHFs: cmp ? '1.1rem' : '1.3rem', tipTxtFs: cmp ? '.95rem' : '1.05rem',
+      featAspect: mob ? '4/3' : (w < 1300 ? '16/8' : 'auto'), featImgMinH: w < 1300 ? '0' : '100%', metaGap: w < 1300 ? '24px' : '48px', featCols: w < 1300 ? 'minmax(0,1fr)' : 'minmax(0,1.2fr) minmax(0,1fr)',
+      featTxtOp: st.fOut ? 0 : 1, featTxtY: st.fOut ? '8px' : '0px',
+      featEnter: () => this.setState({ hF: true }), featLeave: () => this.setState({ hF: false }),
+      listRef: this.listRef, listPad: mob ? '64px 20px 64px' : '110px ' + side + ' 110px', h2Fs: mob ? '2.2rem' : 'clamp(2.2rem,3vw,2.9rem)',
+      countLabel: st.data ? list.length + ' מתכונים' : '', meatChips, diffChips, filtered: st.meat !== 'הכל' || st.diff !== 'הכל',
+      clear: () => this.setState({ meat: 'הכל', diff: 'הכל', shown: 0 }), empty: !!st.data && !list.length,
+      bleed: mob ? '-20px' : '0', bleedPad: mob ? '20px' : '0', chipsMb: mob ? '28px' : '44px',
+      gridCols: mob ? '1fr' : (tab ? 'repeat(2,minmax(0,1fr))' : 'repeat(3,minmax(0,1fr))'), gridGap: mob ? '36px' : '50px 30px', cardH3: mob ? '1.35rem' : 'clamp(1.3rem,1.5vw,1.55rem)', cards,
+      hasMore: list.length > shown, restN: list.length - shown, more: () => this.setState({ shown: shown + page }), moreMt: mob ? '36px' : '56px',
+      sidePad: side, midMb: mob ? '64px' : '110px', midDir: mob ? 'column' : 'row', midAlign: mob ? 'flex-start' : 'center', midPad: mob ? '30px 18px 30px 172px' : '50px 60px 50px ' + (-26 + 285 + 40) + 'px', midTop: mob ? '70px' : '120px', midMinH: mob ? '210px' : '170px',
+      midImgL: mob ? '-61px' : '-26px', midImgH: mob ? '350px' : '380px', midImgClip: mob ? '62px' : '68px', midBtnPad: mob ? '13px 20px' : '15px 28px', midFs: mob ? '1.7rem' : 'clamp(1.8rem,2.6vw,2.6rem)',
+      tipsPad: mob ? '64px 20px' : '110px ' + side, tips, tipsDisp: mob ? 'flex' : 'grid', tipsGap: mob ? '12px' : '24px', tipBasis: mob ? '82%' : 'auto',
+      closeH: mob ? '460px' : '560px', closePad: mob ? '60px 20px' : '80px ' + side, closeFs: mob ? '2.4rem' : 'clamp(2.8rem,4.4vw,4.4rem)'
+    };
+  }
+}
+</script>
+</body>
+</html>

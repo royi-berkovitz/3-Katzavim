@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>רשימת קניות | שלושה קצבים</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }};display:flex;flex-direction:column">
+
+<header style="background:#3c2313;color:#f5f5f5">
+  <div style="max-width:640px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/LOGO%20negative.png" alt="שלושה קצבים" style="height:34px;width:auto;display:block">
+    <span style="font-size:.82rem;font-weight:500;opacity:.8">רשימת קניות</span>
+  </div>
+</header>
+
+<main style="flex:1;width:100%;max-width:640px;margin:0 auto;padding:{{ mainPad }}">
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px">
+    <sc-if value="{{ r.img }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ r.title }}" style="flex:none;width:{{ thumbW }};height:{{ thumbW }};border-radius:12px;background:#e7e1db url(&quot;{{ r.img }}&quot;) center/cover no-repeat"></div></sc-if>
+    <div style="min-width:0">
+      <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:900;letter-spacing:-.8px;line-height:1.05">מה חסר לנו לארוחה?</h1>
+      <p style="margin:6px 0 0;font-size:.95rem;font-weight:500;line-height:1.35">{{ r.title }}</p>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:12px;background:#fff;margin-bottom:14px">
+    <span aria-live="polite" style="font-size:.95rem;font-weight:700">{{ progress }}</span>
+    <div aria-hidden="true" style="flex:none;width:96px;height:6px;border-radius:999px;background:#ece6e1;overflow:hidden"><span style="display:block;height:100%;width:{{ pct }};background:#EE3A30;transition:width .35s ease"></span></div>
+  </div>
+  <p style="margin:0 0 18px;font-size:.9rem;font-weight:400;line-height:1.5;opacity:.8">מעתיקים מצרך, מחפשים אותו ב־ClickEat ומוסיפים לעגלה. אחרי שהוספתם – סמנו אותו כאן.</p>
+
+  <sc-if value="{{ none }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="padding:22px 20px;border-radius:12px;background:#fff;font-size:1.05rem;font-weight:600;line-height:1.5">איזה יופי! כל המצרכים כבר בבית. אפשר להתחיל לבשל.</div>
+  </sc-if>
+
+  <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px">
+    <sc-for list="{{ items }}" as="it" hint-placeholder-count="6">
+      <li style="display:flex;align-items:center;gap:12px;padding:{{ rowPad }};border-radius:12px;background:{{ it.bg }};transition:background .3s">
+        <button onClick="{{ it.tog }}" aria-pressed="{{ it.on }}" aria-label="{{ it.togLabel }}" style="flex:none;width:44px;height:44px;margin:-4px 0 -4px -6px;border:0;background:transparent;padding:0;display:flex;align-items:center;justify-content:center">
+          <span style="width:26px;height:26px;border-radius:50%;border:1.5px solid {{ it.ring }};background:{{ it.dot }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;transition:all .25s"><i class="ti ti-shopping-cart-check" style="opacity:{{ it.chk }}"></i></span>
+        </button>
+        <div style="flex:1;min-width:0;opacity:{{ it.op }};transition:opacity .25s">
+          <div style="font-size:{{ nameFs }};font-weight:700;line-height:1.25;text-decoration:{{ it.deco }}">{{ it.term }}</div>
+          <div style="margin-top:2px;font-size:.85rem;font-weight:400;line-height:1.35;opacity:.75">{{ it.full }}</div>
+        </div>
+        <button onClick="{{ it.copy }}" aria-label="{{ it.copyAria }}" style="flex:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:{{ copyMinW }};min-height:{{ copyH }};padding:0 16px;border-radius:999px;border:1.5px solid {{ it.cBorder }};background:{{ it.cBg }};color:{{ it.cInk }};font:inherit;font-size:.92rem;font-weight:700;white-space:nowrap;transition:background .25s, color .25s, border-color .25s"><i class="ti {{ it.cIcon }}" style="font-size:17px"></i>{{ it.cLabel }}</button>
+      </li>
+    </sc-for>
+  </ul>
+</main>
+
+<div style="position:sticky;bottom:0;background:linear-gradient(to top, #f5f5f5 70%, rgba(245,245,245,0));padding:{{ footPad }}">
+  <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px">
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="פתיחת ClickEat להזמנה — נפתח בכרטיסייה חדשה" style="display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 10px 26px rgba(238,58,48,.28);transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30">פתיחת ClickEat להזמנה<i class="ti ti-external-link"></i></a>
+    <p style="margin:0;text-align:center;font-size:.78rem;opacity:.65;line-height:1.4">ההזמנה מתבצעת באתר ClickEat. המצרכים לא מתווספים לעגלה אוטומטית.</p>
+  </div>
+</div>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;רוסטביף-אנטריקוט-צרפתי&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, data: null, added: {}, copied: -1 };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    try { const s = JSON.parse(localStorage.getItem('3k-cart-' + this.slug()) || '{}'); this.setState({ added: s }); } catch (e) {}
+    fetch('data/content.json').then(r => r.json()).then(data => this.setState({ data })).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); clearTimeout(this.cT); }
+  slug() { const q = new URLSearchParams(location.search); return q.get('slug') || this.props.slug || 'רוסטביף-אנטריקוט-צרפתי'; }
+  have() { const v = new URLSearchParams(location.search).get('have'); return new Set((v || '').split(',').filter(x => x !== '').map(Number)); }
+  term(t) {
+    return t.replace(/^[\d.,/½¼¾\-–\s]+/, '').replace(/^(ק"ג|ק״ג|גרם|יח'|יח׳|כוס(ות)?|כפ(ות|ית)|כפיות|שיני|ראש|חב'|חופן( גדול)?( של)?|פרוסות|נתח|מעט|חצי( כוס| כפית)?|מיץ מ?(חצי)?)\s+/g, '').split(/[,(/]/)[0].trim();
+  }
+  copyText(txt, i) {
+    const ok = () => { this.setState({ copied: i }); clearTimeout(this.cT); this.cT = setTimeout(() => this.setState({ copied: -1 }), 1600); };
+    const fb = () => { const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok).catch(fb); else fb();
+  }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 640, d = st.data, slug = this.slug(), have = this.have();
+    const r0 = (d && d.recipes.find(x => x.slug === slug)) || { title: '', img: '' }, det = d && d.recipeDetails[slug];
+    const ing = (det && det.ingredients) || [], terms = (det && det.searchTerms) || [];
+    if (r0.title && document.title.indexOf(r0.title) < 0) document.title = 'רשימת קניות · ' + r0.title + ' | שלושה קצבים';
+    const rows = ing.map((full, i) => ({ full, i, term: terms[i] || this.term(full) })).filter(x => !have.has(x.i));
+    const items = rows.map(x => { const on = !!st.added[x.i], cp = st.copied === x.i;
+      return { full: x.full, term: x.term, on: on ? 'true' : 'false', togLabel: (on ? 'בטל סימון: ' : 'סמן שנוסף לעגלה: ') + x.term,
+        bg: on ? '#efe9e4' : '#fff', ring: on ? '#EE3A30' : 'rgba(60,35,19,.35)', dot: on ? '#EE3A30' : 'transparent', chk: on ? 1 : 0, op: on ? .5 : 1, deco: on ? 'line-through' : 'none',
+        cLabel: cp ? 'הועתק!' : 'העתק', cIcon: cp ? 'ti-check' : 'ti-copy', cBg: cp ? '#3c2313' : 'transparent', cInk: cp ? '#f5f5f5' : '#3c2313', cBorder: cp ? '#3c2313' : 'rgba(60,35,19,.4)', copyAria: 'העתקת "' + x.term + '" לחיפוש',
+        copy: () => this.copyText(x.term, x.i),
+        tog: () => this.setState(s => { const a = { ...s.added, [x.i]: !s.added[x.i] }; try { localStorage.setItem('3k-cart-' + slug, JSON.stringify(a)); } catch (e) {} return { added: a }; }) }; });
+    const addedN = rows.filter(x => st.added[x.i]).length;
+    return {
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      r: r0, items, none: !!d && rows.length === 0,
+      progress: rows.length ? addedN + ' מתוך ' + rows.length + ' נוספו לעגלה' : 'אין מה לקנות',
+      pct: rows.length ? Math.round(addedN / rows.length * 100) + '%' : '100%',
+      mainPad: mob ? '22px 16px 20px' : '30px 20px 24px', thumbW: mob ? '64px' : '76px', h1Fs: mob ? '1.6rem' : '1.9rem',
+      rowPad: mob ? '12px 12px' : '10px 14px', nameFs: mob ? '1.08rem' : '1.02rem', copyMinW: mob ? '96px' : '84px', copyH: mob ? '48px' : '40px',
+      footPad: mob ? '18px 16px calc(16px + env(safe-area-inset-bottom))' : '18px 20px 22px'
+    };
+  }
+}
+</script>
+</body>
+</html>

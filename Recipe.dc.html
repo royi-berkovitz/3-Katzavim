@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מתכון | שלושה קצבים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="recipes" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main style="padding-top:{{ hdrH }}">
+<section data-screen-label="01 Recipe hero" style="padding:{{ heroPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ heroCols }};gap:{{ heroGap }};align-items:center">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:20px;order:{{ textOrder }}">
+      <nav aria-label="פירורי לחם" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.88rem;font-weight:500">
+        <a href="Recipes.dc.html" style="border-bottom:1px solid currentColor">מה על האש?</a>
+        <i class="ti ti-chevron-left" style="font-size:13px;opacity:.6"></i>
+        <span style="opacity:.75">{{ r.meatLabel }}</span>
+      </nav>
+      <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:900;letter-spacing:-1.6px;line-height:.98;text-wrap:balance">{{ r.title }}</h1>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:520px">
+        <sc-for list="{{ meta }}" as="m" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff">
+            <i class="ti {{ m.icon }}" style="font-size:22px;color:#EE3A30;flex:none"></i>
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:.75rem;opacity:.65">{{ m.k }}</span><strong style="font-size:.98rem;font-weight:700;line-height:1.2">{{ m.v }}</strong></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;width:{{ btnRowW }}">
+        <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="להזמנת הבשר למתכון — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;white-space:nowrap;transition:background .3s, color .3s, transform .3s" style-hover="background:#fff;color:#EE3A30;transform:translateY(-2px)">להזמנת הבשר למתכון<i class="ti ti-chevron-left"></i></a>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:{{ imgAspect }};overflow:hidden;background:#e7e1db;margin:0 {{ imgBleed }};order:{{ imgOrder }}">
+      <sc-if value="{{ r.img }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ r.title }}" style="position:absolute;inset:0;background-image:url(&quot;{{ r.img }}&quot;);background-size:cover;background-position:center;"></div></sc-if>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="02 Recipe body" style="padding:{{ bodyPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ bodyCols }};gap:{{ bodyGap }};align-items:start">
+    <aside style="position:{{ asidePos }};top:120px;background:#fff;padding:{{ boxPad }}">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px">
+        <h2 style="margin:0;font-size:1.6rem;font-weight:900;letter-spacing:-.6px">מצרכים</h2>
+        <sc-if value="{{ hasIng }}" hint-placeholder-val="{{ true }}"><span style="display:flex;flex-direction:column;align-items:flex-end;font-size:.82rem;line-height:1.35;text-align:left"><span aria-live="polite" style="opacity:.8;font-weight:{{ hintFw }}">{{ hintTxt }}</span></span></sc-if>
+      </div>
+      <sc-if value="{{ hasIng }}" hint-placeholder-val="{{ true }}">
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+          <sc-for list="{{ ing }}" as="g" hint-placeholder-count="8">
+            <li><button onClick="{{ g.tog }}" aria-pressed="{{ g.on }}" style="width:100%;display:flex;align-items:center;gap:14px;min-height:48px;padding:10px 0;border:0;border-bottom:1px solid rgba(60,35,19,.1);background:transparent;color:#3c2313;font:inherit;font-size:1.02rem;font-weight:400;text-align:right">
+              <span style="flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid {{ g.ring }};background:{{ g.dot }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;transition:all .25s"><i class="ti ti-check" style="opacity:{{ g.chk }}"></i></span>
+              <span style="text-decoration:{{ g.deco }};opacity:{{ g.op }};transition:opacity .25s">{{ g.t }}</span>
+            </button></li>
+          </sc-for>
+        </ul>
+        <div style="display:grid;grid-template-rows:{{ restRows }};opacity:{{ restOp }};transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1), opacity .35s">
+          <div style="overflow:hidden">
+            <button onClick="{{ openShop }}" tabindex="{{ restTab }}" style="width:100%;font:inherit;cursor:pointer;margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30">
+              <span style="white-space:nowrap">להשלמת המוצרים החסרים לי<span style="font-weight:400;opacity:.85;margin-right:6px">({{ restN }})</span></span><i class="ti ti-chevron-left"></i>
+            </button>
+          </div>
+        </div>
+        <sc-if value="{{ allDone }}" hint-placeholder-val="{{ false }}">
+          <p role="status" style="margin:20px 0 0;padding:14px 16px;border-radius:10px;background:#f1ece8;font-size:.98rem;font-weight:600;line-height:1.45">איזה יופי! כל המצרכים כבר בבית. אפשר להתחיל לבשל.</p>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ noData }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ r.src }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#EE3A30;font-weight:600" style-hover="color:#3c2313">לרשימת המצרכים<i class="ti ti-chevron-left"></i></a>
+      </sc-if>
+    </aside>
+    <div>
+      <h2 style="margin:0 0 {{ stepsMb }};font-size:{{ h2Fs }};font-weight:400;letter-spacing:-1px;line-height:1">אופן <strong style="font-weight:900">ההכנה</strong></h2>
+      <sc-if value="{{ hasIng }}" hint-placeholder-val="{{ true }}">
+        <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+            <li style="display:grid;grid-template-columns:{{ stepCols }};gap:{{ stepGap }};padding:{{ stepPad }};border-top:1px solid rgba(60,35,19,.14)">
+              <span style="font-size:{{ numFs }};font-weight:900;letter-spacing:-1px;line-height:1;color:#EE3A30;font-variant-numeric:tabular-nums">{{ s.n }}</span>
+              <p style="margin:0;font-size:{{ stepFs }};font-weight:400;line-height:1.6;text-wrap:pretty">{{ s.t }}</p>
+            </li>
+          </sc-for>
+        </ol>
+      </sc-if>
+      <sc-if value="{{ noData }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ r.src }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#EE3A30;font-weight:600;font-size:1.05rem" style-hover="color:#3c2313">לאופן ההכנה המלא<i class="ti ti-chevron-left"></i></a>
+      </sc-if>
+      <sc-if value="{{ mt.on }}" hint-placeholder-val="{{ false }}">
+        <div ref="{{ tipBoxRef }}" style="position:relative;margin-top:{{ tipMt }};height:{{ mt.ch }};background:#f1ece8;border-radius:14px;overflow:visible">
+          <div aria-hidden="true" style="position:absolute;left:{{ mt.l }};bottom:0;width:{{ mt.w }};height:{{ mt.h }};pointer-events:none;background-image:url(&quot;{{ mt.src }}&quot;);background-repeat:no-repeat;background-size:{{ mt.size }};background-position:{{ mt.pos }}"></div>
+          <div style="position:relative;height:100%;overflow:hidden;margin-left:25%;padding:22px 20px 0 0">
+            <div aria-hidden="true" style="float:left;width:100%;height:{{ mt.fh }};shape-outside:{{ mt.poly }}"></div>
+            <div style="color:#EE3A30;white-space:nowrap;line-height:1.3"><i class="ti ti-chef-hat" style="font-size:24px;vertical-align:-4px;margin-left:8px"></i><strong style="font-size:1.2rem;font-weight:800">טיפ מהקצב</strong></div>
+            <p style="position:relative;margin:2px 0 10px;font-size:.85rem;font-weight:700;white-space:nowrap">{{ mt.who }}, שלושה קצבים</p>
+            <p style="position:relative;margin:0;font-size:.92rem;font-weight:400;line-height:1.45">“{{ tip }}”</p>
+          </div>
+        </div>
+        <sc-if value="{{ allDone }}" hint-placeholder-val="{{ false }}">
+          <p role="status" style="margin:20px 0 0;padding:14px 16px;border-radius:10px;background:#f1ece8;font-size:.98rem;font-weight:600;line-height:1.45">איזה יופי! כל המצרכים כבר בבית. אפשר להתחיל לבשל.</p>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ dt.on }}" hint-placeholder-val="{{ false }}">
+        <div ref="{{ tipBoxRef }}" style="position:relative;margin-top:{{ tipMt }};height:{{ dt.bh }};background:#f1ece8;border-radius:14px">
+          <div aria-hidden="true" style="position:absolute;left:{{ dt.x }};bottom:0;width:{{ dt.w }};height:{{ dt.h }};pointer-events:none;border-bottom-left-radius:14px;background-image:url(&quot;{{ dt.src }}&quot;);background-repeat:no-repeat;background-size:{{ dt.size }};background-position:center top"></div>
+          <div style="position:relative;height:100%;overflow:hidden;margin-left:25%;padding:30px 32px 0 0">
+            <div aria-hidden="true" style="float:left;width:100%;height:{{ dt.fh }};shape-outside:{{ dt.poly }}"></div>
+            <div style="color:#EE3A30;white-space:nowrap;line-height:1.3;margin-bottom:10px"><i class="ti ti-chef-hat" style="font-size:{{ tipIco }};vertical-align:-5px;margin-left:10px"></i><strong style="font-size:{{ tipHFs }};font-weight:700">טיפ מהקצב</strong></div>
+            <p style="position:relative;margin:0 0 10px;font-size:{{ tipFs }};font-weight:400;line-height:1.45">“{{ tip }}”</p>
+            <p style="position:relative;margin:0;font-size:.88rem;font-weight:600;white-space:nowrap">{{ dt.who }}, שלושה קצבים</p>
+          </div>
+        </div>
+        <sc-if value="{{ allDone }}" hint-placeholder-val="{{ false }}">
+          <p role="status" style="margin:20px 0 0;padding:14px 16px;border-radius:10px;background:#f1ece8;font-size:.98rem;font-weight:600;line-height:1.45">איזה יופי! כל המצרכים כבר בבית. אפשר להתחיל לבשל.</p>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ deskTip }}" hint-placeholder-val="{{ false }}">
+        <div style="position:relative;margin-top:{{ tipMt }};background:#f1ece8;border-radius:14px;display:flex;flex-direction:{{ tipDir }};align-items:{{ tipAlign }};justify-content:space-between;gap:{{ tipGap }};padding:{{ tipPad }}">
+          <div style="position:relative;flex:{{ tipTxtFlex }};min-width:0;display:flex;flex-direction:column;gap:10px;padding:{{ tipTxtPad }}">
+            <div style="display:flex;align-items:center;gap:10px;color:#EE3A30"><i class="ti ti-chef-hat" style="font-size:{{ tipIco }}"></i><strong style="font-size:{{ tipHFs }};font-weight:700">טיפ מהקצב</strong></div>
+            <p style="margin:0;font-size:{{ tipFs }};font-weight:400;line-height:1.45;text-wrap:pretty">“{{ tip }}”</p>
+            <sc-if value="{{ chef.who }}" hint-placeholder-val="{{ false }}"><span style="font-size:.88rem;font-weight:600">{{ chef.who }}, שלושה קצבים</span></sc-if>
+          </div>
+          <sc-if value="{{ chef.src }}" hint-placeholder-val="{{ false }}">
+            <div aria-hidden="true" style="position:relative;left:{{ chef.x }};flex:none;align-self:flex-end;width:{{ chef.w }};height:{{ chef.h }};margin:{{ chef.m }};border-bottom-left-radius:14px;pointer-events:none;background-image:url(&quot;{{ chef.src }}&quot;);background-repeat:no-repeat;background-size:{{ chef.size }};background-position:center top"></div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 The cut" style="padding:0 {{ side }} {{ secMb }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ cutCols }};background:#fff;overflow:hidden">
+    <div style="position:relative;min-height:{{ cutImgH }};background:#e7e1db">
+      <sc-if value="{{ cut.img }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ cut.name }}" style="position:absolute;inset:0;background-image:url(&quot;{{ cut.img }}&quot;);background-size:cover;background-position:center;"></div></sc-if>
+    </div>
+    <div style="padding:{{ boxPad2 }};display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px">
+      <span style="font-size:.78rem;letter-spacing:.14em;font-weight:600;color:#EE3A30">הנתח שעושה את המנה</span>
+      <h2 style="margin:0;font-size:{{ cutFs }};font-weight:900;letter-spacing:-1px;line-height:1">{{ cut.name }}</h2>
+      <p style="margin:0;max-width:520px;font-size:1.05rem;font-weight:300;line-height:1.55">{{ cut.d }}</p>
+      <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="הנתח הבא שלכם מחכה — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s, transform .3s" style-hover="background:#fff;color:#EE3A30;transform:translateY(-2px)">לבחירת בשרים<i class="ti ti-chevron-left"></i></a>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ hasRel }}" hint-placeholder-val="{{ false }}">
+<section data-screen-label="04 Related" style="padding:{{ relPad }};background:#fff">
+  <div style="max-width:1440px;margin:0 auto">
+    <h2 style="margin:0 0 30px;font-size:{{ h2Fs }};font-weight:400;letter-spacing:-1px;line-height:1.05">עוד מתכונים <strong style="font-weight:900">שיעניינו אתכם</strong></h2>
+    <div style="display:{{ relDisp }};grid-template-columns:repeat(3,minmax(0,1fr));gap:{{ relGap }};overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 {{ bleed }};padding:0 {{ bleedPad }}">
+      <sc-for list="{{ related }}" as="x" hint-placeholder-count="0">
+        <a href="{{ x.href }}" style="flex:0 0 {{ relBasis }};scroll-snap-align:center;display:flex;flex-direction:column;color:#3c2313">
+          <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#e7e1db"><div role="img" aria-label="{{ x.title }}" style="position:absolute;inset:0;background-image:url(&quot;{{ x.img }}&quot;);background-size:cover;background-position:center;"></div></div>
+          <h3 style="margin:16px 0 6px;font-size:1.25rem;font-weight:500;letter-spacing:-.3px;line-height:1.2">{{ x.title }}</h3>
+          <span style="font-size:.88rem;opacity:.75">{{ x.time }} · {{ x.diff }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section data-screen-label="05 Closing CTA" style="position:relative;min-height:{{ closeH }};display:flex;align-items:center;overflow:hidden;background:#24140a;color:#f5f5f5">
+  <sc-if value="{{ r.img }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="" style="position:absolute;inset:0;background-image:url(&quot;{{ r.img }}&quot;);background-size:cover;background-position:center;filter:blur(2px);transform:scale(1.05)"></div></sc-if>
+  <div style="position:absolute;inset:0;background:rgba(20,10,5,.72)"></div>
+  <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ closePad }};display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px">
+    <h2 style="margin:0;font-size:{{ closeFs }};font-weight:300;letter-spacing:-1.5px;line-height:1">עכשיו נשאר רק <strong style="font-weight:900">להזמין את הבשר</strong></h2>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="לאתר ההזמנות — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לאתר ההזמנות<i class="ti ti-chevron-left"></i></a>
+  </div>
+</section>
+</main>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;רוסטביף-אנטריקוט-צרפתי&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, data: null, doneBy: {}, copied: false, shop: false, shopVis: false };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    fetch('data/content.json').then(r => r.json()).then(data => this.setState({ data })).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('keydown', this.onEsc); document.documentElement.style.overflow = ''; }
+  openShop() { this.setState({ shop: true, shopVis: false, copied: false }); document.documentElement.style.overflow = 'hidden';
+    this.onEsc = (e) => { if (e.key === 'Escape') this.closeShop(); }; window.addEventListener('keydown', this.onEsc);
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ shopVis: true }))); }
+  closeShop() { window.removeEventListener('keydown', this.onEsc); document.documentElement.style.overflow = ''; this.setState({ shopVis: false }); clearTimeout(this.shT); this.shT = setTimeout(() => this.setState({ shop: false }), 320); }
+  tips = {
+    'רוסטביף-אנטריקוט-צרפתי': 'לתת לנתח לנוח לפחות 10\u00a0דקות לפני הפריסה, כדי לשמור על המיצים.',
+    'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה': 'לפני ההכנה, ייבשו את הדג היטב בעזרת מגבת נייר – כך הציפוי נדבק טוב יותר והקרום יוצא מושלם.',
+    'עוף-בדבש-שכולם-אוהבים': 'הוציאו את העוף מהמקרר כחצי שעה לפני שהוא נכנס לתנור – בשר בטמפרטורת החדר מתבשל באופן אחיד יותר.'
+  };
+  chefs = { 'רוסטביף-אנטריקוט-צרפתי': { src: 'assets/butcher-roast.png', ar: 1.5, crop: 0.88, vis: 1, boost: 1, who: 'יוגב' }, 'עוף-בדבש-שכולם-אוהבים': { src: 'assets/butcher-honey.png', ar: 1.5, crop: 0.82, vis: 1, boost: 1, who: 'אבי' }, 'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה': { src: 'assets/butcher-fish.png', ar: 1024 / 1536, crop: 1, vis: 0.78, boost: 1.18, who: 'אנטון' } };
+  sil = {};
+  loadSil(src) {
+    if (this.sil[src]) return; this.sil[src] = 'loading';
+    const im = new Image();
+    im.onload = () => { const H = 420, W = Math.max(1, Math.round(im.naturalWidth * H / im.naturalHeight)), c = document.createElement('canvas'); c.width = W; c.height = H;
+      const x = c.getContext('2d'); x.drawImage(im, 0, 0, W, H); const d = x.getImageData(0, 0, W, H).data, right = new Int16Array(H).fill(-1);
+      for (let y = 0; y < H; y++) for (let k = W - 1; k >= 0; k--) if (d[(y * W + k) * 4 + 3] > 170) { right[y] = k; break; }
+      this.sil[src] = { W, H, right }; this.forceUpdate(); };
+    im.src = src;
+  }
+  silPoly(g) {
+    const s = this.sil[g.src]; if (!s || s === 'loading') { this.loadSil(g.src); return 'none'; }
+    const pts = ['0px 0px'], step = 4, tol = 6;
+    for (let yw = 0; yw < g.Hw; yw += step) {
+      let mx = -1e9;
+      for (let c = yw - tol; c <= yw + step + tol; c += 2) { const iy = Math.floor((c + g.offY - g.imgT) / g.imgH * s.H); if (iy < 0 || iy >= s.H || s.right[iy] < 0) continue;
+        let cx = Math.min(g.imgL + (s.right[iy] + 1) * g.imgW / s.W, g.clipR); if (cx < g.clipL) continue; if (cx > mx) mx = cx; }
+      const ex = mx > -1e9 ? Math.max(0, Math.min(Math.round(mx - g.offX + g.gap), g.WW - g.minCol)) : 0;
+      pts.push(ex + 'px ' + yw + 'px', ex + 'px ' + Math.min(yw + step, g.Hw) + 'px');
+    }
+    pts.push('0px ' + g.Hw + 'px');
+    return 'polygon(' + pts.join(',') + ')';
+  }
+  tipBoxCb = (el) => {
+    if (this.tbRO) { this.tbRO.disconnect(); this.tbRO = null; }
+    if (!el || !window.ResizeObserver) return;
+    this.tbRO = new ResizeObserver(([e]) => { const v = Math.round(e.contentRect.width); if (v && v !== this.state.tbw) this.setState({ tbw: v }); });
+    this.tbRO.observe(el);
+  };
+  slug() { const s = new URLSearchParams(location.search).get('slug'); return s || this.props.slug || 'רוסטביף-אנטריקוט-צרפתי'; }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100, d = st.data;
+    const all = (d && d.recipes) || [], slug = this.slug();
+    const r0 = all.find(x => x.slug === slug) || all[0] || { title: '', img: '', time: '', diff: '', meat: '', slug: '' };
+    if (!d) { r0.img = ''; }
+    const det = (d && d.recipeDetails[r0.slug]) || null;
+    if (r0.title && document.title.indexOf(r0.title) !== 0) document.title = r0.title + ' — מה על האש? | שלושה קצבים';
+    const meatLabel = r0.meat === 'דג' ? 'דגים' : r0.meat;
+    const meta = [['ti-clock', 'זמן הכנה', r0.time], ['ti-chef-hat', 'דרגת קושי', r0.diff], ['ti-meat', 'סוג הבשר', meatLabel]];
+    if (det && det.method) meta.push(['ti-flame', 'אופן ההכנה', det.method]);
+    const ingT = (det && det.ingredients) || [];
+    const done = st.doneBy[r0.slug] || {}, sk = r0.slug;
+    const ing = ingT.map((t, i) => { const on = !!done[i]; return { t, on: on ? 'true' : 'false', ring: on ? '#EE3A30' : 'rgba(60,35,19,.35)', dot: on ? '#EE3A30' : 'transparent', chk: on ? 1 : 0, deco: on ? 'line-through' : 'none', op: on ? .45 : 1,
+      tog: () => this.setState(s => { const cur = s.doneBy[sk] || {}; return { doneBy: { ...s.doneBy, [sk]: { ...cur, [i]: !cur[i] } } }; }) }; });
+    const steps = ((det && det.steps) || []).map((t, i) => ({ t, n: String(i + 1).padStart(2, '0') }));
+    const cuts = { 'בשר': ['בקר וטלה', 'Frame-237.png', 'מגוון נתחי בשר מובחרים, עסיסיים ואיכותיים. כל נתח נבחר בקפידה, בדגש על רמת היישון, שיוש והטריות.'],
+      'עופות': ['עוף והודו', 'Frame-236.png', 'עופות טריים ללא אנטיביוטיקה, בגידול נקי ומבוקר – כי הבריאות מתחילה בבחירה הנכונה.'],
+      'דגים': ['דגים', 'Frame-235.png', 'מבחר דגים טריים וקפואים, נקיים ומוכנים לבישול – לטעמים ים תיכוניים במיטבם.'] };
+    const ck = ['עוף', 'הודו'].includes(r0.meat) ? 'עופות' : (r0.meat === 'דג' ? 'דגים' : 'בשר');
+    const catImg = { 'בשר': 'assets/cats/meat.png', 'עופות': 'assets/cats/poultry.png', 'דגים': 'assets/cats/fish.png' }[ck];
+    const cutBy = {
+      'רוסטביף-אנטריקוט-צרפתי': ['אנטריקוט', 'assets/cuts/entrecote.png', 'נתח עשיר בשומן תוך־שרירי שנמס בצלייה ומעניק עסיסיות וטעם עמוק. ביישון נכון הוא הופך לרך במיוחד – בדיוק מה שרוסטביף צריך.'],
+      'עוף-בדבש-שכולם-אוהבים': ['כרעיים עוף', 'assets/cuts/chicken-legs.png', 'כרעיים שלמות עם עור – החלק העסיסי של העוף, שנשאר רך גם אחרי צלייה ארוכה בתנור וסופג היטב את הרוטב.'],
+      'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה': ['פילה סלמון', 'assets/cuts/salmon.png', 'פילה סלמון טרי, נקי ומוכן לבישול. עשיר באומגה 3 ושומרים על מרקם רך ועסיסי באפייה קצרה.']
+    }[r0.slug];
+    const cut = cutBy ? { name: cutBy[0], img: cutBy[1], d: cutBy[2] } : { name: cuts[ck][0], img: d ? catImg : '', d: cuts[ck][2] };
+    const related = all.filter(x => x.meat === r0.meat && x.slug !== r0.slug).slice(0, 3).map(x => ({ ...x, href: 'Recipe.dc.html?slug=' + encodeURIComponent(x.slug) }));
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    const tipTxt = this.tips[r0.slug] || (det ? det.tip : '');
+    const c0 = d ? this.chefs[r0.slug] : null;
+    let chef = { src: '', who: '', w: '0px', h: '0px', m: '0', x: '0px', size: 'auto' };
+    if (c0) { const st2 = mob || tab, Hi = Math.round((st2 ? 210 : 432) * c0.boost), Hv = Math.round(Hi * c0.vis), Wv = Math.round(Hi * c0.ar * c0.crop);
+      chef = { src: c0.src, who: c0.who, w: Wv + 'px', h: Hv + 'px', m: (mob || tab) ? '4px 0 0 0' : '-' + Math.round(Hv * 0.32) + 'px 0 0 0', x: (mob || tab) ? '0px' : '-44px', size: 'auto ' + Hi + 'px' }; }
+    const smallTip = (mob || tab) && !!c0 && !!tipTxt;
+    let mt = { on: false, ch: '0px', l: '0px', w: '0px', h: '0px', src: '', size: 'auto', pos: 'center bottom', spH: '0px', sw: '0px', shh: '0px', fl: '0px', mr: '0px', mt: '0px', who: '' };
+    if (smallTip) { const bw = st.tbw || ((pv ? 393 : w) - 40), ch = Math.round(bw * 1.2), vis = c0.vis || 1, crop = c0.crop || 1,
+        Wp = Math.round(bw * (c0.ar > 1 ? 1.15 : 0.85) * (c0.mBoost || 1)), Hp = Math.round(Wp * vis / (c0.ar * crop)), l = Math.min((c0.ar > 1 ? -Math.round(bw * 0.2) - 20 : -Math.round(bw * 0.32)) + (r0.slug === 'סלמון-אפוי-עם-חרדל-מיונז-וכוסברה' ? 80 : 0), bw - 6 - Wp),
+        half = Math.round(bw * 0.25), WW = bw - half - 20, fullW = Math.round(Wp / crop), fullH = Math.round(Hp / vis), shift = Math.round((fullW - Wp) / 2),
+        spH = Math.max(0, ch - 22 - Hp), fl = l - half - shift;
+      const poly = this.silPoly({ src: c0.src, imgL: l + (Wp - fullW) / 2, imgT: ch - Hp, imgW: fullW, imgH: fullH, clipL: l, clipR: Math.min(l + Wp, bw), offX: half, offY: 22, Hw: ch - 22, WW, gap: 40, minCol: 84 });
+      mt = { on: true, fh: (ch - 22) + 'px', poly, ch: ch + 'px', l: l + 'px', w: Wp + 'px', h: Hp + 'px', src: c0.src, size: 'auto ' + Math.round(100 / vis) + '%', pos: vis < 1 ? 'center top' : 'center bottom',
+        spH: spH + 'px', sw: fullW + 'px', shh: fullH + 'px', fl: fl + 'px', mr: Math.min(0, WW - 84 - (fl + fullW)) + 'px', mt: ((ch - Hp) - 22 - spH + (r0.slug === 'רוסטביף-אנטריקוט-צרפתי' ? 26 : 0)) + 'px', who: c0.who }; }
+    let dt = { on: false, bh: '0px', x: '0px', w: '0px', h: '0px', src: '', size: 'auto', fh: '0px', poly: 'none', who: '' };
+    if (!smallTip && c0 && tipTxt) { const bw = st.tbw || 760, Hi = Math.round(432 * c0.boost), Hv = Math.round(Hi * c0.vis), Wv = Math.round(Hi * c0.ar * c0.crop), x = -44,
+        bh = Math.max(Hv - Math.round(Hv * 0.32), 260), half = Math.round(bw * 0.25), fullW = Math.round(Hi * c0.ar);
+      dt = { on: true, bh: bh + 'px', x: x + 'px', w: Wv + 'px', h: Hv + 'px', src: c0.src, size: 'auto ' + Hi + 'px', fh: (bh - 30) + 'px', who: c0.who,
+        poly: this.silPoly({ src: c0.src, imgL: x + (Wv - fullW) / 2, imgT: bh - Hv, imgW: fullW, imgH: Hi, clipL: x, clipR: x + Wv, offX: half, offY: 30, Hw: bh - 30, WW: bw - half - 32, gap: 40, minCol: 120 }) }; }
+    const doneN = ingT.filter((_, i) => done[i]).length, missing = ingT.filter((_, i) => !done[i]), allDone = ingT.length > 0 && doneN === ingT.length, showRest = ingT.length > 0 && !allDone;
+    return {
+      mob, hintTxt: doneN ? doneN + ' מתוך ' + ingT.length + ' כבר בבית' : 'סמנו מה כבר יש בבית', hintFw: doneN ? 700 : 400,
+      showShop: !d || (ingT.length > 0 && !allDone), allDone, missing, missN: missing.length,
+      openShop: () => { const have = ingT.map((_, i) => i).filter(i => done[i]).join(','); const u = new URL('ShoppingList.dc.html', location.href); new URLSearchParams(location.search).forEach((v, k) => { if (k !== 'slug' && k !== 'have') u.searchParams.set(k, v); }); u.searchParams.set('slug', r0.slug); if (have) u.searchParams.set('have', have); else u.searchParams.delete('have'); u.hash = location.hash && location.hash.length > 1 && !/^#[\w-]+$/.test(location.hash) ? location.hash : ''; if (window.top !== window && /claudeusercontent\.com$/.test(location.hostname)) location.assign(u.toString()); else window.open(u.toString(), '_blank', 'noopener'); }, closeShop: () => this.closeShop(), stop: (e) => e.stopPropagation(),
+      shopOn: st.shop, shopOp: st.shopVis ? 1 : 0, shopY: st.shopVis ? '0px' : (mob ? '100%' : '24px'), shopAlign: mob ? 'flex-end' : 'center',
+      shopL: pv ? 'calc(50% - 196.5px)' : '0px', shopW: mob ? '100%' : 'min(560px, calc(100% - 40px))', shopMaxH: mob ? '86vh' : 'min(80vh, 720px)', shopRad: mob ? '22px 22px 0 0' : '18px',
+      shopHeadPad: mob ? '16px 20px 12px' : '28px 30px 16px', shopSide: mob ? '20px' : '30px', shopFootPad: mob ? '16px 20px 20px' : '20px 30px 28px', shopBtnDir: mob ? 'column' : 'row', shopH2: mob ? '1.5rem' : '1.8rem',
+      copyMissing: () => { const txt = r0.title + ' – מה חסר:\n' + missing.map(t => '• ' + t).join('\n'); const ok = () => { this.setState({ copied: true }); clearTimeout(this.cpT); this.cpT = setTimeout(() => this.setState({ copied: false }), 2200); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok).catch(() => { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); });
+        else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); } },
+      tipBoxRef: this.tipBoxCb, mt, dt, deskTip: !!tipTxt && !smallTip && !c0,
+      restRows: showRest ? '1fr' : '0fr', restOp: showRest ? 1 : 0, restTab: showRest ? '0' : '-1', restN: ingT.length - doneN,
+      chef, tipDir: (mob || tab) ? 'column' : 'row', tipAlign: (mob || tab) ? 'stretch' : 'center', tipGap: (mob || tab) ? '0px' : '24px', tipTxtPad: mob ? '22px 20px 0' : (tab ? '26px 26px 0' : '30px 0'), tipIco: mob ? '22px' : '26px', tipHFs: mob ? '1.1rem' : '1.25rem',
+      btnRowW: mob ? '100%' : 'auto', tipTxtFlex: (!mob && !tab && c0) ? '0 0 calc(50% - 32px)' : '1', 
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      r: { ...r0, meatLabel }, meta: meta.map(([icon, k, v]) => ({ icon, k, v })), ing, steps, hasIng: !d || ingT.length > 0, noData: !!d && !ingT.length, tip: tipTxt,
+      copy: () => { const txt = r0.title + '\n\nמצרכים:\n' + ingT.map(t => '• ' + t).join('\n'); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => { this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2200); }).catch(() => {}); },
+      copyLabel: st.copied ? 'הרשימה הועתקה!' : 'העתקת רשימת החוסרים', copyIcon: st.copied ? 'ti-check' : 'ti-copy',
+      cut, related, hasRel: related.length > 0, side,
+      hdrH: mob ? '68px' : '82px', heroPad: mob ? '0 20px 50px' : '50px ' + side + ' 90px', heroCols: mob ? '1fr' : (tab ? '1fr 1fr' : '1fr 1.15fr'), heroGap: mob ? '24px' : '60px',
+      textOrder: mob ? 2 : 1, imgOrder: mob ? 1 : 2, imgAspect: mob ? '4/3' : '5/4', imgBleed: mob ? '-20px' : '0', h1Fs: mob ? '2.5rem' : 'clamp(3rem,4.6vw,4.8rem)',
+      bodyPad: mob ? '0 20px 60px' : '0 ' + side + ' 110px', bodyCols: mob ? '1fr' : (tab ? '1fr 1.4fr' : '420px 1fr'), bodyGap: mob ? '50px' : '80px', asidePos: mob ? 'static' : 'sticky', boxPad: mob ? '24px 20px 14px' : '34px 32px 22px',
+      h2Fs: mob ? '2.1rem' : 'clamp(2.2rem,3vw,2.9rem)', stepsMb: mob ? '16px' : '26px', stepCols: mob ? '44px 1fr' : '70px 1fr', stepGap: mob ? '12px' : '20px', stepPad: mob ? '20px 0' : '28px 0',
+      numFs: mob ? '1.6rem' : '2.2rem', stepFs: mob ? '1.08rem' : '1.15rem',
+      tipMt: mob ? '36px' : '90px', tipPad: (mob || tab) ? '0' : (c0 ? '0 32px 0 0' : '0 32px'), tipFs: mob ? '1.12rem' : '1.3rem',
+      secMb: mob ? '60px' : '110px', cutCols: mob ? '1fr' : '1fr 1fr', cutImgH: mob ? '220px' : '380px', boxPad2: mob ? '28px 22px 32px' : 'clamp(36px,4vw,60px)', cutFs: mob ? '2rem' : '2.6rem',
+      relPad: mob ? '60px 20px' : '100px ' + side, relDisp: mob ? 'flex' : 'grid', relGap: mob ? '14px' : '30px', relBasis: mob ? '80%' : 'auto', bleed: mob ? '-20px' : '0', bleedPad: mob ? '20px' : '0',
+      closeH: mob ? '360px' : '440px', closePad: mob ? '50px 20px' : '70px ' + side, closeFs: mob ? '2.2rem' : 'clamp(2.6rem,4vw,4rem)'
+    };
+  }
+}
+</script>
+</body>
+</html>

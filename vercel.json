@@ -1,0 +1,9 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "headers": [
+    { "source": "/(.*)\\.mp4", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/data/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }] }
+  ]
+}

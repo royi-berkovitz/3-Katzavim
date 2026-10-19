@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הנתחים שלנו | שלושה קצבים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="cuts" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main>
+<section data-screen-label="01 Hero" style="position:relative;margin-top:{{ hdrH }};min-height:{{ heroH }};display:flex;align-items:flex-end;overflow:hidden;background:#24140a;color:#f5f5f5">
+  <img src="{{ c.img }}" alt="{{ c.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:{{ heroGrad }}"></div>
+  <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }};display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+    <nav aria-label="פירורי לחם" style="display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.5)">
+      <a href="Cuts.dc.html" style="color:#fff;border-bottom:1px solid currentColor">הנתחים שלנו</a>
+      <i class="ti ti-chevron-left" style="font-size:13px;opacity:.7"></i>
+      <span>{{ c.name }}</span>
+    </nav>
+    <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:900;letter-spacing:-2px;line-height:.95;text-shadow:0 4px 30px rgba(0,0,0,.45)">{{ c.title }}</h1>
+    <p style="margin:0;max-width:560px;font-size:{{ posFs }};font-weight:300;line-height:1.35;text-wrap:pretty;text-shadow:0 2px 16px rgba(0,0,0,.5)">{{ c.pos }}</p>
+  </div>
+</section>
+
+<section data-screen-label="02 Cuts" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:{{ introCols }};gap:{{ introGap }};align-items:end;margin-bottom:{{ introMb }}">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">איזה נתח <strong style="font-weight:900">מתאים לכם?</strong></h2>
+      <p style="margin:0;max-width:560px;font-size:{{ pFs }};font-weight:300;line-height:1.55;text-wrap:pretty">{{ c.lead }}</p>
+    </div>
+    <div role="group" aria-label="סוג בישול" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 {{ bleed }} {{ chipsMb }};padding:0 {{ bleedPad }}">
+      <sc-for list="{{ chips }}" as="f" hint-placeholder-count="4">
+        <button onClick="{{ f.pick }}" aria-pressed="{{ f.on }}" style="flex:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};font:inherit;font-size:.95rem;font-weight:600;white-space:nowrap;transition:all .25s">{{ f.label }}<span style="font-size:.78rem;font-weight:500;opacity:.65">{{ f.n }}</span></button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ cutCols }};gap:{{ cutGap }}">
+      <sc-for list="{{ cuts }}" as="k" hint-placeholder-count="4">
+        <a href="{{ k.href }}" onMouseEnter="{{ k.enter }}" onMouseLeave="{{ k.leave }}" style="display:flex;flex-direction:column;background:#fff;border-radius:14px;overflow:hidden;color:#3c2313">
+          <div style="position:relative;aspect-ratio:{{ cutAr }};overflow:hidden;background:#e7e1db">
+            <img src="{{ k.img }}" alt="{{ k.recipe }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ k.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
+            <sc-if value="{{ k.badge }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;top:10px;right:10px;padding:5px 11px;border-radius:999px;background:#EE3A30;color:#fff;font-size:.75rem;font-weight:700">{{ k.badge }}</span>
+            </sc-if>
+          </div>
+          <div style="padding:{{ cutPad }};display:flex;flex-direction:column;gap:6px;flex:1">
+            <strong style="font-size:{{ cutFs }};font-weight:900;letter-spacing:-.5px;line-height:1.05">{{ k.name }}</strong>
+            <span style="font-size:{{ cutDescFs }};font-weight:400;line-height:1.35;opacity:.8">{{ k.tagsLabel }}</span>
+            <span style="display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:8px;font-size:{{ cutDescFs }};font-weight:600;color:#EE3A30">{{ k.ctaLabel }}<i class="ti ti-arrow-left"></i></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:{{ ordMt }}">
+      <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="להזמנה אונליין — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 30px;width:{{ fullW }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30">להזמנת {{ c.name }} אונליין<i class="ti ti-chevron-left"></i></a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 How to choose" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ edCols }};background:#3c2313;color:#f5f5f5;border-radius:{{ edRad }};overflow:hidden;margin-inline:{{ edBleed }}">
+    <div style="position:relative;min-height:{{ edImgH }};background:#24140a">
+      <img src="{{ edImg }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    </div>
+    <div style="padding:{{ edPad }};display:flex;flex-direction:column;gap:22px;justify-content:center">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">איך לבחור <strong style="font-weight:900">את הנתח הנכון?</strong></h2>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-top:1px solid rgba(245,245,245,.14)">
+            <span style="font-size:1.5rem;font-weight:900;letter-spacing:-.5px;line-height:1;color:#EE3A30">{{ p.num }}</span>
+            <div style="display:flex;flex-direction:column;gap:4px"><strong style="font-size:1.15rem;font-weight:700">{{ p.t }}</strong><span style="font-size:.98rem;font-weight:300;line-height:1.5">{{ p.d }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <a href="Tips.dc.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600;font-size:1rem;color:#f5f5f5;border-bottom:1.5px solid currentColor" style-hover="color:#EE3A30">לכל הטיפים מהקצבים<i class="ti ti-arrow-left"></i></a>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ hasRecipes }}" hint-placeholder-val="{{ true }}">
+<section id="recipes" data-screen-label="04 Butcher recommends" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:{{ h2Mb }}">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">הקצב <strong style="font-weight:900">ממליץ</strong></h2>
+      <a href="Recipes.dc.html" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:1rem;border-bottom:1.5px solid currentColor;padding-bottom:3px">לכל המתכונים<i class="ti ti-arrow-left"></i></a>
+    </div>
+    <div style="display:{{ recDisp }};grid-template-columns:repeat(3,minmax(0,1fr));gap:{{ recGap }};overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 {{ bleed }};padding:0 {{ bleedPad }}">
+      <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="3">
+        <a href="{{ r.href }}" onMouseEnter="{{ r.enter }}" onMouseLeave="{{ r.leave }}" style="flex:0 0 {{ recBasis }};scroll-snap-align:center;display:flex;flex-direction:column;color:#3c2313">
+          <div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:14px;background:#e7e1db">
+            <img src="{{ r.img }}" alt="{{ r.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ r.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
+          </div>
+          <h3 style="margin:14px 0 0;padding-bottom:10px;border-bottom:1px solid rgba(60,35,19,.18);font-size:1.25rem;font-weight:500;letter-spacing:-.3px;line-height:1.2;text-wrap:pretty">{{ r.title }}</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:.88rem">
+            <span style="display:flex;align-items:center;gap:5px"><i class="ti ti-clock" style="font-size:15px;opacity:.7"></i>{{ r.time }}</span>
+            <span style="display:flex;align-items:center;gap:5px"><i class="ti ti-chef-hat" style="font-size:15px;opacity:.7"></i>{{ r.diff }}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section data-screen-label="05 Related categories" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <h2 style="margin:0 0 {{ h2Mb }};font-size:{{ h2sFs }};letter-spacing:-.8px;font-weight:400;line-height:1.05">עוד <strong style="font-weight:900">קטגוריות</strong></h2>
+    <div style="display:{{ othDisp }};grid-template-columns:repeat(4,minmax(0,1fr));gap:{{ othGap }};overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 {{ bleed }};padding:0 {{ bleedPad }}">
+      <sc-for list="{{ others }}" as="o" hint-placeholder-count="4">
+        <a href="{{ o.href }}" target="{{ o.target }}" style="flex:0 0 {{ othBasis }};scroll-snap-align:center;position:relative;display:flex;align-items:flex-end;aspect-ratio:4/3;overflow:hidden;border-radius:14px;background:#3c2313;color:#fff;padding:18px">
+          <img src="{{ o.img }}" alt="{{ o.name }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(36,20,10,.05) 30%, rgba(36,20,10,.85))"></div>
+          <span style="position:relative;display:flex;align-items:center;gap:8px;font-size:1.3rem;font-weight:900;letter-spacing:-.4px">{{ o.name }}<i class="ti ti-arrow-left" style="font-size:17px"></i></span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="06 Final CTA" style="padding:{{ finOuter }}">
+  <div style="position:relative;max-width:1440px;margin:0 auto;background:#3c2313;color:#f5f5f5;border-radius:14px;display:flex;flex-direction:{{ midDir }};align-items:{{ midAlign }};justify-content:space-between;gap:22px;padding:{{ midPad }};overflow:hidden">
+    <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-60px;top:50%;width:260px;height:auto;margin-top:-130px;opacity:.07;pointer-events:none;animation:spin 70s linear infinite">
+    <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+      <p style="margin:0;font-size:{{ midFs }};font-weight:300;letter-spacing:-.8px;line-height:1.1">לא בטוחים איזה נתח <strong style="font-weight:900">מתאים?</strong></p>
+      <span style="font-size:1.02rem;font-weight:300">הקצבים שלנו ישמחו לעזור לכם לבחור.</span>
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=972515254100" target="_blank" rel="noopener" data-cur="white" aria-label="דברו עם הקצב בוואטסאפ" style="position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 30px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;width:{{ fullW }};transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff"><i class="ti ti-brand-whatsapp" style="font-size:20px"></i>דברו עם הקצב</a>
+  </div>
+</section>
+</main>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;cat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;beef&quot;,&quot;options&quot;:[&quot;beef&quot;,&quot;poultry&quot;,&quot;lamb&quot;,&quot;fish&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, data: null, hK: -1, hR: -1, tag: 'הכל' };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    fetch('data/content.json').then(r => r.json()).then(data => this.setState({ data })).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  catId() { return new URLSearchParams(location.search).get('cat') || this.props.cat || 'beef'; }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100, d = st.data;
+    const all = (d && d.categories) || {}, id = all[this.catId()] ? this.catId() : 'beef';
+    const c = all[id] || { name: '', title: '', lead: '', pos: '', img: '', points: [], cuts: [], meat: [] };
+    if (c.title && document.title.indexOf(c.title) !== 0) document.title = c.title + ' — הנתחים שלנו | שלושה קצבים';
+    const recs = (d && d.recipes) || [], bySlug = (s) => recs.find(r => r.slug === s);
+    const href = (s) => 'Recipe.dc.html?slug=' + encodeURIComponent(s);
+    const tagSet = []; c.cuts.forEach(k => (k[2] || []).forEach(t => { if (!tagSet.includes(t)) tagSet.push(t); }));
+    const tag = tagSet.includes(st.tag) ? st.tag : 'הכל';
+    const chip = (on) => ({ border: on ? '#3c2313' : 'rgba(60,35,19,.25)', bg: on ? '#3c2313' : 'transparent', color: on ? '#f5f5f5' : '#3c2313', on: on ? 'true' : 'false' });
+    const chips = ['הכל', ...tagSet].map(t => ({ label: t, n: t === 'הכל' ? c.cuts.length : c.cuts.filter(k => (k[2] || []).includes(t)).length, ...chip(tag === t), pick: () => this.setState({ tag: t, hK: -1 }) }));
+    const cuts = c.cuts.filter(k => tag === 'הכל' || (k[2] || []).includes(tag)).map(([name, slug, tg], i) => { const r = bySlug(slug) || { title: '', img: '' }, h = st.hK === i && !mob;
+      return { name, recipe: r.title, img: r.img, href: slug ? href(slug) : 'Recipes.dc.html', scale: h ? 1.06 : 1, badge: i === 0 && tag === 'הכל' ? 'הקצב ממליץ' : '',
+        tagsLabel: (tg || []).join(' · '), ctaLabel: mob ? 'למתכון' : 'למתכון: ' + r.title,
+        enter: () => this.setState({ hK: i }), leave: () => this.setState({ hK: -1 }) }; });
+    const firstSlugs = c.cuts.map(k => k[1]);
+    const recipes = recs.filter(r => c.meat.includes(r.meat)).sort((a, b) => (firstSlugs.includes(b.slug) ? 1 : 0) - (firstSlugs.includes(a.slug) ? 1 : 0)).slice(0, 3)
+      .map((r, i) => ({ ...r, href: href(r.slug), scale: st.hR === i && !mob ? 1.06 : 1, enter: () => this.setState({ hR: i }), leave: () => this.setState({ hR: -1 }) }));
+    const others = Object.entries(all).filter(([k]) => k !== id).map(([k, o]) => ({ name: o.name, img: o.img, href: 'Category.dc.html?cat=' + k, target: '_self' }));
+    const pantry = ((d && d.moreCats) || []).find(m => m[0] === 'מוצרי מזווה');
+    if (pantry) others.push({ name: pantry[0], img: pantry[1], href: 'https://orders.3katzavim.co.il/', target: '_blank' });
+    const edR = recs.find(r => r.slug === (c.cuts[1] || c.cuts[0] || [])[1]);
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    return {
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      c, chips, cuts, recipes, hasRecipes: !d || recipes.length > 0, others, edImg: edR ? edR.img : c.img,
+      points: c.points.map(([t, ds], i) => ({ t, d: ds, num: String(i + 1).padStart(2, '0') })),
+      hdrH: mob ? '66px' : '100px', heroH: mob ? '380px' : 'min(62vh,560px)',
+      heroGrad: mob ? 'linear-gradient(180deg, rgba(20,10,5,.2) 0%, rgba(20,10,5,.5) 45%, rgba(20,10,5,.92) 100%)' : 'linear-gradient(270deg, rgba(20,10,5,.92) 0%, rgba(20,10,5,.65) 40%, rgba(20,10,5,.15) 75%, rgba(20,10,5,.05) 100%)',
+      heroPad: mob ? '0 20px 28px' : '0 ' + side + ' clamp(50px,8vh,90px)', h1Fs: mob ? '3.4rem' : 'clamp(4.5rem,7vw,7.5rem)', posFs: mob ? '1.1rem' : '1.4rem',
+      secPad: mob ? '52px 20px 0' : '100px ' + side + ' 0', h2Fs: mob ? '2.1rem' : 'clamp(2.2rem,3vw,2.9rem)', h2sFs: mob ? '1.8rem' : '2.2rem', h2Mb: mob ? '20px' : '32px', pFs: mob ? '1rem' : '1.1rem',
+      introCols: mob ? '1fr' : '1fr 1fr', introGap: mob ? '12px' : '60px', introMb: mob ? '22px' : '32px', chipsMb: mob ? '20px' : '30px', bleed: mob ? '-20px' : '0', bleedPad: mob ? '20px' : '0',
+      cutCols: mob ? 'repeat(2,minmax(0,1fr))' : (tab ? 'repeat(3,minmax(0,1fr))' : 'repeat(' + Math.max(Math.min(c.cuts.length, 4), 2) + ',minmax(0,1fr))'), cutGap: mob ? '10px' : '22px', cutAr: mob ? '1/1' : '4/3',
+      cutPad: mob ? '12px 12px 14px' : '18px 20px 22px', cutFs: mob ? '1.2rem' : '1.6rem', cutDescFs: mob ? '.82rem' : '.92rem', ordMt: mob ? '26px' : '40px', fullW: mob ? '100%' : 'auto',
+      edCols: mob ? '1fr' : '1fr 1fr', edRad: mob ? '0' : '14px', edBleed: mob ? '-20px' : 'auto', edImgH: mob ? '240px' : '440px', edPad: mob ? '28px 20px 32px' : 'clamp(36px,4vw,64px)',
+      recDisp: mob ? 'flex' : 'grid', recGap: mob ? '14px' : '30px', recBasis: mob ? '82%' : 'auto',
+      othDisp: mob ? 'flex' : 'grid', othGap: mob ? '10px' : '20px', othBasis: mob ? '62%' : 'auto',
+      finOuter: mob ? '52px 20px 64px' : '100px ' + side + ' 110px', midDir: mob ? 'column' : 'row', midAlign: mob ? 'stretch' : 'center', midPad: mob ? '32px 22px' : '50px 60px', midFs: mob ? '1.8rem' : 'clamp(1.8rem,2.6vw,2.6rem)'
+    };
+  }
+}
+</script>
+</body>
+</html>

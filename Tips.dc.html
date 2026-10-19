@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>טיפים מהקצבים | שלושה קצבים</title>
+<meta name="description" content="הידע הקטן שעושה את ההבדל הגדול בצלחת – טיפים מהקצבים של שלושה קצבים.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700;900&amp;family=Heebo:wght@300;400;500;600;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;background:#f5f5f5;color:#3c2313;font-family:'Google Sans','Heebo','Assistant',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#EE3A30}
+a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!important}
+::-webkit-scrollbar{width:0;height:0}
+:focus-visible{outline:2px solid #EE3A30;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
+<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+
+<main style="padding-top:{{ hdrH }}">
+<section data-screen-label="01 Hero" style="position:relative;overflow:hidden;background:#3c2313;color:#f5f5f5">
+  <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"><img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;right:{{ stampR }};top:{{ stampT }};width:{{ stampW }};height:auto;opacity:.07;animation:spin 80s linear infinite"></div>
+  <div style="position:relative;z-index:1;max-width:1440px;margin:0 auto;min-height:{{ heroH }};padding:{{ heroPad }};display:flex;flex-direction:column;justify-content:{{ heroJust }};align-items:flex-start;gap:18px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#fff"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מהדלפק של שלושה קצבים</div>
+    <h1 style="margin:0;max-width:{{ h1Max }};font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.95">טיפים <strong style="font-weight:900">מהקצבים</strong></h1>
+    <p style="margin:0;max-width:{{ leadMax }};font-size:{{ leadFs }};font-weight:300;line-height:1.45;text-wrap:pretty">הידע הקטן שעושה את ההבדל הגדול בצלחת. מה שאנחנו אומרים ללקוחות ליד הדלפק – עכשיו במקום אחד.</p>
+    <a href="#list" onClick="{{ toList }}" style="display:inline-flex;align-items:center;gap:10px;margin-top:8px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לכל הטיפים<i class="ti ti-arrow-down"></i></a>
+  </div>
+  <img src="assets/butcher-roast.png" alt="יוגב, קצב בשלושה קצבים, מחזיק קרש עם רוסטביף פרוס" style="position:absolute;left:{{ heroImgL }};bottom:0;height:{{ heroImgH }};width:{{ heroImgW }};max-width:none;pointer-events:none">
+</section>
+
+<section data-screen-label="02 Featured tip" style="padding:{{ secPad }}">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ featCols }};gap:{{ featGap }};align-items:center">
+    <div style="position:relative;aspect-ratio:{{ featAr }};overflow:hidden;background:#e7e1db;border-radius:14px">
+      <img src="https://3katzavim.co.il/wp-content/uploads/2026/01/רוסטביף-אנטריקוט-צרפתי.jpg" alt="רוסטביף אנטריקוט פרוס" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#EE3A30"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>הטיפ שהכי חשוב לנו</div>
+      <h2 style="margin:0;font-size:{{ featH2 }};font-weight:900;letter-spacing:-1.2px;line-height:1">{{ feat.title }}</h2>
+      <p style="margin:0;max-width:560px;font-size:{{ featFs }};font-weight:300;line-height:1.55;text-wrap:pretty">{{ feat.excerpt }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;width:{{ btnRowW }}">
+        <a href="Recipe.dc.html?slug=%D7%A8%D7%95%D7%A1%D7%98%D7%91%D7%99%D7%A3-%D7%90%D7%A0%D7%98%D7%A8%D7%99%D7%A7%D7%95%D7%98-%D7%A6%D7%A8%D7%A4%D7%AA%D7%99" style="flex:{{ btnFlex }};display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#3c2313;color:#f5f5f5">למתכון רוסטביף<i class="ti ti-chevron-left"></i></a>
+        <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="להזמנת נתח אנטריקוט — מעבר לאתר ההזמנות" style="flex:{{ btnFlex }};display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30">להזמנת נתח אנטריקוט<i class="ti ti-chevron-left"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="list" ref="{{ listRef }}" data-screen-label="03 All tips" style="padding:{{ listPad }};scroll-margin-top:{{ hdrH }}">
+  <div style="max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px">
+      <h2 style="margin:0;font-size:{{ h2Fs }};letter-spacing:-1px;font-weight:400;line-height:1.05">כל <strong style="font-weight:900">הטיפים</strong></h2>
+      <div aria-live="polite" style="font-size:1rem;font-weight:500">{{ countLabel }}</div>
+    </div>
+    <div role="group" aria-label="נושא" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 {{ bleed }} {{ chipsMb }};padding:0 {{ bleedPad }}">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+        <button onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="flex:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:inherit;font-size:.95rem;font-weight:600;white-space:nowrap;transition:all .25s">{{ c.label }}<span style="font-size:.78rem;font-weight:500;opacity:.65">{{ c.n }}</span></button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:{{ gridGap }}">
+      <sc-for list="{{ cards }}" as="t" hint-placeholder-count="6">
+        <article onMouseEnter="{{ t.enter }}" onMouseLeave="{{ t.leave }}" style="position:relative;display:flex;flex-direction:column;gap:14px;padding:{{ cardPad }};background:{{ t.bg }};color:{{ t.ink }};border-radius:14px;overflow:hidden;min-height:{{ cardMinH }};transition:background .35s, color .35s">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <span style="font-size:{{ numFs }};font-weight:900;letter-spacing:-1px;line-height:1;color:{{ t.num }};transition:color .35s">{{ t.n }}</span>
+            <span style="padding:6px 12px;border-radius:999px;border:1px solid {{ t.tagBorder }};font-size:.78rem;font-weight:600;transition:border-color .35s">{{ t.cat }}</span>
+          </div>
+          <h3 style="margin:6px 0 4px;font-size:{{ cardH3 }};font-weight:900;letter-spacing:-.6px;line-height:1.15;text-wrap:balance">{{ t.title }}</h3>
+          <p style="margin:0;flex:1;font-size:1rem;font-weight:300;line-height:1.55;text-wrap:pretty">{{ t.excerpt }}</p>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:{{ tBtnGap }};margin-top:4px">
+            <sc-if value="{{ t.prod }}" hint-placeholder-val="{{ true }}">
+              <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="{{ t.prod.label }} — מעבר לאתר ההזמנות" style="flex:{{ tBtnFlex }};display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:{{ t.pBg }};color:{{ t.pInk }};font-weight:700;font-size:.9rem;white-space:nowrap;transition:background .3s, color .3s">{{ t.prod.label }}<i class="ti ti-chevron-left"></i></a>
+            </sc-if>
+            <sc-if value="{{ t.rec }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ t.rec.href }}" style="flex:{{ tBtnFlex }};display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:{{ rPad }};border-radius:999px;border:{{ rBorderW }} solid {{ t.rBorder }};color:{{ t.rInk }};font-weight:600;font-size:.9rem;white-space:nowrap;transition:border-color .3s, color .3s">{{ t.rec.label }}<i class="ti ti-chevron-left"></i></a>
+            </sc-if>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 Closing CTA" style="padding:0 {{ side }} {{ closeMb }}">
+  <div style="position:relative;max-width:1440px;margin:0 auto;background:#3c2313;color:#f5f5f5;border-radius:14px;display:flex;flex-direction:{{ midDir }};align-items:{{ midAlign }};justify-content:space-between;gap:22px;padding:{{ midPad }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;border-radius:14px;pointer-events:none"><img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:{{ ctaStampL }};top:50%;width:260px;height:auto;margin-top:-130px;opacity:.07;animation:spin 70s linear infinite"></div>
+    <img src="assets/butcher-cta.png" alt="קצב משלושה קצבים מחזיק נתח טומהוק" style="position:absolute;left:{{ ctaImgL }};bottom:0;height:{{ ctaImgH }};width:auto;max-width:none;pointer-events:none">
+    <p style="position:relative;margin:0;font-size:{{ midFs }};font-weight:300;letter-spacing:-.8px;line-height:1.1;padding-left:{{ ctaTxtPadL }}">את הידע קיבלתם. <strong style="font-weight:900">עכשיו לבשר.</strong></p>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="להזמנה אונליין — מעבר לאתר ההזמנות" style="position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;white-space:nowrap;margin-left:{{ ctaBtnML }};transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">להזמנה אונליין<i class="ti ti-chevron-left"></i></a>
+  </div>
+</section>
+</main>
+
+<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, data: null, cat: 'הכל', hT: -1 };
+  listRef = React.createRef();
+  cats = { 'ייבוש הבשר לפני הצלייה': 'הכנה וצלייה', 'בשר בקר – תזונה וערכים': 'להכיר את הבשר', 'בשר בטמפרטורת החדר': 'הכנה וצלייה', 'לא לזרוק שומן!': 'להכיר את הבשר', 'מלח רק בסוף!': 'הכנה וצלייה', 'ניחוחות של עץ': 'הכנה וצלייה', 'צלי מושלם – תנו לבשר לנוח': 'הכנה וצלייה' };
+  links = {
+    'ייבוש הבשר לפני הצלייה': { rec: ['רוסטביף-אנטריקוט-צרפתי', 'למתכון רוסטביף'], prod: 'אנטריקוט' },
+    'בשר בקר – תזונה וערכים': { rec: ['מרק-בשר-תימני', 'למתכון מרק בשר תימני'], prod: 'בשר בקר' },
+    'בשר בטמפרטורת החדר': { rec: ['פיקנייה-מיוחדת', 'למתכון פיקנייה'], prod: 'פיקנייה' },
+    'לא לזרוק שומן!': { rec: ['אצבעות-אנטריקוט', 'למתכון אצבעות אנטריקוט'], prod: 'סינטה' },
+    'מלח רק בסוף!': { rec: ['רצועות-סינטה-עם-פלפלים-צבעוניים', 'למתכון רצועות סינטה'], prod: 'סטייק סינטה' },
+    'ניחוחות של עץ': { rec: ['נתח-אונטריב-ועצמות-מח-בתנור', 'למתכון אונטריב'], prod: 'אונטריב' },
+    'צלי מושלם – תנו לבשר לנוח': { rec: ['רוסטביף-אנטריקוט-צרפתי', 'למתכון רוסטביף'], prod: 'נתח אנטריקוט' }
+  };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    fetch('data/content.json').then(r => r.json()).then(data => this.setState({ data })).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
+    const tipsAll = ((st.data && st.data.tips) || []).map((t, i) => ({ ...t, i, cat: this.cats[t.title] || 'הכנה וצלייה' }));
+    const tips = tipsAll.filter(t => t.title.indexOf('לנוח') < 0);
+    const featT = tipsAll.find(t => t.title.indexOf('לנוח') > -1) || { title: 'צלי מושלם – תנו לבשר לנוח', excerpt: '' };
+    const chip = (on) => ({ border: on ? '#3c2313' : 'rgba(60,35,19,.25)', bg: on ? '#3c2313' : 'transparent', color: on ? '#f5f5f5' : '#3c2313', on: on ? 'true' : 'false' });
+    const chips = ['הכל', 'הכנה וצלייה', 'להכיר את הבשר'].map(c => ({ label: c, n: c === 'הכל' ? tips.length : tips.filter(t => t.cat === c).length, ...chip(st.cat === c), pick: () => this.setState({ cat: c }) }));
+    const list = tips.filter(t => st.cat === 'הכל' || t.cat === st.cat);
+    const cards = list.map((t, k) => { const on = st.hT === k && !mob, L = this.links[t.title] || {}, r = L.rec;
+      return { title: t.title, excerpt: t.excerpt, cat: t.cat, n: String(t.i + 1).padStart(2, '0'),
+        bg: on ? '#3c2313' : '#fff', ink: on ? '#f5f5f5' : '#3c2313', num: '#EE3A30', tagBorder: on ? 'rgba(245,245,245,.35)' : 'rgba(60,35,19,.2)', link: on ? '#f5f5f5' : '#EE3A30',
+        rec: r ? { href: 'Recipe.dc.html?slug=' + encodeURIComponent(r[0]), label: r[1] } : null,
+        prod: L.prod ? { label: 'להזמנת ' + L.prod } : null, pBg: on ? '#fff' : '#EE3A30', pInk: on ? '#EE3A30' : '#fff', rBorder: on ? 'rgba(245,245,245,.6)' : '#3c2313', rInk: mob ? '#EE3A30' : (on ? '#f5f5f5' : '#3c2313'),
+        enter: () => this.setState({ hT: k }), leave: () => this.setState({ hT: -1 }) }; });
+    const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
+    return {
+      forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
+      hdrH: mob ? '66px' : '100px', side,
+      heroH: mob ? '620px' : 'min(72vh,640px)', heroPad: mob ? '44px 20px 300px' : '0 ' + side, heroJust: mob ? 'flex-start' : 'center',
+      h1Max: mob ? '100%' : (tab ? 'calc(100% - 420px)' : '50%'), h1Fs: mob ? '3.4rem' : 'clamp(4.5rem,7vw,7.5rem)', leadMax: mob ? '100%' : (tab ? 'calc(100% - 420px)' : '520px'), leadFs: mob ? '1.05rem' : '1.25rem',
+      heroImgL: mob ? '-60px' : 'max(-40px,calc((100% - 1440px) / 2 - 40px))', heroImgH: mob ? '300px' : (tab ? 'min(70%,380px)' : 'auto'), heroImgW: (mob || tab) ? 'auto' : 'min(44%,680px)',
+      stampW: mob ? '300px' : '520px', stampR: mob ? '-120px' : '-140px', stampT: mob ? '-100px' : '-160px',
+      toList: (e) => { e.preventDefault(); const el = this.listRef.current; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (mob ? 66 : 100), behavior: 'smooth' }); },
+      secPad: mob ? '56px 20px 0' : '110px ' + side + ' 0', featCols: mob ? '1fr' : '1.1fr 1fr', featGap: mob ? '26px' : '70px', featAr: mob ? '4/3' : '5/4',
+      featH2: mob ? '2rem' : 'clamp(2.4rem,3.4vw,3.4rem)', featFs: mob ? '1.08rem' : '1.2rem', feat: featT, btnRowW: mob ? '100%' : 'auto', btnFlex: mob ? '1 1 100%' : 'none',
+      listRef: this.listRef, listPad: mob ? '64px 20px 64px' : '110px ' + side + ' 110px', h2Fs: mob ? '2.2rem' : 'clamp(2.2rem,3vw,2.9rem)',
+      countLabel: st.data ? list.length + ' טיפים' : '', chips, bleed: mob ? '-20px' : '0', bleedPad: mob ? '20px' : '0', chipsMb: mob ? '26px' : '40px',
+      gridCols: mob ? '1fr' : (tab ? 'repeat(2,minmax(0,1fr))' : 'repeat(3,minmax(0,1fr))'), gridGap: mob ? '14px' : '24px', cards,
+      tBtnFlex: mob ? '1 1 100%' : '1 1 auto', tBtnGap: mob ? '2px' : '8px', rPad: mob ? '0' : '0 18px', rBorderW: mob ? '0' : '1.5px', cardPad: mob ? '24px 22px' : '30px 28px', cardMinH: mob ? '0px' : '300px', numFs: mob ? '2rem' : '2.6rem', cardH3: mob ? '1.5rem' : '1.7rem',
+      closeMb: mob ? '64px' : '110px', midDir: mob ? 'column' : 'row', midAlign: mob ? 'flex-start' : 'center', midPad: mob ? '34px 24px 230px' : '54px 60px',
+      midFs: mob ? '1.8rem' : 'clamp(1.8rem,2.6vw,2.6rem)', ctaImgL: mob ? '-45px' : '20px', ctaImgH: mob ? '339px' : '300px', ctaTxtPadL: mob ? '0' : '0',
+      ctaBtnML: mob ? '0' : '300px', ctaStampL: mob ? '-60px' : '40%'
+    };
+  }
+}
+</script>
+</body>
+</html>
