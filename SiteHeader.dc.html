@@ -78,9 +78,9 @@
 </sc-if>
 
 <sc-if value="{{ phone }}" hint-placeholder-val="{{ false }}">
-  <div dir="rtl" style="position:fixed;z-index:180;left:{{ fxBar }};right:{{ fxBar }};bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;transform:translateY({{ barY }});transition:transform .45s cubic-bezier(.2,.7,.2,1)">
-    <a href="https://api.whatsapp.com/send?phone=972515254100" target="_blank" rel="noopener" aria-label="וואטסאפ" style="flex:none;width:56px;height:56px;border-radius:50%;background:#3c2313;color:#f5f5f5;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(20,10,5,.28)"><i class="ti ti-brand-whatsapp" style="font-size:26px"></i></a>
-    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" aria-label="להזמנה בקליק — מעבר לאתר ההזמנות" style="flex:1;height:56px;border-radius:999px;background:#EE3A30;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 18px;font-size:1.08rem;font-weight:700;letter-spacing:-.2px;box-shadow:0 10px 26px rgba(238,58,48,.35)"><span>להזמנה בקליק</span><i class="ti ti-chevron-left" style="font-size:22px"></i></a>
+  <div dir="rtl" style="position:fixed;z-index:180;left:{{ fxBar }};right:{{ fxBar }};bottom:calc({{ barGap }} + env(safe-area-inset-bottom));display:flex;gap:8px;transform:translateY({{ barY }});transition:transform .45s cubic-bezier(.2,.7,.2,1)">
+    <a href="https://api.whatsapp.com/send?phone=972515254100" target="_blank" rel="noopener" aria-label="וואטסאפ" style="flex:none;width:{{ barH }};height:{{ barH }};border-radius:50%;background:#3c2313;color:#f5f5f5;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(20,10,5,.28)"><i class="ti ti-brand-whatsapp" style="font-size:{{ barIc }}"></i></a>
+    <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" aria-label="להזמנה בקליק — מעבר לאתר ההזמנות" style="flex:1;height:{{ barH }};border-radius:999px;background:#EE3A30;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 18px;font-size:{{ barFs }};font-weight:700;letter-spacing:-.2px;box-shadow:0 10px 26px rgba(238,58,48,.35)"><span>להזמנה בקליק</span><i class="ti ti-chevron-left" style="font-size:22px"></i></a>
   </div>
 </sc-if>
 <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
@@ -105,6 +105,28 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('scroll', this.onS); window.removeEventListener('keydown', this.onK); document.documentElement.style.overflow = ''; }
   toggle() { const m = !this.state.menu; document.documentElement.style.overflow = m ? 'hidden' : ''; this.setState({ menu: m }); }
+  cmpH() { return this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || window.innerHeight); }
+  cmpApply(v, mob, W, H) {
+    const r = (H / W) / (736 / 393), on = !!mob && (H < 736 || r < 1), s = on ? Math.max(.8, Math.min(1, r, H / 736)) : 1;
+    v.forceH = this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || 0);
+    v.cmpOn = on; v.chipCut = on ? '6px' : '0px'; v.ebCut = on ? '1px' : '0px'; v.ftCut = on ? '2px' : '0px';
+    v.barH = on ? '40px' : '56px'; v.barGap = on ? '10px' : '12px'; v.barFs = on ? '.98rem' : '1.08rem'; v.barIc = on ? '20px' : '26px'; v.spacerH = on ? '64px' : '84px';
+    if (!on) return v;
+    const sub = (x, n) => (typeof x === 'string' && x && !/^(auto|0|0px|none)$/.test(x)) ? 'calc(' + x + ' - ' + n + 'px)' : x;
+    const mul = (x) => { if (typeof x !== 'string') return x; let m = /^(-?[\d.]+)px$/.exec(x); if (m) return Math.round(+m[1] * s) + 'px'; m = /^([\d.]+)\s*\/\s*([\d.]+)$/.exec(x); if (m) return m[1] + '/' + (+m[2] * s).toFixed(3); return x; };
+    const each = (ks, f) => ks.forEach(k => { if (k in v) v[k] = f(v[k]); });
+    each(['h1Fs', 'heroH1'], x => sub(x, 4));
+    each(['leadFs', 'heroSub', 'posFs', 'leadBigFs'], x => sub(x, 2));
+    each(['h2Fs', 'h2sFs', 'featH2', 'catsH2Fs', 'clubH2Fs', 'storyH', 'deliverH', 'closeFs', 'midFs', 'joinFs', 'shopH2'], x => sub(x, 4));
+    each(['footTagFs', 'tagFs'], x => sub(x, 2));
+    each(['heroH', 'heroImgH', 'ctaImgH', 'midImgH', 'midMinH', 'cutImgH', 'edImgH', 'teamImgH', 'galH', 'mapH', 'ringH', 'closeH', 'vidH', 'imgAspect', 'featAspect', 'featAr', 'imgAr', 'rootsAr', 'brAr', 'cutAr', 'moreAr', 'valAr', 'cardMinH', 'benMinH', 'catHgt', 'brHgt', 'thumbW'], mul);
+    if ('vidH' in v && /^\d+px 20px 28px$/.test(v.heroPad || '')) v.heroPad = (parseInt(v.vidH) - 30) + 'px 20px 28px';
+    if ('heroImgH' in v && typeof v.heroPad === 'string') v.heroPad = v.heroPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if ('ctaImgH' in v && typeof v.midPad === 'string') v.midPad = v.midPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if (typeof v.hintBottom === 'string') v.hintBottom = v.hintBottom.replace('88px', '68px');
+    if (v.fPad === '6px 12px') v.fPad = '3px 12px';
+    return v;
+  }
   renderVals() {
     const st = this.state, fw = this.props.forceW || 0, W = fw || st.w, mob = W <= 1000, active = this.props.active || '';
     const defs = [
@@ -128,12 +150,12 @@ class Component extends DCLogic {
       enter: () => this.setState({ hQa: i }), leave: () => this.setState({ hQa: -1 }) }; });
     const scrolled = st.y > 10;
     const phone = W < 768;
-    return { mob, desk: !mob, phone, tabCta: mob && !phone, nav, qa, closeDd: () => this.setState({ dd: -1 }),
+    return this.cmpApply({ mob, desk: !mob, phone, tabCta: mob && !phone, nav, qa, closeDd: () => this.setState({ dd: -1 }),
       pad: phone ? '12px 18px' : (scrolled ? (W <= 1300 ? '10px 28px' : '10px 44px') : (W <= 1300 ? '12px 28px' : '16px 44px')),
       logoH: phone ? '34px' : (scrolled ? '38px' : '46px'), shadow: '0 2px 24px rgba(60,35,19,.07)',
       navGap: W <= 1150 ? '0px' : '4px', navFont: W <= 1150 ? '.8rem' : '.95rem',
       fxL: fw ? 'calc(50% - ' + fw / 2 + 'px)' : '0px', fxBar: fw ? 'calc(50% - ' + (fw / 2 - 12) + 'px)' : '12px',
-      menuOpen: st.menu, toggleMenu: () => this.toggle(), barY: st.nearEnd ? '120px' : '0px' };
+      menuOpen: st.menu, toggleMenu: () => this.toggle(), barY: st.nearEnd ? '120px' : '0px' }, phone, W, this.cmpH());
   }
 }
 </script>

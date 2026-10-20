@@ -28,7 +28,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </style>
 </helmet>
 <div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
-<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,0px"></dc-import>
 
 <main>
 <section data-screen-label="01 Hero" style="position:relative;margin-top:{{ hdrH }};min-height:{{ heroMinH }};display:flex;align-items:center;overflow:hidden;background:{{ heroBg }};color:#f5f5f5">
@@ -36,7 +36,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
   <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }};display:grid;grid-template-columns:{{ heroCols }};gap:{{ heroGap }};align-items:center">
     <div style="position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:{{ heroTxtGap }};background:{{ txtBg }};margin:{{ txtM }};padding:{{ txtP }}">
       <sc-if value="{{ heroMob }}" hint-placeholder-val="{{ false }}"><img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-110px;bottom:-110px;width:280px;height:auto;opacity:.06;pointer-events:none;animation:spin 90s linear infinite"></sc-if>
-      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#f5f5f5"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מועדון הלקוחות של שלושה קצבים</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:calc(.78rem - {{ ebCut }});letter-spacing:.16em;font-weight:600;color:#f5f5f5"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מועדון הלקוחות של שלושה קצבים</div>
       <h1 style="margin:0;font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.98;text-wrap:balance">יותר טעים <strong style="font-weight:900">כשאתם בפנים.</strong></h1>
       <p style="margin:0;max-width:540px;font-size:{{ leadFs }};font-weight:300;line-height:1.5;text-wrap:pretty">מצטרפים למשפחה, נהנים מהטבות לחברים וצוברים 3% בקניות אונליין בהתאם לתנאי המועדון. כי מי שאוהב בשר טוב, מגיע לו קצת יותר.</p>
       <a href="#join" onClick="{{ toJoin }}" data-cur="white" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;width:{{ fullW }};border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1.05rem;margin-top:6px;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">גם אני רוצה להצטרף<i class="ti ti-arrow-down"></i></a>
@@ -44,19 +44,19 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 
     <div style="position:relative;display:flex;justify-content:center;padding:{{ cardWrapPad }};margin:{{ cardWrapM }};background:{{ cardWrapBg }}">
       <div onMouseLeave="{{ leaveCard }}" style="position:relative;width:{{ cardW }};transform:rotate(-9deg);transform-origin:50% 50%">
-        <span style="position:absolute;inset:0;z-index:19;pointer-events:none;opacity:{{ ringOp }};transition:opacity .3s">
+        <span style="position:absolute;inset:0;z-index:19;pointer-events:none;opacity:{{ plusOp }};transition:opacity .3s">
           <span style="position:absolute;left:23px;top:23px;width:78px;height:78px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite 0s;display:block"></span>
           <span style="position:absolute;left:23px;top:23px;width:60px;height:60px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite .3s;display:block"></span>
           <span style="position:absolute;left:23px;top:23px;width:42px;height:42px;border-radius:50%;border:2.5px solid #EE3A30;box-shadow:0 0 10px rgba(238,58,48,.55);opacity:0;transform:translate(-50%,-50%);animation:ringPulse 1.8s ease-out infinite .6s;display:block"></span>
         </span>
-        <button onClick="{{ toggle }}" onMouseEnter="{{ hoverFlip }}" aria-label="{{ btnLabel }}" aria-pressed="{{ flipped }}" style="position:absolute;top:10px;left:10px;z-index:20;width:26px;height:26px;border-radius:50%;border:0;background:#fff;padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);opacity:{{ ringOp }};pointer-events:{{ btnPe }};transition:opacity .3s">
+        <button onClick="{{ toggle }}" onMouseEnter="{{ hoverFlip }}" aria-label="{{ btnLabel }}" aria-pressed="{{ flipped }}" style="position:absolute;top:10px;left:10px;z-index:20;width:26px;height:26px;border-radius:50%;border:0;background:#fff;padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);opacity:{{ plusOp }};pointer-events:{{ btnPe }};transition:opacity .3s">
           <span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:#3c2313;display:block"></span>
           <span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:#3c2313;display:block;transform:scaleY({{ vBar }});transition:transform .3s"></span>
         </button>
-        <div onMouseEnter="{{ hoverFlip }}" onClick="{{ open }}" style="position:relative;width:100%;perspective:1600px">
-          <div style="position:relative;transform:rotate3d(1,-0.62,0,{{ angle }});transition:transform {{ dur }} cubic-bezier(.45,.05,.25,1);transform-style:preserve-3d">
-            <div style="position:relative;backface-visibility:hidden;-webkit-backface-visibility:hidden">
-              <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/כרטיס-מועדון.png" alt="כרטיס מועדון הלקוחות של שלושה קצבים" style="display:block;width:100%;height:auto;opacity:{{ fImgOp }};filter:{{ cardShadow }}">
+        <div onMouseEnter="{{ hoverFlip }}" onClick="{{ open }}" style="position:relative;width:100%;perspective:1600px;filter:{{ cardShadow }};-webkit-perspective:1600px">
+          <div style="position:relative;transform:rotate3d(1,-0.62,0,{{ angle }});transition:transform {{ dur }} cubic-bezier(.45,.05,.25,1);transform-style:preserve-3d;-webkit-transform-style:preserve-3d;will-change:transform">
+            <div style="position:relative;transform:translateZ(1px);backface-visibility:hidden;-webkit-backface-visibility:hidden">
+              <img src="https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/10/כרטיס-מועדון.png" alt="כרטיס מועדון הלקוחות של שלושה קצבים" style="display:block;width:100%;height:auto;opacity:{{ fImgOp }}">
               <sc-if value="{{ fPanelOn }}" hint-placeholder-val="{{ false }}">
                 <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><div style="position:relative;width:{{ panelW }};height:{{ panelH }};aspect-ratio:{{ panelAr }};border-radius:22px;background:radial-gradient(120% 140% at 100% 0%, #ffffff 0%, #f7f4f1 60%, #ece6e0 100%);box-shadow:{{ panelShadow }}, inset 0 0 0 1px rgba(60,35,19,.1);overflow:hidden;color:#3c2313">
                 <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-14%;bottom:-30%;width:62%;height:auto;opacity:.07;animation:spin 40s linear infinite">
@@ -73,7 +73,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
               </div></div>
               </sc-if>
             </div>
-            <div style="position:absolute;inset:0;transform:rotate3d(1,-0.62,0,180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;inset:0;transform:rotate3d(1,-0.62,0,180deg) translateZ(1px);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center">
               <div style="position:relative;width:{{ panelW }};height:{{ panelH }};aspect-ratio:{{ panelAr }};border-radius:22px;background:radial-gradient(120% 140% at 100% 0%, #ffffff 0%, #f7f4f1 60%, #ece6e0 100%);box-shadow:{{ panelShadow }}, inset 0 0 0 1px rgba(60,35,19,.1);overflow:hidden;color:#3c2313">
                 <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-14%;bottom:-30%;width:62%;height:auto;opacity:.07;animation:spin 40s linear infinite">
                 <span style="position:absolute;inset:10px;border:1px solid rgba(60,35,19,.14);border-radius:15px;display:block"></span>
@@ -162,7 +162,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
   <div style="position:relative;max-width:1440px;margin:0 auto;background:#3c2313;color:#f5f5f5;border-radius:{{ joinRad }};overflow:hidden;display:grid;grid-template-columns:{{ joinCols }};gap:{{ joinGap }};align-items:center;padding:{{ joinPad }}">
     <img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;left:-80px;bottom:-80px;width:300px;height:auto;opacity:.07;pointer-events:none;animation:spin 70s linear infinite">
     <div style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:18px">
-      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#f5f5f5"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>הצטרפות למועדון</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:calc(.78rem - {{ ebCut }});letter-spacing:.16em;font-weight:600;color:#f5f5f5"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>הצטרפות למועדון</div>
       <h2 style="margin:0;font-size:{{ joinFs }};font-weight:300;letter-spacing:-1.4px;line-height:1">ברוכים הבאים <strong style="font-weight:900">למשפחה.</strong></h2>
       <p style="margin:0;max-width:520px;font-size:{{ pFs }};font-weight:300;line-height:1.55">ההצטרפות מתבצעת באתר ההזמנות שלנו. נרשמים פעם אחת – ומשם כל קנייה אונליין כבר שווה קצת יותר.</p>
     </div>
@@ -196,10 +196,10 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </section>
 </main>
 
-<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+<dc-import name="SiteFooter" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,520px"></dc-import>
 </div></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;previewH&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:736,&quot;min&quot;:560,&quot;max&quot;:900,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
 class Component extends DCLogic {
   state = { w: window.innerWidth, flipped: false, angle: 0, fC: -1, bC: 0, dur: 1.9, pct: 0, hB: -1, faq: -1 };
   pctRef = React.createRef(); joinRef = React.createRef();
@@ -213,7 +213,7 @@ class Component extends DCLogic {
   stopCycle() { clearTimeout(this.cyT); clearTimeout(this.swT); }
   turn(deg, dur, patch, next, hold) { this.setState(s => ({ ...patch, angle: s.angle + deg, dur })); this.cyT = setTimeout(next, (dur + hold) * 1000); }
   backUp() { return (Math.round(this.state.angle / 180) % 2 + 2) % 2 === 1; }
-  openCard() { if (this.state.flipped) return; this.stopCycle(); this.setState({ flipped: true }); this.seq(0); }
+  openCard() { if (this.state.flipped) return; this.stopCycle(); this.setState({ flipped: true, used: true }); this.seq(0); }
   seq(k) {
     if (!this.state.flipped) return;
     if (k === 0) this.turn(540, 1.9, { fC: -1, bC: 0 }, () => this.seq(1), 1);
@@ -227,6 +227,28 @@ class Component extends DCLogic {
     else if (this.state.fC >= 0) { this.setState(s => ({ flipped: false, angle: s.angle + 360, dur: 1.4 })); this.swT = setTimeout(() => this.setState({ fC: -1 }), 700); }
     else this.setState({ flipped: false }); }
   count() { const t0 = performance.now(), D = 1400; const tick = (t) => { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); this.setState({ pct: e * 3 }); if (k < 1) this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
+  cmpH() { return this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || window.innerHeight); }
+  cmpApply(v, mob, W, H) {
+    const r = (H / W) / (736 / 393), on = !!mob && (H < 736 || r < 1), s = on ? Math.max(.8, Math.min(1, r, H / 736)) : 1;
+    v.forceH = this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || 0);
+    v.cmpOn = on; v.chipCut = on ? '6px' : '0px'; v.ebCut = on ? '1px' : '0px'; v.ftCut = on ? '2px' : '0px';
+    v.barH = on ? '40px' : '56px'; v.barGap = on ? '10px' : '12px'; v.barFs = on ? '.98rem' : '1.08rem'; v.barIc = on ? '20px' : '26px'; v.spacerH = on ? '64px' : '84px';
+    if (!on) return v;
+    const sub = (x, n) => (typeof x === 'string' && x && !/^(auto|0|0px|none)$/.test(x)) ? 'calc(' + x + ' - ' + n + 'px)' : x;
+    const mul = (x) => { if (typeof x !== 'string') return x; let m = /^(-?[\d.]+)px$/.exec(x); if (m) return Math.round(+m[1] * s) + 'px'; m = /^([\d.]+)\s*\/\s*([\d.]+)$/.exec(x); if (m) return m[1] + '/' + (+m[2] * s).toFixed(3); return x; };
+    const each = (ks, f) => ks.forEach(k => { if (k in v) v[k] = f(v[k]); });
+    each(['h1Fs', 'heroH1'], x => sub(x, 4));
+    each(['leadFs', 'heroSub', 'posFs', 'leadBigFs'], x => sub(x, 2));
+    each(['h2Fs', 'h2sFs', 'featH2', 'catsH2Fs', 'clubH2Fs', 'storyH', 'deliverH', 'closeFs', 'midFs', 'joinFs', 'shopH2'], x => sub(x, 4));
+    each(['footTagFs', 'tagFs'], x => sub(x, 2));
+    each(['heroH', 'heroImgH', 'ctaImgH', 'midImgH', 'midMinH', 'cutImgH', 'edImgH', 'teamImgH', 'galH', 'mapH', 'ringH', 'closeH', 'vidH', 'imgAspect', 'featAspect', 'featAr', 'imgAr', 'rootsAr', 'brAr', 'cutAr', 'moreAr', 'valAr', 'cardMinH', 'benMinH', 'catHgt', 'brHgt', 'thumbW'], mul);
+    if ('vidH' in v && /^\d+px 20px 28px$/.test(v.heroPad || '')) v.heroPad = (parseInt(v.vidH) - 30) + 'px 20px 28px';
+    if ('heroImgH' in v && typeof v.heroPad === 'string') v.heroPad = v.heroPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if ('ctaImgH' in v && typeof v.midPad === 'string') v.midPad = v.midPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if (typeof v.hintBottom === 'string') v.hintBottom = v.hintBottom.replace('88px', '68px');
+    if (v.fPad === '6px 12px') v.fPad = '3px 12px';
+    return v;
+  }
   renderVals() {
     const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
     const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
@@ -245,7 +267,7 @@ class Component extends DCLogic {
       ['יש לי שאלה על החשבון שלי במועדון', 'נשמח לעזור – כתבו לנו בוואטסאפ או התקשרו לאחד הסניפים.']
     ];
     const faq = faqDef.map(([q, a], i) => ({ q, a, open: st.faq === i, exp: st.faq === i ? 'true' : 'false', rot: st.faq === i ? '45deg' : '0deg', tog: () => this.setState(s => ({ faq: s.faq === i ? -1 : i })) }));
-    return {
+    return this.cmpApply({
       forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
       hdrH: mob ? '66px' : '100px', heroMinH: mob ? 'auto' : 'min(86vh,780px)', heroMob: mob, cardShadow: mob ? 'drop-shadow(0 12px 14px rgba(0,0,0,.28))' : 'drop-shadow(0 40px 50px rgba(0,0,0,.45))', panelShadow: mob ? '0 12px 14px rgba(0,0,0,.28)' : '0 40px 50px rgba(0,0,0,.45)', panelW: mob ? '100%' : '86%', panelH: mob ? '100%' : 'auto', panelAr: mob ? 'auto' : '1.586/1', bullOp: mob ? 0 : .05,
       heroBg: mob ? '#f5f5f5' : 'radial-gradient(120% 120% at 15% 30%, #4a2c18 0%, #2b180c 55%, #1a0f08 100%)',
@@ -256,7 +278,7 @@ class Component extends DCLogic {
       angle: st.angle + 'deg', dur: st.dur + 's', fImgOp: st.fC >= 0 ? 0 : 1, fPanelOn: st.fC >= 0,
       fNum: String(Math.max(st.fC, 0) + 1).padStart(2, '0') + '/03', fTitle: benefits[Math.max(st.fC, 0)].t, bNum: String(st.bC + 1).padStart(2, '0') + '/03', bTitle: benefits[st.bC].t, flipped: st.flipped ? 'true' : 'false', ringOp: st.flipped ? 0 : 1, vBar: st.flipped ? 0 : 1, btnLabel: st.flipped ? 'לסגור את הכרטיס' : 'להפוך את כרטיס המועדון',
       toggle: (e) => { e.stopPropagation(); this.openCard(); }, open: () => { if (mob && st.flipped) this.closeCard(); else this.openCard(); },
-      leaveCard: () => { if (!mob) this.closeCard(); }, btnPe: st.flipped ? 'none' : 'auto',
+      leaveCard: () => { if (!mob) this.closeCard(); }, btnPe: (st.flipped || st.used) ? 'none' : 'auto', plusOp: (st.flipped || st.used) ? 0 : 1,
       hoverFlip: () => { if (!mob) this.openCard(); },
        benMob: mob,
       backLogoH: mob ? '20px' : '32px', backClubFs: mob ? '9px' : '12px', backBigFs: mob ? '1.35rem' : 'clamp(1.8rem,2.6vw,2.6rem)', backSmFs: mob ? '11px' : '1rem',
@@ -280,7 +302,7 @@ class Component extends DCLogic {
       joinOuter: mob ? '64px 0 0' : '120px ' + side + ' 0', joinRad: mob ? '0' : '14px', joinCols: mob ? '1fr' : '1.2fr 1fr', joinGap: mob ? '28px' : '60px',
       joinPad: mob ? '44px 20px 48px' : '70px 70px', joinFs: mob ? '2.4rem' : 'clamp(2.8rem,4vw,4rem)', joinBtnAlign: mob ? 'stretch' : 'flex-end',
       faq, faqPad: mob ? '64px 20px 72px' : '120px ' + side + ' 130px', faqQFs: mob ? '1.05rem' : '1.2rem'
-    };
+    }, mob, w, this.cmpH());
   }
 }
 </script>

@@ -76,7 +76,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </div>
 </div></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;רוסטביף-אנטריקוט-צרפתי&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;previewH&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:736,&quot;min&quot;:560,&quot;max&quot;:900,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;רוסטביף-אנטריקוט-צרפתי&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { w: window.innerWidth, data: null, added: {}, copied: -1 };
   componentDidMount() {
@@ -96,6 +96,28 @@ class Component extends DCLogic {
     const fb = () => { const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok).catch(fb); else fb();
   }
+  cmpH() { return this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || window.innerHeight); }
+  cmpApply(v, mob, W, H) {
+    const r = (H / W) / (736 / 393), on = !!mob && (H < 736 || r < 1), s = on ? Math.max(.8, Math.min(1, r, H / 736)) : 1;
+    v.forceH = this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || 0);
+    v.cmpOn = on; v.chipCut = on ? '6px' : '0px'; v.ebCut = on ? '1px' : '0px'; v.ftCut = on ? '2px' : '0px';
+    v.barH = on ? '40px' : '56px'; v.barGap = on ? '10px' : '12px'; v.barFs = on ? '.98rem' : '1.08rem'; v.barIc = on ? '20px' : '26px'; v.spacerH = on ? '64px' : '84px';
+    if (!on) return v;
+    const sub = (x, n) => (typeof x === 'string' && x && !/^(auto|0|0px|none)$/.test(x)) ? 'calc(' + x + ' - ' + n + 'px)' : x;
+    const mul = (x) => { if (typeof x !== 'string') return x; let m = /^(-?[\d.]+)px$/.exec(x); if (m) return Math.round(+m[1] * s) + 'px'; m = /^([\d.]+)\s*\/\s*([\d.]+)$/.exec(x); if (m) return m[1] + '/' + (+m[2] * s).toFixed(3); return x; };
+    const each = (ks, f) => ks.forEach(k => { if (k in v) v[k] = f(v[k]); });
+    each(['h1Fs', 'heroH1'], x => sub(x, 4));
+    each(['leadFs', 'heroSub', 'posFs', 'leadBigFs'], x => sub(x, 2));
+    each(['h2Fs', 'h2sFs', 'featH2', 'catsH2Fs', 'clubH2Fs', 'storyH', 'deliverH', 'closeFs', 'midFs', 'joinFs', 'shopH2'], x => sub(x, 4));
+    each(['footTagFs', 'tagFs'], x => sub(x, 2));
+    each(['heroH', 'heroImgH', 'ctaImgH', 'midImgH', 'midMinH', 'cutImgH', 'edImgH', 'teamImgH', 'galH', 'mapH', 'ringH', 'closeH', 'vidH', 'imgAspect', 'featAspect', 'featAr', 'imgAr', 'rootsAr', 'brAr', 'cutAr', 'moreAr', 'valAr', 'cardMinH', 'benMinH', 'catHgt', 'brHgt', 'thumbW'], mul);
+    if ('vidH' in v && /^\d+px 20px 28px$/.test(v.heroPad || '')) v.heroPad = (parseInt(v.vidH) - 30) + 'px 20px 28px';
+    if ('heroImgH' in v && typeof v.heroPad === 'string') v.heroPad = v.heroPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if ('ctaImgH' in v && typeof v.midPad === 'string') v.midPad = v.midPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if (typeof v.hintBottom === 'string') v.hintBottom = v.hintBottom.replace('88px', '68px');
+    if (v.fPad === '6px 12px') v.fPad = '3px 12px';
+    return v;
+  }
   renderVals() {
     const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 640, d = st.data, slug = this.slug(), have = this.have();
     const r0 = (d && d.recipes.find(x => x.slug === slug)) || { title: '', img: '' }, det = d && d.recipeDetails[slug];
@@ -109,7 +131,7 @@ class Component extends DCLogic {
         copy: () => this.copyText(x.term, x.i),
         tog: () => this.setState(s => { const a = { ...s.added, [x.i]: !s.added[x.i] }; try { localStorage.setItem('3k-cart-' + slug, JSON.stringify(a)); } catch (e) {} return { added: a }; }) }; });
     const addedN = rows.filter(x => st.added[x.i]).length;
-    return {
+    return this.cmpApply({
       forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
       r: r0, items, none: !!d && rows.length === 0,
       progress: rows.length ? addedN + ' מתוך ' + rows.length + ' נוספו לעגלה' : 'אין מה לקנות',
@@ -117,7 +139,7 @@ class Component extends DCLogic {
       mainPad: mob ? '22px 16px 20px' : '30px 20px 24px', thumbW: mob ? '64px' : '76px', h1Fs: mob ? '1.6rem' : '1.9rem',
       rowPad: mob ? '12px 12px' : '10px 14px', nameFs: mob ? '1.08rem' : '1.02rem', copyMinW: mob ? '96px' : '84px', copyH: mob ? '48px' : '40px',
       footPad: mob ? '18px 16px calc(16px + env(safe-area-inset-bottom))' : '18px 20px 22px'
-    };
+    }, mob, w, this.cmpH());
   }
 }
 </script>

@@ -26,7 +26,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </style>
 </helmet>
 <div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
-<dc-import name="SiteHeader" active="recipes" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+<dc-import name="SiteHeader" active="recipes" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,0px"></dc-import>
 
 <main style="padding-top:{{ hdrH }}">
 <section data-screen-label="01 Recipe hero" style="padding:{{ heroPad }}">
@@ -152,7 +152,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
       <sc-if value="{{ cut.img }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ cut.name }}" style="position:absolute;inset:0;background-image:url(&quot;{{ cut.img }}&quot;);background-size:cover;background-position:center;"></div></sc-if>
     </div>
     <div style="padding:{{ boxPad2 }};display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px">
-      <span style="font-size:.78rem;letter-spacing:.14em;font-weight:600;color:#EE3A30">הנתח שעושה את המנה</span>
+      <span style="font-size:calc(.78rem - {{ ebCut }});letter-spacing:.14em;font-weight:600;color:#EE3A30">הנתח שעושה את המנה</span>
       <h2 style="margin:0;font-size:{{ cutFs }};font-weight:900;letter-spacing:-1px;line-height:1">{{ cut.name }}</h2>
       <p style="margin:0;max-width:520px;font-size:1.05rem;font-weight:300;line-height:1.55">{{ cut.d }}</p>
       <a href="https://orders.3katzavim.co.il/" target="_blank" rel="noopener" data-cur="white" aria-label="הנתח הבא שלכם מחכה — מעבר לאתר ההזמנות" style="display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s, transform .3s" style-hover="background:#fff;color:#EE3A30;transform:translateY(-2px)">לבחירת בשרים<i class="ti ti-chevron-left"></i></a>
@@ -187,10 +187,10 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </section>
 </main>
 
-<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+<dc-import name="SiteFooter" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,520px"></dc-import>
 </div></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;רוסטביף-אנטריקוט-צרפתי&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;previewH&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:736,&quot;min&quot;:560,&quot;max&quot;:900,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;רוסטביף-אנטריקוט-צרפתי&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { w: window.innerWidth, data: null, doneBy: {}, copied: false, shop: false, shopVis: false };
   componentDidMount() {
@@ -239,6 +239,28 @@ class Component extends DCLogic {
     this.tbRO.observe(el);
   };
   slug() { const s = new URLSearchParams(location.search).get('slug'); return s || this.props.slug || 'רוסטביף-אנטריקוט-צרפתי'; }
+  cmpH() { return this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || window.innerHeight); }
+  cmpApply(v, mob, W, H) {
+    const r = (H / W) / (736 / 393), on = !!mob && (H < 736 || r < 1), s = on ? Math.max(.8, Math.min(1, r, H / 736)) : 1;
+    v.forceH = this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || 0);
+    v.cmpOn = on; v.chipCut = on ? '6px' : '0px'; v.ebCut = on ? '1px' : '0px'; v.ftCut = on ? '2px' : '0px';
+    v.barH = on ? '40px' : '56px'; v.barGap = on ? '10px' : '12px'; v.barFs = on ? '.98rem' : '1.08rem'; v.barIc = on ? '20px' : '26px'; v.spacerH = on ? '64px' : '84px';
+    if (!on) return v;
+    const sub = (x, n) => (typeof x === 'string' && x && !/^(auto|0|0px|none)$/.test(x)) ? 'calc(' + x + ' - ' + n + 'px)' : x;
+    const mul = (x) => { if (typeof x !== 'string') return x; let m = /^(-?[\d.]+)px$/.exec(x); if (m) return Math.round(+m[1] * s) + 'px'; m = /^([\d.]+)\s*\/\s*([\d.]+)$/.exec(x); if (m) return m[1] + '/' + (+m[2] * s).toFixed(3); return x; };
+    const each = (ks, f) => ks.forEach(k => { if (k in v) v[k] = f(v[k]); });
+    each(['h1Fs', 'heroH1'], x => sub(x, 4));
+    each(['leadFs', 'heroSub', 'posFs', 'leadBigFs'], x => sub(x, 2));
+    each(['h2Fs', 'h2sFs', 'featH2', 'catsH2Fs', 'clubH2Fs', 'storyH', 'deliverH', 'closeFs', 'midFs', 'joinFs', 'shopH2'], x => sub(x, 4));
+    each(['footTagFs', 'tagFs'], x => sub(x, 2));
+    each(['heroH', 'heroImgH', 'ctaImgH', 'midImgH', 'midMinH', 'cutImgH', 'edImgH', 'teamImgH', 'galH', 'mapH', 'ringH', 'closeH', 'vidH', 'imgAspect', 'featAspect', 'featAr', 'imgAr', 'rootsAr', 'brAr', 'cutAr', 'moreAr', 'valAr', 'cardMinH', 'benMinH', 'catHgt', 'brHgt', 'thumbW'], mul);
+    if ('vidH' in v && /^\d+px 20px 28px$/.test(v.heroPad || '')) v.heroPad = (parseInt(v.vidH) - 30) + 'px 20px 28px';
+    if ('heroImgH' in v && typeof v.heroPad === 'string') v.heroPad = v.heroPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if ('ctaImgH' in v && typeof v.midPad === 'string') v.midPad = v.midPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if (typeof v.hintBottom === 'string') v.hintBottom = v.hintBottom.replace('88px', '68px');
+    if (v.fPad === '6px 12px') v.fPad = '3px 12px';
+    return v;
+  }
   renderVals() {
     const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100, d = st.data;
     const all = (d && d.recipes) || [], slug = this.slug();
@@ -287,7 +309,7 @@ class Component extends DCLogic {
       dt = { on: true, bh: bh + 'px', x: x + 'px', w: Wv + 'px', h: Hv + 'px', src: c0.src, size: 'auto ' + Hi + 'px', fh: (bh - 30) + 'px', who: c0.who,
         poly: this.silPoly({ src: c0.src, imgL: x + (Wv - fullW) / 2, imgT: bh - Hv, imgW: fullW, imgH: Hi, clipL: x, clipR: x + Wv, offX: half, offY: 30, Hw: bh - 30, WW: bw - half - 32, gap: 40, minCol: 120 }) }; }
     const doneN = ingT.filter((_, i) => done[i]).length, missing = ingT.filter((_, i) => !done[i]), allDone = ingT.length > 0 && doneN === ingT.length, showRest = ingT.length > 0 && !allDone;
-    return {
+    return this.cmpApply({
       mob, hintTxt: doneN ? doneN + ' מתוך ' + ingT.length + ' כבר בבית' : 'סמנו מה כבר יש בבית', hintFw: doneN ? 700 : 400,
       showShop: !d || (ingT.length > 0 && !allDone), allDone, missing, missN: missing.length,
       openShop: () => { const have = ingT.map((_, i) => i).filter(i => done[i]).join(','); const u = new URL('ShoppingList.dc.html', location.href); new URLSearchParams(location.search).forEach((v, k) => { if (k !== 'slug' && k !== 'have') u.searchParams.set(k, v); }); u.searchParams.set('slug', r0.slug); if (have) u.searchParams.set('have', have); else u.searchParams.delete('have'); u.hash = location.hash && location.hash.length > 1 && !/^#[\w-]+$/.test(location.hash) ? location.hash : ''; if (window.top !== window && /claudeusercontent\.com$/.test(location.hostname)) location.assign(u.toString()); else window.open(u.toString(), '_blank', 'noopener'); }, closeShop: () => this.closeShop(), stop: (e) => e.stopPropagation(),
@@ -315,7 +337,7 @@ class Component extends DCLogic {
       secMb: mob ? '60px' : '110px', cutCols: mob ? '1fr' : '1fr 1fr', cutImgH: mob ? '220px' : '380px', boxPad2: mob ? '28px 22px 32px' : 'clamp(36px,4vw,60px)', cutFs: mob ? '2rem' : '2.6rem',
       relPad: mob ? '60px 20px' : '100px ' + side, relDisp: mob ? 'flex' : 'grid', relGap: mob ? '14px' : '30px', relBasis: mob ? '80%' : 'auto', bleed: mob ? '-20px' : '0', bleedPad: mob ? '20px' : '0',
       closeH: mob ? '360px' : '440px', closePad: mob ? '50px 20px' : '70px ' + side, closeFs: mob ? '2.2rem' : 'clamp(2.6rem,4vw,4rem)'
-    };
+    }, mob, w, this.cmpH());
   }
 }
 </script>

@@ -21,27 +21,32 @@
     </div>
   </sc-if>
 
-  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-right:{{ padL }};transition:padding .3s">
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-right:{{ padL }};padding-top:{{ padT }};transition:padding .3s">
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
       <div style="width:{{ dW }};height:{{ dH }};position:relative;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(60,35,19,.28);background:#1a0f08">
-        <iframe src="{{ src }}" title="דסקטופ" style="position:absolute;top:0;right:0;width:1920px;height:910px;border:0;zoom:{{ dScale }}"></iframe>
+        <iframe src="{{ src }}" title="דסקטופ" style="position:absolute;top:0;right:0;width:{{ vwPx }};height:{{ vhPx }};border:0;zoom:{{ dScale }}"></iframe>
       </div>
     </sc-if>
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <div style="width:{{ mW }};height:{{ mH }};position:relative">
-        <div style="position:absolute;top:0;right:0;width:417px;height:760px;padding:12px;border-radius:40px;background:#1c1714;box-shadow:0 30px 80px rgba(60,35,19,.32);zoom:{{ mScale }}">
-          <div style="width:393px;height:736px;border-radius:28px;overflow:hidden;background:#1a0f08">
-            <iframe src="{{ src }}" title="מובייל" style="width:393px;height:736px;border:0;display:block"></iframe>
+        <div style="position:absolute;top:0;right:0;width:{{ fwPx }};height:{{ fhPx }};padding:12px;border-radius:40px;background:#1c1714;box-shadow:0 30px 80px rgba(60,35,19,.32);zoom:{{ mScale }}">
+          <div style="width:{{ vwPx }};height:{{ vhPx }};border-radius:28px;overflow:hidden;background:#1a0f08">
+            <iframe src="{{ src }}" title="מובייל" style="width:{{ vwPx }};height:{{ vhPx }};border:0;display:block"></iframe>
           </div>
         </div>
       </div>
     </sc-if>
   </div>
 
-  <div style="position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:10px;background:rgba(245,245,245,.92);padding:8px 16px;border-radius:999px;font-size:14px;box-shadow:0 6px 18px rgba(60,35,19,.12)">
+  <div style="position:absolute;top:14px;left:18px;z-index:21;max-width:{{ pillMax }};display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;background:rgba(245,245,245,.95);padding:7px 14px;border-radius:22px;font-size:14px;box-shadow:0 6px 18px rgba(60,35,19,.12)">
     <strong style="font-weight:900">{{ curLabel }}</strong>
     <span style="opacity:.6">·</span>
     <span>{{ modeLabel }}</span>
+    <span style="opacity:.6">·</span>
+    <label style="display:flex;align-items:center;gap:4px;font-size:12px">רוחב<input type="number" min="280" max="3840" step="1" value="{{ dimW }}" onChange="{{ setW }}" aria-label="רוחב המסך" style="width:62px;height:28px;border:1px solid rgba(60,35,19,.25);border-radius:8px;background:#fff;color:#3c2313;font:inherit;font-size:13px;font-weight:700;text-align:center;padding:0 4px"></label>
+    <span style="opacity:.5">×</span>
+    <label style="display:flex;align-items:center;gap:4px;font-size:12px">גובה<input type="number" min="360" max="2160" step="1" value="{{ dimH }}" onChange="{{ setH }}" aria-label="גובה המסך" style="width:62px;height:28px;border:1px solid rgba(60,35,19,.25);border-radius:8px;background:#fff;color:#3c2313;font:inherit;font-size:13px;font-weight:700;text-align:center;padding:0 4px"></label>
+    <button onClick="{{ resetDims }}" title="חזרה למידות ברירת המחדל" style="display:flex;align-items:center;gap:5px;border:1px solid {{ defBorder }};background:{{ defBg }};color:{{ defInk }};border-radius:999px;padding:4px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer"><i class="ti ti-refresh" style="font-size:14px"></i>DEFAULT</button>
     <span style="opacity:.6">·</span>
     <button onClick="{{ enterFs }}" aria-label="מסך מלא" title="מסך מלא (F)" style="display:flex;align-items:center;gap:6px;border:0;background:#3c2313;color:#f5f5f5;border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .25s" style-hover="background:#EE3A30"><i class="ti ti-maximize" style="font-size:16px"></i>מסך מלא</button>
   </div>
@@ -114,7 +119,7 @@ class Component extends DCLogic {
   state = (() => {
     let s = {};
     try { s = JSON.parse(localStorage.getItem('3k-viewer') || '{}'); } catch (e) {}
-    return { page: s.page || 'home', mode: s.mode || 'desktop', panel: s.panel === undefined ? 'pages' : s.panel, w: window.innerWidth, h: window.innerHeight };
+    return { page: s.page || 'home', mode: s.mode || 'desktop', panel: s.panel === undefined ? 'pages' : s.panel, w: window.innerWidth, h: window.innerHeight, dims: s.dims || null };
   })();
   componentDidMount() {
     this.onR = () => this.setState({ w: window.innerWidth, h: window.innerHeight });
@@ -139,16 +144,23 @@ class Component extends DCLogic {
     try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (e) {}
   }
   set(patch) {
-    this.setState(patch, () => { try { localStorage.setItem('3k-viewer', JSON.stringify({ page: this.state.page, mode: this.state.mode, panel: this.state.panel })); } catch (e) {} });
+    this.setState(patch, () => { try { localStorage.setItem('3k-viewer', JSON.stringify({ page: this.state.page, mode: this.state.mode, panel: this.state.panel, dims: this.state.dims })); } catch (e) {} });
   }
   renderVals() {
     const st = this.state;
     const byId = Object.fromEntries(this.pagesDef.map(([id, label, file]) => [id, { label, file }]));
     const cur = byId[st.page] && byId[st.page].file ? st.page : 'home';
     const panelW = st.panel ? 410 : 60;
-    const availW = st.w - panelW - 60, availH = st.h - 90;
-    const dScale = Math.max(0.2, Math.min(availW / 1920, availH / 910, 1));
-    const mScale = Math.max(0.3, Math.min(availH / 760, 1));
+    const pillMaxN = Math.max(260, st.w - (st.panel ? 410 : 60) - 36);
+    const pillH = pillMaxN >= 640 ? 44 : 84;
+    const availW = st.w - panelW - 60, availH = st.h - 40 - pillH - 24;
+    const DEF = { desktop: [1920, 910], mobile: [393, 736] };
+    const dims = Object.assign({}, DEF, st.dims || {});
+    const [VW, VH] = dims[st.mode] || DEF[st.mode];
+    const isDef = VW === DEF[st.mode][0] && VH === DEF[st.mode][1];
+    const setDim = (i) => (e) => { const n = Math.round(+e.target.value); if (!n || n < 200) return; const cur = (this.state.dims && this.state.dims[this.state.mode]) || DEF[this.state.mode]; const nv = cur.slice(); nv[i] = Math.min(n, 4000); this.set({ dims: Object.assign({}, this.state.dims || {}, { [this.state.mode]: nv }) }); };
+    const dScale = Math.max(0.1, Math.min(availW / VW, availH / VH, 1));
+    const mScale = Math.max(0.2, Math.min(availH / (VH + 24), availW / (VW + 24), 1));
     const go = (id, mode) => () => { if (byId[id] && byId[id].file) this.set({ page: id, mode: mode || this.state.mode }); };
     const tabDef = [
       ['DESKTOP', () => this.set({ mode: 'desktop' }), st.mode === 'desktop', 118],
@@ -170,11 +182,16 @@ class Component extends DCLogic {
     return {
       stageRef: this.stageRef, src: byId[cur].file,
       isDesktop: st.mode === 'desktop', isMobile: st.mode === 'mobile',
-      dScale, dW: 1920 * dScale + 'px', dH: 910 * dScale + 'px',
-      mScale, mW: 417 * mScale + 'px', mH: 760 * mScale + 'px',
-      padL: st.panel ? '400px' : '50px', curLabel: byId[cur].label, modeLabel: st.mode === 'desktop' ? 'דסקטופ 1920×910 (שטח אמיתי בדפדפן)' : 'מובייל 393×736 (שטח אמיתי בדפדפן)',
+      dScale, dW: VW * dScale + 'px', dH: VH * dScale + 'px',
+      mScale, mW: (VW + 24) * mScale + 'px', mH: (VH + 24) * mScale + 'px',
+      pillMax: pillMaxN + 'px', padT: (pillH + 24) + 'px',
+      vwPx: VW + 'px', vhPx: VH + 'px', fwPx: (VW + 24) + 'px', fhPx: (VH + 24) + 'px',
+      dimW: VW, dimH: VH, setW: setDim(0), setH: setDim(1),
+      resetDims: () => { const d = Object.assign({}, this.state.dims || {}); delete d[this.state.mode]; this.set({ dims: d }); },
+      defBg: isDef ? '#fff' : '#EE3A30', defInk: isDef ? '#3c2313' : '#fff', defBorder: isDef ? 'rgba(60,35,19,.25)' : '#EE3A30',
+      padL: st.panel ? '400px' : '50px', curLabel: byId[cur].label, modeLabel: st.mode === 'desktop' ? 'דסקטופ' : 'מובייל',
       fsOn: !!st.fs, enterFs: () => this.enterFs(), exitFs: () => this.exitFs(),
-      fsW: st.mode === 'mobile' ? '393px' : '100%', fsBg: st.mode === 'mobile' ? '#d9d3cd' : '#1a0f08',
+      fsW: st.mode === 'mobile' ? VW + 'px' : '100%', fsBg: st.mode === 'mobile' ? '#d9d3cd' : '#1a0f08',
       fsShadow: st.mode === 'mobile' ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.25)' : 'none',
       tabs, panelOpen: !!st.panel, showPages: st.panel === 'pages', showMap: st.panel === 'map', pages, sitemap
     };

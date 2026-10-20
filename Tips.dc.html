@@ -27,13 +27,13 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </style>
 </helmet>
 <div style="background:{{ stageBg }};min-height:100vh"><div dir="rtl" style="position:relative;min-height:100vh;background:#f5f5f5;color:#3c2313;overflow-x:clip;max-width:{{ frameW }};margin:0 auto;box-shadow:{{ frameShadow }}">
-<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" hint-size="100%,0px"></dc-import>
+<dc-import name="SiteHeader" active="more" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,0px"></dc-import>
 
 <main style="padding-top:{{ hdrH }}">
 <section data-screen-label="01 Hero" style="position:relative;overflow:hidden;background:#3c2313;color:#f5f5f5">
   <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"><img src="https://3katzavim.web3d-studio.co.il/wp-content/themes/astra-child/assets/bull-element.svg" alt="" style="position:absolute;right:{{ stampR }};top:{{ stampT }};width:{{ stampW }};height:auto;opacity:.07;animation:spin 80s linear infinite"></div>
   <div style="position:relative;z-index:1;max-width:1440px;margin:0 auto;min-height:{{ heroH }};padding:{{ heroPad }};display:flex;flex-direction:column;justify-content:{{ heroJust }};align-items:flex-start;gap:18px">
-    <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#fff"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מהדלפק של שלושה קצבים</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:calc(.78rem - {{ ebCut }});letter-spacing:.16em;font-weight:600;color:#fff"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>מהדלפק של שלושה קצבים</div>
     <h1 style="margin:0;max-width:{{ h1Max }};font-size:{{ h1Fs }};font-weight:300;letter-spacing:-2px;line-height:.95">טיפים <strong style="font-weight:900">מהקצבים</strong></h1>
     <p style="margin:0;max-width:{{ leadMax }};font-size:{{ leadFs }};font-weight:300;line-height:1.45;text-wrap:pretty">הידע הקטן שעושה את ההבדל הגדול בצלחת. מה שאנחנו אומרים ללקוחות ליד הדלפק – עכשיו במקום אחד.</p>
     <a href="#list" onClick="{{ toList }}" style="display:inline-flex;align-items:center;gap:10px;margin-top:8px;padding:15px 28px;border-radius:999px;background:#EE3A30;border:1.5px solid #EE3A30;color:#fff;font-weight:700;font-size:1rem;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לכל הטיפים<i class="ti ti-arrow-down"></i></a>
@@ -47,7 +47,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
       <img src="https://3katzavim.co.il/wp-content/uploads/2026/01/רוסטביף-אנטריקוט-צרפתי.jpg" alt="רוסטביף אנטריקוט פרוס" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px">
-      <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#EE3A30"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>הטיפ שהכי חשוב לנו</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:calc(.78rem - {{ ebCut }});letter-spacing:.16em;font-weight:600;color:#EE3A30"><span style="width:22px;height:1.5px;background:#EE3A30;display:block"></span>הטיפ שהכי חשוב לנו</div>
       <h2 style="margin:0;font-size:{{ featH2 }};font-weight:900;letter-spacing:-1.2px;line-height:1">{{ feat.title }}</h2>
       <p style="margin:0;max-width:560px;font-size:{{ featFs }};font-weight:300;line-height:1.55;text-wrap:pretty">{{ feat.excerpt }}</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;width:{{ btnRowW }}">
@@ -66,7 +66,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
     </div>
     <div role="group" aria-label="נושא" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 {{ bleed }} {{ chipsMb }};padding:0 {{ bleedPad }}">
       <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
-        <button onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="flex:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:inherit;font-size:.95rem;font-weight:600;white-space:nowrap;transition:all .25s">{{ c.label }}<span style="font-size:.78rem;font-weight:500;opacity:.65">{{ c.n }}</span></button>
+        <button onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="flex:none;display:flex;align-items:center;gap:8px;min-height:calc(44px - {{ chipCut }});padding:0 18px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:inherit;font-size:.95rem;font-weight:600;white-space:nowrap;transition:all .25s">{{ c.label }}<span style="font-size:.78rem;font-weight:500;opacity:.65">{{ c.n }}</span></button>
       </sc-for>
     </div>
     <div style="display:grid;grid-template-columns:{{ gridCols }};gap:{{ gridGap }}">
@@ -102,10 +102,10 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 </section>
 </main>
 
-<dc-import name="SiteFooter" force-w="{{ forceW }}" hint-size="100%,520px"></dc-import>
+<dc-import name="SiteFooter" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,520px"></dc-import>
 </div></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;previewH&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:736,&quot;min&quot;:560,&quot;max&quot;:900,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;תצוגה&quot;}}">
 class Component extends DCLogic {
   state = { w: window.innerWidth, data: null, cat: 'הכל', hT: -1 };
   listRef = React.createRef();
@@ -125,6 +125,28 @@ class Component extends DCLogic {
     fetch('data/content.json').then(r => r.json()).then(data => this.setState({ data })).catch(() => {});
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  cmpH() { return this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || window.innerHeight); }
+  cmpApply(v, mob, W, H) {
+    const r = (H / W) / (736 / 393), on = !!mob && (H < 736 || r < 1), s = on ? Math.max(.8, Math.min(1, r, H / 736)) : 1;
+    v.forceH = this.props.mobilePreview ? (this.props.previewH || 736) : (this.props.forceH || 0);
+    v.cmpOn = on; v.chipCut = on ? '6px' : '0px'; v.ebCut = on ? '1px' : '0px'; v.ftCut = on ? '2px' : '0px';
+    v.barH = on ? '40px' : '56px'; v.barGap = on ? '10px' : '12px'; v.barFs = on ? '.98rem' : '1.08rem'; v.barIc = on ? '20px' : '26px'; v.spacerH = on ? '64px' : '84px';
+    if (!on) return v;
+    const sub = (x, n) => (typeof x === 'string' && x && !/^(auto|0|0px|none)$/.test(x)) ? 'calc(' + x + ' - ' + n + 'px)' : x;
+    const mul = (x) => { if (typeof x !== 'string') return x; let m = /^(-?[\d.]+)px$/.exec(x); if (m) return Math.round(+m[1] * s) + 'px'; m = /^([\d.]+)\s*\/\s*([\d.]+)$/.exec(x); if (m) return m[1] + '/' + (+m[2] * s).toFixed(3); return x; };
+    const each = (ks, f) => ks.forEach(k => { if (k in v) v[k] = f(v[k]); });
+    each(['h1Fs', 'heroH1'], x => sub(x, 4));
+    each(['leadFs', 'heroSub', 'posFs', 'leadBigFs'], x => sub(x, 2));
+    each(['h2Fs', 'h2sFs', 'featH2', 'catsH2Fs', 'clubH2Fs', 'storyH', 'deliverH', 'closeFs', 'midFs', 'joinFs', 'shopH2'], x => sub(x, 4));
+    each(['footTagFs', 'tagFs'], x => sub(x, 2));
+    each(['heroH', 'heroImgH', 'ctaImgH', 'midImgH', 'midMinH', 'cutImgH', 'edImgH', 'teamImgH', 'galH', 'mapH', 'ringH', 'closeH', 'vidH', 'imgAspect', 'featAspect', 'featAr', 'imgAr', 'rootsAr', 'brAr', 'cutAr', 'moreAr', 'valAr', 'cardMinH', 'benMinH', 'catHgt', 'brHgt', 'thumbW'], mul);
+    if ('vidH' in v && /^\d+px 20px 28px$/.test(v.heroPad || '')) v.heroPad = (parseInt(v.vidH) - 30) + 'px 20px 28px';
+    if ('heroImgH' in v && typeof v.heroPad === 'string') v.heroPad = v.heroPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if ('ctaImgH' in v && typeof v.midPad === 'string') v.midPad = v.midPad.replace(/ (\d+)px$/, (a, n) => ' ' + Math.round(n * s) + 'px');
+    if (typeof v.hintBottom === 'string') v.hintBottom = v.hintBottom.replace('88px', '68px');
+    if (v.fPad === '6px 12px') v.fPad = '3px 12px';
+    return v;
+  }
   renderVals() {
     const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
     const tipsAll = ((st.data && st.data.tips) || []).map((t, i) => ({ ...t, i, cat: this.cats[t.title] || 'הכנה וצלייה' }));
@@ -140,7 +162,7 @@ class Component extends DCLogic {
         prod: L.prod ? { label: 'להזמנת ' + L.prod } : null, pBg: on ? '#fff' : '#EE3A30', pInk: on ? '#EE3A30' : '#fff', rBorder: on ? 'rgba(245,245,245,.6)' : '#3c2313', rInk: mob ? '#EE3A30' : (on ? '#f5f5f5' : '#3c2313'),
         enter: () => this.setState({ hT: k }), leave: () => this.setState({ hT: -1 }) }; });
     const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
-    return {
+    return this.cmpApply({
       forceW: pv ? 393 : 0, frameW: pv ? '393px' : 'none', stageBg: pv ? '#d9d3cd' : '#f5f5f5', frameShadow: pv ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.18)' : 'none',
       hdrH: mob ? '66px' : '100px', side,
       heroH: mob ? '620px' : 'min(72vh,640px)', heroPad: mob ? '44px 20px 300px' : '0 ' + side, heroJust: mob ? 'flex-start' : 'center',
@@ -157,7 +179,7 @@ class Component extends DCLogic {
       closeMb: mob ? '64px' : '110px', midDir: mob ? 'column' : 'row', midAlign: mob ? 'flex-start' : 'center', midPad: mob ? '34px 24px 230px' : '54px 60px',
       midFs: mob ? '1.8rem' : 'clamp(1.8rem,2.6vw,2.6rem)', ctaImgL: mob ? '-45px' : '20px', ctaImgH: mob ? '339px' : '300px', ctaTxtPadL: mob ? '0' : '0',
       ctaBtnML: mob ? '0' : '300px', ctaStampL: mob ? '-60px' : '40%'
-    };
+    }, mob, w, this.cmpH());
   }
 }
 </script>
