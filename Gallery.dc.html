@@ -73,7 +73,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
 <dc-import name="SiteFooter" force-w="{{ forceW }}" force-h="{{ forceH }}" hint-size="100%,520px"></dc-import>
 </div></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;previewH&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:736,&quot;min&quot;:560,&quot;max&quot;:900,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;igUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/3katzavim/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;אינסטגרם&quot;},&quot;feedUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;אינסטגרם&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobilePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;previewH&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:736,&quot;min&quot;:560,&quot;max&quot;:900,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;תצוגה&quot;},&quot;igUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/shlosha_katsavim/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;אינסטגרם&quot;},&quot;feedUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;אינסטגרם&quot;}}">
 class Component extends DCLogic {
   state = { w: window.innerWidth, h: -1, lb: -1, feed: null };
   componentDidMount() {
@@ -117,7 +117,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const st = this.state, pv = !!this.props.mobilePreview, w = pv ? 393 : st.w, mob = w < 768, tab = w < 1100;
-    const items = this.list(), ig = this.props.igUrl || 'https://www.instagram.com/3katzavim/';
+    const items = this.list(), ig = this.props.igUrl || 'https://www.instagram.com/shlosha_katsavim/';
     const posts = items.map((p, i) => { const h = st.h === i && !mob; return { ...p, scale: h ? 1.06 : 1, ov: h ? 1 : 0,
       open: () => this.setState({ lb: i }), enter: () => this.setState({ h: i }), leave: () => this.setState({ h: -1 }) }; });
     const side = mob ? '20px' : 'max(30px,calc((100% - 1440px) / 2))';
