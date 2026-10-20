@@ -84,7 +84,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
         </sc-if>
       </sc-if>
       <sc-if value="{{ noData }}" hint-placeholder-val="{{ false }}">
-        <a href="{{ r.src }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#EE3A30;font-weight:600" style-hover="color:#3c2313">לרשימת המצרכים<i class="ti ti-chevron-left"></i></a>
+        <span style="font-size:1rem;font-weight:400;line-height:1.5">רשימת המצרכים המלאה תעלה בקרוב.</span>
       </sc-if>
     </aside>
     <div>
@@ -100,7 +100,7 @@ a,button,a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4 2,pointer!impor
         </ol>
       </sc-if>
       <sc-if value="{{ noData }}" hint-placeholder-val="{{ false }}">
-        <a href="{{ r.src }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#EE3A30;font-weight:600;font-size:1.05rem" style-hover="color:#3c2313">לאופן ההכנה המלא<i class="ti ti-chevron-left"></i></a>
+        <span style="font-size:1rem;font-weight:400;line-height:1.5">אופן ההכנה המלא יעלה בקרוב.</span>
       </sc-if>
       <sc-if value="{{ mt.on }}" hint-placeholder-val="{{ false }}">
         <div ref="{{ tipBoxRef }}" style="position:relative;margin-top:{{ tipMt }};height:{{ mt.ch }};background:#f1ece8;border-radius:14px;overflow:visible">

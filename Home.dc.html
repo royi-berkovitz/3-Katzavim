@@ -208,7 +208,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
     <h2 data-rev="cats" style="margin:0 0 clamp(30px,5vw,60px);text-align:center;font-size:{{ catsH2Fs }};letter-spacing:{{ catsH2Ls }};font-weight:{{ catsH2Fw }};line-height:1;opacity:{{ rv.cats.op }};transform:translateY({{ rv.cats.y }});transition:opacity .8s, transform .9s cubic-bezier(.2,.7,.2,1)">איכות וטעמים <strong style="font-weight:900">מובחרים בכל קניה</strong></h2>
     <div style="display:grid;grid-template-columns:{{ catCols }};border-top:1px solid rgba(60,35,19,.13);border-right:1px solid rgba(60,35,19,.13)">
       <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
-        <a href="{{ c.href }}" onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative;display:block;aspect-ratio:{{ catAspect }};height:{{ catHgt }};overflow:hidden;border-left:1px solid rgba(60,35,19,.13);border-bottom:1px solid rgba(60,35,19,.13);color:#f5f5f5">
+        <a href="{{ c.href }}" target="{{ c.target }}" rel="noopener" onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative;display:block;aspect-ratio:{{ catAspect }};height:{{ catHgt }};overflow:hidden;border-left:1px solid rgba(60,35,19,.13);border-bottom:1px solid rgba(60,35,19,.13);color:#f5f5f5">
           <sc-if value="{{ catPlusOn }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.toggle }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:6;width:26px;height:26px;border-radius:50%;border:0;background:{{ c.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ c.plusRot }});transition:transform .35s ease, background .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ c.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
           <sc-if value="{{ c.img }}" hint-placeholder-val="{{ false }}">
             <img src="{{ c.img }}" alt="{{ c.n }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ c.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
@@ -271,7 +271,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
           </sc-for>
         </ul>
       </sc-if>
-      <a ref="{{ clubBtnRef }}" href="https://3katzavim.web3d-studio.co.il/מועדון-הלקוחות/" style="position:relative;z-index:5;top:{{ clubBtnTop }};display:inline-flex;visibility:{{ clubBtnVis }};opacity:{{ clubBtnOp }};pointer-events:{{ clubBtnPe }};transition:opacity .5s ease 1.5s, background .35s, color .35s, border-color .35s;background:{{ clubBtnBg }};margin-top:{{ clubBtnMt }};align-items:center;gap:8px;padding:{{ clubBtnPad }};font-size:{{ clubBtnFs }};border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;transition:all .35s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">לפרטים והצטרפות</a>
+      <a ref="{{ clubBtnRef }}" href="Club.dc.html" style="position:relative;z-index:5;top:{{ clubBtnTop }};display:inline-flex;visibility:{{ clubBtnVis }};opacity:{{ clubBtnOp }};pointer-events:{{ clubBtnPe }};transition:opacity .5s ease 1.5s, background .35s, color .35s, border-color .35s;background:{{ clubBtnBg }};margin-top:{{ clubBtnMt }};align-items:center;gap:8px;padding:{{ clubBtnPad }};font-size:{{ clubBtnFs }};border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;transition:all .35s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">לפרטים והצטרפות</a>
     </div>
     <div style="position:relative;display:flex;justify-content:center;opacity:{{ rv.club.op }};transform:translateY({{ rv.club.cardY }});transition:opacity .9s .15s, transform 1.1s cubic-bezier(.34,1.56,.64,1) .15s">
       <div style="position:relative;width:{{ clubCardW }};transform:translateY({{ clubLift }}) rotate(-9deg) scale({{ clubSc }});transform-origin:50% 0%;transition:transform 1.5s cubic-bezier(.45,.05,.25,1);animation:{{ clubFloat }};animation-play-state:{{ clubRun }}">
@@ -293,7 +293,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
                 <strong style="font-size:{{ cbT1 }};font-weight:900;letter-spacing:-.6px;line-height:1">הטבות לחברים</strong>
                 <span style="font-size:{{ cbT2 }};font-weight:300;line-height:1.1;opacity:.85">שלא תרצו לפספס</span>
               </div>
-              <a href="https://3katzavim.web3d-studio.co.il/מועדון-הלקוחות/" data-cur="white" style="position:absolute;left:7%;bottom:10%;display:inline-flex;align-items:center;gap:6px;padding:{{ clubBackBtnPad }};border-radius:999px;border:1.5px solid #EE3A30;background:#EE3A30;color:#fff;font-size:{{ clubBackBtnFs }};font-weight:700;white-space:nowrap;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לפרטים והצטרפות<i class="ti ti-chevron-left" style="font-size:1.1em"></i></a>
+              <a href="Club.dc.html" data-cur="white" style="position:absolute;left:7%;bottom:10%;display:inline-flex;align-items:center;gap:6px;padding:{{ clubBackBtnPad }};border-radius:999px;border:1.5px solid #EE3A30;background:#EE3A30;color:#fff;font-size:{{ clubBackBtnFs }};font-weight:700;white-space:nowrap;transition:background .3s, color .3s" style-hover="background:#fff;color:#EE3A30;border-color:#fff">לפרטים והצטרפות<i class="ti ti-chevron-left" style="font-size:1.1em"></i></a>
             </div>
           </div>
         </div>
@@ -306,7 +306,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
           </sc-for>
           <sc-if value="{{ plusOn }}" hint-placeholder-val="{{ false }}">
             <li style="display:flex;justify-content:center;margin-top:30px;pointer-events:{{ clubBtnPe }};opacity:{{ clubBtnOp }};transition:opacity .5s ease .5s">
-              <a href="https://3katzavim.web3d-studio.co.il/מועדון-הלקוחות/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;background:#f5f5f5;font-weight:600">לפרטים והצטרפות</a>
+              <a href="Club.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;background:#f5f5f5;font-weight:600">לפרטים והצטרפות</a>
             </li>
           </sc-if>
         </ul>
@@ -413,7 +413,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
     </div>
     <div ref="{{ recTrack }}" style="display:flex;gap:30px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding-bottom:6px">
       <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="3">
-        <a href="https://3katzavim.web3d-studio.co.il/recipes/" onMouseEnter="{{ r.enter }}" onMouseLeave="{{ r.leave }}" style="flex:0 0 {{ recBasis }};scroll-snap-align:start;display:flex;flex-direction:column;color:#3c2313">
+        <a href="{{ r.href }}" onMouseEnter="{{ r.enter }}" onMouseLeave="{{ r.leave }}" style="flex:0 0 {{ recBasis }};scroll-snap-align:start;display:flex;flex-direction:column;color:#3c2313">
           <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#e7e1db">
             <sc-if value="{{ plusOn }}" hint-placeholder-val="{{ false }}"><button onClick="{{ r.toggle }}" aria-label="פרטים" style="position:absolute;top:10px;left:10px;z-index:6;width:26px;height:26px;border-radius:50%;border:0;background:{{ r.plusBg }};padding:0;box-shadow:0 2px 8px rgba(20,10,5,.25);transform:rotate({{ r.plusRot }});transition:transform .35s ease, background .3s"><span style="position:absolute;left:50%;top:50%;width:12px;height:2.4px;margin:-1.2px 0 0 -6px;border-radius:1px;background:{{ r.plusInk }};display:block;transition:background .3s"></span><span style="position:absolute;left:50%;top:50%;width:2.4px;height:12px;margin:-6px 0 0 -1.2px;border-radius:1px;background:{{ r.plusInk }};display:block;transition:background .3s"></span></button></sc-if>
             <img src="{{ r.img }}" alt="{{ r.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ r.scale }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">
@@ -432,7 +432,7 @@ a,button,[role="button"],a *,button *{cursor:url("assets/cursor-ladle-wb.svg") 4
       </sc-for>
     </div>
     <div style="display:flex;justify-content:center;margin-top:clamp(30px,4vw,50px)">
-      <a href="https://3katzavim.web3d-studio.co.il/recipes/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;transition:all .35s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">לכל המתכונים</a>
+      <a href="Recipes.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;border:1.5px solid #3c2313;color:#3c2313;font-weight:600;transition:all .35s" style-hover="background:#EE3A30;border-color:#EE3A30;color:#fff;transform:translateY(-2px)">לכל המתכונים</a>
     </div>
   </div>
 </section>
@@ -975,8 +975,8 @@ class Component extends DCLogic {
 
     const bh = mob ? '150px' : (vh <= 820 ? '200px' : 'clamp(220px,26vh,280px)');
     const branches = [
-      { name: 'גבעת שמואל', addr: 'מתחם הולמס פלייס', href: this.S + '/branch/גבעת-שמואל/', img: this.S + '/wp-content/uploads/2025/11/IMG_7918-2.jpg' },
-      { name: 'חולון', addr: 'פנחס אילון 13', href: this.S + '/branch/חולון/', img: this.S + '/wp-content/uploads/2025/12/2d833f3b-2225-4594-b9ff-03d91b36c428.jpg' }
+      { name: 'גבעת שמואל', addr: 'מתחם הולמס פלייס', href: 'Branch.dc.html?b=givat', img: this.S + '/wp-content/uploads/2025/11/IMG_7918-2.jpg' },
+      { name: 'חולון', addr: 'פנחס אילון 13', href: 'Branch.dc.html?b=holon', img: this.S + '/wp-content/uploads/2025/12/2d833f3b-2225-4594-b9ff-03d91b36c428.jpg' }
     ].map((b, i) => ({ ...b, enter: () => { if (!this.isMob() && this.state.hBr !== i) this.setState({ hBr: i }); }, leave: () => { if (!this.isMob() && this.state.hBr === i) this.setState({ hBr: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hBr: s.hBr === i ? -1 : i })); }, plusBg: st.hBr === i ? '#EE3A30' : '#fff', plusInk: st.hBr === i ? '#fff' : '#3c2313', plusRot: st.hBr === i ? '45deg' : '0deg',
       bg: st.hBr === i ? 'rgba(60,35,19,.72)' : 'linear-gradient(to top, rgba(10,5,2,.72) 0%, rgba(10,5,2,.1) 45%, rgba(10,5,2,0))',
       ov: st.hBr === i ? 1 : 0, padB: mob ? '0px' : (st.hBr === i ? '22%' : '9%'), brJust: mob ? 'center' : 'flex-end', extraH: st.hBr === i ? '110px' : '0px', arrow: st.hBr === i ? '#EE3A30' : '#f5f5f5' }));
@@ -993,7 +993,7 @@ class Component extends DCLogic {
     ];
     const cats = catDefs.map(([n, img, d], i) => {
       const h = st.hCat === i;
-      return { n, img: img || '', noImg: !img, d: d || '', href: this.S + '/product-category/' + n.replace(/ /g, '-') + '/',
+      return { n, img: img || '', noImg: !img, d: d || '', href: ({ 'בשר': 'Category.dc.html?cat=beef', 'עופות': 'Category.dc.html?cat=poultry', 'דגים': 'Category.dc.html?cat=fish' })[n] || 'Cuts.dc.html#more', target: '_self',
         open: (e) => { if (!this.isMob()) return; e.preventDefault(); this.openCp(i); },
         enter: () => { if (!this.isMob()) this.setState({ hCat: i }); }, leave: () => { if (!this.isMob()) this.setState({ hCat: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hCat: s.hCat === i ? -1 : i })); }, plusBg: st.hCat === i ? '#EE3A30' : '#fff', plusInk: st.hCat === i ? '#fff' : '#3c2313', plusRot: st.hCat === i ? '45deg' : '0deg',
         scale: h ? 1.06 : 1, descH: h ? '120px' : '0px', descOp: h ? 1 : 0,
@@ -1052,7 +1052,7 @@ class Component extends DCLogic {
       ['קוביות חזה עוף במייפל', 'קוביות-חזה-עוף-במייפל.jpg', 'כ־25–30 דקות', 'קל', 'עוף', 'מחבת זריזה']
     ];
     const recipes = recDefs.filter(r => st.filter === 'הכל' || r[5] === st.filter).map(([t, f, time, lvl, meat], i) => ({
-      t, img: 'https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/01/' + f, time, lvl, meat,
+      t, img: 'https://3katzavim.web3d-studio.co.il/wp-content/uploads/2026/01/' + f, time, lvl, meat, href: 'Recipe.dc.html?slug=' + encodeURIComponent(t.replace(/["/]/g, '').replace(/\s+/g, '-')),
       enter: () => { if (!this.isMob()) this.setState({ hRec: i }); }, leave: () => { if (!this.isMob()) this.setState({ hRec: -1 }); }, toggle: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(s => ({ hRec: s.hRec === i ? -1 : i })); }, plusBg: st.hRec === i ? '#EE3A30' : '#fff', plusInk: st.hRec === i ? '#fff' : '#3c2313', plusRot: st.hRec === i ? '45deg' : '0deg',
       scale: st.hRec === i ? 1.06 : 1, ov: st.hRec === i ? 1 : 0,
       cBg: st.hRec === i ? '#EE3A30' : 'transparent', cBorder: st.hRec === i ? '#EE3A30' : '#3c2313', cInk: st.hRec === i ? '#fff' : '#3c2313'
