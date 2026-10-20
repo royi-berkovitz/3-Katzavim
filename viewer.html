@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#d9d3cd;font-family:'Heebo',system-ui,sans-serif;color:#3c2313}*{box-sizing:border-box}a{color:#3c2313}a:hover{color:#EE3A30}</style>
+</helmet>
+<div dir="rtl" ref="{{ stageRef }}" style="position:fixed;inset:0;background:#d9d3cd;overflow:hidden">
+
+  <sc-if value="{{ fsOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;z-index:50;background:{{ fsBg }};display:flex;align-items:center;justify-content:center">
+      <iframe src="{{ src }}" title="מסך מלא" style="width:{{ fsW }};height:100%;border:0;display:block;background:#1a0f08;box-shadow:{{ fsShadow }}"></iframe>
+      <button onClick="{{ exitFs }}" aria-label="יציאה ממסך מלא (Esc)" title="יציאה ממסך מלא (Esc)" style="position:absolute;top:14px;left:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(60,35,19,.55);color:#f5f5f5;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;opacity:.55;transition:opacity .25s, background .25s" style-hover="opacity:1;background:#EE3A30"><i class="ti ti-minimize" style="font-size:20px"></i></button>
+    </div>
+  </sc-if>
+
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-right:{{ padL }};transition:padding .3s">
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="width:{{ dW }};height:{{ dH }};position:relative;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(60,35,19,.28);background:#1a0f08">
+        <iframe src="{{ src }}" title="דסקטופ" style="position:absolute;top:0;right:0;width:1920px;height:910px;border:0;zoom:{{ dScale }}"></iframe>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <div style="width:{{ mW }};height:{{ mH }};position:relative">
+        <div style="position:absolute;top:0;right:0;width:417px;height:760px;padding:12px;border-radius:40px;background:#1c1714;box-shadow:0 30px 80px rgba(60,35,19,.32);zoom:{{ mScale }}">
+          <div style="width:393px;height:736px;border-radius:28px;overflow:hidden;background:#1a0f08">
+            <iframe src="{{ src }}" title="מובייל" style="width:393px;height:736px;border:0;display:block"></iframe>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:10px;background:rgba(245,245,245,.92);padding:8px 16px;border-radius:999px;font-size:14px;box-shadow:0 6px 18px rgba(60,35,19,.12)">
+    <strong style="font-weight:900">{{ curLabel }}</strong>
+    <span style="opacity:.6">·</span>
+    <span>{{ modeLabel }}</span>
+    <span style="opacity:.6">·</span>
+    <button onClick="{{ enterFs }}" aria-label="מסך מלא" title="מסך מלא (F)" style="display:flex;align-items:center;gap:6px;border:0;background:#3c2313;color:#f5f5f5;border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .25s" style-hover="background:#EE3A30"><i class="ti ti-maximize" style="font-size:16px"></i>מסך מלא</button>
+  </div>
+
+  <div style="position:absolute;top:50%;right:0;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:20">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+      <button onClick="{{ t.click }}" style="width:40px;height:{{ t.h }};border:0;border-radius:12px 0 0 12px;background:{{ t.bg }};color:{{ t.color }};cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(60,35,19,.18);padding:0;transition:background .25s, width .25s" style-hover="width:46px">
+        <span style="writing-mode:vertical-rl;font-family:'Heebo',sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;direction:ltr">{{ t.label }}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;top:50%;right:56px;transform:translateY(-50%);width:340px;max-height:calc(100vh - 60px);overflow-y:auto;background:#fff;border-radius:18px;box-shadow:0 24px 60px rgba(60,35,19,.22);padding:22px 18px 16px;z-index:19">
+      <sc-if value="{{ showPages }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:0 6px 14px;border-bottom:1px solid rgba(60,35,19,.12);margin-bottom:8px">
+          <strong style="font-size:18px;font-weight:900">עמודים מעוצבים</strong>
+          <div style="display:flex;gap:18px;font-size:12px;opacity:.6"><span>דסקטופ</span><span>מובייל</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ pages }}" as="p" hint-placeholder-count="12">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 6px;border-radius:12px;background:{{ p.rowBg }};opacity:{{ p.op }}">
+              <span style="font-size:16px;font-weight:{{ p.weight }}">{{ p.label }}</span>
+              <sc-if value="{{ p.ready }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;gap:8px">
+                  <button onClick="{{ p.goD }}" aria-label="דסקטופ" style="width:38px;height:38px;border-radius:10px;border:1px solid {{ p.dBorder }};background:{{ p.dBg }};color:{{ p.dColor }};cursor:pointer;font-size:19px;display:flex;align-items:center;justify-content:center"><i class="ti ti-device-desktop"></i></button>
+                  <button onClick="{{ p.goM }}" aria-label="מובייל" style="width:38px;height:38px;border-radius:10px;border:1px solid {{ p.mBorder }};background:{{ p.mBg }};color:{{ p.mColor }};cursor:pointer;font-size:19px;display:flex;align-items:center;justify-content:center"><i class="ti ti-device-mobile"></i></button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ p.soon }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:12px;padding:4px 10px;border-radius:999px;background:#f1ece7">בקרוב</span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showMap }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:0 6px 14px;border-bottom:1px solid rgba(60,35,19,.12);margin-bottom:12px"><strong style="font-size:18px;font-weight:900">מפת אתר</strong></div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding:0 6px">
+          <sc-for list="{{ sitemap }}" as="g" hint-placeholder-count="6">
+            <div>
+              <button onClick="{{ g.go }}" style="background:none;border:0;padding:0;font:inherit;font-size:16px;font-weight:900;color:{{ g.color }};cursor:{{ g.cursor }}">{{ g.label }}</button>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;padding-right:14px;border-right:2px solid rgba(60,35,19,.12)">
+                <sc-for list="{{ g.kids }}" as="k" hint-placeholder-count="2">
+                  <button onClick="{{ k.go }}" style="background:none;border:0;padding:0;font:inherit;font-size:14px;text-align:right;color:{{ k.color }};cursor:{{ k.cursor }}">{{ k.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  stageRef = React.createRef();
+  pagesDef = [
+    ['home', 'עמוד הבית', 'Home.dc.html'],
+    ['holon', 'סניף חולון', 'Branch.dc.html?b=holon'], ['givat', 'סניף גבעת שמואל', 'Branch.dc.html?b=givat'],
+    ['story', 'הסיפור שלנו', 'Story.dc.html'], ['kosher', 'כשרות', 'Kosher.dc.html'], ['gallery', 'גלריה', 'Gallery.dc.html'],
+    ['club', 'מועדון לקוחות', 'Club.dc.html'], ['recipes', 'מה על האש? (מתכונים)', 'Recipes.dc.html'], ['recipe', 'מתכון בודד', 'Recipe.dc.html'],
+    ['cuts', 'הנתחים שלנו', 'Cuts.dc.html'], ['category', 'קטגוריית נתח', 'Category.dc.html'], ['tips', 'טיפים מהקצבים', 'Tips.dc.html'], ['contact', 'צור קשר', 'Contact.dc.html']
+  ];
+  mapDef = [
+    ['home', []], ['סניפים', ['holon', 'givat']], ['אודות', ['story', 'kosher', 'gallery']],
+    ['club', []], ['recipes', ['recipe']], ['cuts', ['category']], ['tips', []], ['contact', []]
+  ];
+  state = (() => {
+    let s = {};
+    try { s = JSON.parse(localStorage.getItem('3k-viewer') || '{}'); } catch (e) {}
+    return { page: s.page || 'home', mode: s.mode || 'desktop', panel: s.panel === undefined ? 'pages' : s.panel, w: window.innerWidth, h: window.innerHeight };
+  })();
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener('resize', this.onR);
+    this.onFs = () => { if (!document.fullscreenElement && this.state.fs) this.setState({ fs: false }); };
+    document.addEventListener('fullscreenchange', this.onFs);
+    this.onK = (e) => {
+      if (/INPUT|TEXTAREA/.test((document.activeElement || {}).tagName || '')) return;
+      if (e.key === 'Escape' && this.state.fs) this.exitFs();
+      else if ((e.key === 'f' || e.key === 'F') && !e.metaKey && !e.ctrlKey) { this.state.fs ? this.exitFs() : this.enterFs(); }
+    };
+    window.addEventListener('keydown', this.onK);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); document.removeEventListener('fullscreenchange', this.onFs); window.removeEventListener('keydown', this.onK); }
+  enterFs() {
+    this.setState({ fs: true });
+    const el = this.stageRef.current;
+    try { if (el && el.requestFullscreen && !document.fullscreenElement) el.requestFullscreen().catch(() => {}); } catch (e) {}
+  }
+  exitFs() {
+    this.setState({ fs: false });
+    try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (e) {}
+  }
+  set(patch) {
+    this.setState(patch, () => { try { localStorage.setItem('3k-viewer', JSON.stringify({ page: this.state.page, mode: this.state.mode, panel: this.state.panel })); } catch (e) {} });
+  }
+  renderVals() {
+    const st = this.state;
+    const byId = Object.fromEntries(this.pagesDef.map(([id, label, file]) => [id, { label, file }]));
+    const cur = byId[st.page] && byId[st.page].file ? st.page : 'home';
+    const panelW = st.panel ? 410 : 60;
+    const availW = st.w - panelW - 60, availH = st.h - 90;
+    const dScale = Math.max(0.2, Math.min(availW / 1920, availH / 910, 1));
+    const mScale = Math.max(0.3, Math.min(availH / 760, 1));
+    const go = (id, mode) => () => { if (byId[id] && byId[id].file) this.set({ page: id, mode: mode || this.state.mode }); };
+    const tabDef = [
+      ['DESKTOP', () => this.set({ mode: 'desktop' }), st.mode === 'desktop', 118],
+      ['MOBILE', () => this.set({ mode: 'mobile' }), st.mode === 'mobile', 104],
+      ['SITE MAP', () => this.set({ panel: this.state.panel === 'map' ? null : 'map' }), st.panel === 'map', 118],
+      ['PAGES', () => this.set({ panel: this.state.panel === 'pages' ? null : 'pages' }), st.panel === 'pages', 96]
+    ];
+    const tabs = tabDef.map(([label, click, on, h]) => ({ label, click, h: h + 'px', bg: on ? '#EE3A30' : '#3c2313', color: '#f5f5f5' }));
+    const pages = this.pagesDef.map(([id, label, file]) => {
+      const isCur = id === cur, ready = !!file;
+      const dOn = isCur && st.mode === 'desktop', mOn = isCur && st.mode === 'mobile';
+      return { label, ready, soon: !ready, op: ready ? 1 : .55, weight: isCur ? 900 : 500,
+        rowBg: isCur ? '#f7efe7' : 'transparent', goD: go(id, 'desktop'), goM: go(id, 'mobile'),
+        dBg: dOn ? '#3c2313' : '#fff', dColor: dOn ? '#f5f5f5' : '#3c2313', dBorder: dOn ? '#3c2313' : 'rgba(60,35,19,.2)',
+        mBg: mOn ? '#3c2313' : '#fff', mColor: mOn ? '#f5f5f5' : '#3c2313', mBorder: mOn ? '#3c2313' : 'rgba(60,35,19,.2)' };
+    });
+    const node = (id) => { const p = byId[id]; const ready = p && p.file; return { label: p ? p.label : id, go: go(id), color: id === cur ? '#EE3A30' : (ready || !p ? '#3c2313' : 'rgba(60,35,19,.5)'), cursor: ready ? 'pointer' : 'default' }; };
+    const sitemap = this.mapDef.map(([g, kids]) => ({ ...node(g), kids: kids.map(node) }));
+    return {
+      stageRef: this.stageRef, src: byId[cur].file,
+      isDesktop: st.mode === 'desktop', isMobile: st.mode === 'mobile',
+      dScale, dW: 1920 * dScale + 'px', dH: 910 * dScale + 'px',
+      mScale, mW: 417 * mScale + 'px', mH: 760 * mScale + 'px',
+      padL: st.panel ? '400px' : '50px', curLabel: byId[cur].label, modeLabel: st.mode === 'desktop' ? 'דסקטופ 1920×910 (שטח אמיתי בדפדפן)' : 'מובייל 393×736 (שטח אמיתי בדפדפן)',
+      fsOn: !!st.fs, enterFs: () => this.enterFs(), exitFs: () => this.exitFs(),
+      fsW: st.mode === 'mobile' ? '393px' : '100%', fsBg: st.mode === 'mobile' ? '#d9d3cd' : '#1a0f08',
+      fsShadow: st.mode === 'mobile' ? '0 0 0 1px rgba(60,35,19,.12), 0 30px 80px rgba(60,35,19,.25)' : 'none',
+      tabs, panelOpen: !!st.panel, showPages: st.panel === 'pages', showMap: st.panel === 'map', pages, sitemap
+    };
+  }
+}
+</script>
+</body>
+</html>
